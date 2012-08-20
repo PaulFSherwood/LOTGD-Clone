@@ -10,7 +10,7 @@ xp::xp(int WxptotalP, int WlvlP,  int OlvlP)
  Olvl(OlvlP)
 {}
 
-
+// editing for git (test)
 int  xp::getxprecieved()
 {
 
