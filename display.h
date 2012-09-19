@@ -4,6 +4,11 @@
 #include <iostream>
 #include "orge.h"
 #include "warrior.h"
+// sdl test //
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+#include "SDL/SDL_ttf.h"
+// sdl test //
 using namespace std;
 
 class display
@@ -18,6 +23,14 @@ public:
 
     void Weapon_Shop(string &systemMessage);
     void Armor_Shop(string &systemMessage);
+
+    // surface loading
+    SDL_Surface *load_image(string filename);
+    void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
+    bool init();
+    bool load_files();
+    void clean_up();
+    // sdl test //
 };
 
 #endif // DISPLAY_H

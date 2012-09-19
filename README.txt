@@ -16,3 +16,11 @@ started: Add dbus for graphics front end
 ----- add options to the readXML to pull out the option for the HUD
 
 Add zone to travel through
+
+structure will be somethting like this
+Init(); 	// handles loading of data, textures, maps, npcs
+Event(); 	// handles input events mouse, keyboard
+Loop();		// handles data updates npc's moving decrese hp bar...
+Render();	// handles updating/rendering what shows up on the screen
+Cleanup();	// cleans up resources Quits the game
+
