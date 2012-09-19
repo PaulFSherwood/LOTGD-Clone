@@ -24,7 +24,72 @@
 #include "warrior.h"
 #include "xmlParse.h"
 #include "xp.h"
+// sdl test //
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+// sdl test //
 using namespace std;
+
+// sdl test //
+// screen atributes
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+const int SCREEN_BPP = 32;
+
+// the surfaces
+SDL_Surface *background = NULL;
+SDL_Surface *hud = NULL;
+SDL_Surface *screen = NULL;
+
+SDL_Event event;
+
+// surface loading
+SDL_Surface *load_image(string filename)
+{
+    // the image that's loaded
+    SDL_Surface *loadedImage = NULL;
+
+    // the optimized image that will be used
+    SDL_Surface *optimizedImage = NULL;
+
+    // load the image
+    loadedImage = IMG_Load(filename.c_str());
+
+    // if the image loaded
+    if (loadedImage != NULL)
+    {
+        // creat an optimized image
+        optimizedImage = SDL_DisplayFormat(loadedImage);
+
+        // free the old image
+        SDL_FreeSurface(loadedImage);
+
+        // if the image was optimized just fine
+        if (optimizedImage != NULL)
+        {
+            // map the color key
+            Uint32 colorkey = SDL_MapRGB(optimizedImage->format, 0 , 0xFF, 0xFF);
+
+            // set all the pixels to color r 0, g 0xFF, g 0xFF to be transparent
+            SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, colorkey);
+        }
+    }
+    // return the optimized image
+    return optimizedImage;
+}
+
+void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
+
+bool init();
+
+bool load_files();
+
+void clean_up();
+
+
+
+
+// sdl test //
 
 int main()
 {
@@ -40,6 +105,28 @@ int main()
     npc_orge *randomOgre = new npc_orge();
 
 
+    // sdl test //
+    // Initialize
+    if (init() == false)
+    {
+        return 1;
+    }
+    // Load the files
+    if (load_files() == false)
+    {
+        return 1;
+    }
+
+    // apply the surfaces to the screen
+    apply_surface(0, 0, background, screen);
+    apply_surface(240, 190, hud, screen);
+
+    // Update the screen
+    if (SDL_Flip(screen) == -1)
+    {
+        return 1;
+    }
+    // sdl test //
 
     // Import player and orge settings from a xml file
     // importData->readXML(warrior, orge);
@@ -59,6 +146,15 @@ int main()
         // Show main display
         getDisplay->mainDisplay(mySoilder);
 
+        // sdl test //
+        if (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+            {
+                running = false;
+            }
+        }
+        // sdl test //
         char e;
         cin >> e;
         switch (e)
@@ -122,6 +218,9 @@ int main()
             }
         }
     }
+    // sdl test //
+    clean_up();
+    // sdl test //
     delete getDisplay;
     delete newForest;
     delete getShop;
@@ -132,3 +231,75 @@ int main()
     delete randomOgre;
     return 0;
 }
+// sdl test //
+
+void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination)
+{
+    // temp rectangle to hold the offsets
+    SDL_Rect offset;
+
+    // Get the offsets
+    offset.x = x;
+    offset.y = y;
+
+    // blit the surface
+    SDL_BlitSurface(source, NULL, destination, &offset);
+}
+
+bool init()
+{
+    // init all SDL_subsystems
+    if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
+    {
+        return 1;
+    }
+
+    // set up the screen
+    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+
+    // If there was an error in setting up the screen
+    if(screen == NULL)
+    {
+        return 1;
+    }
+
+    // set the winow caption
+    SDL_WM_SetCaption("SDL HUD TEST", NULL);
+
+    // If everthing initializedfine
+    return true;
+}
+
+bool load_files()
+{
+    // Load the background image
+    background = load_image("background.png");
+
+    // if the background didn't load
+    if (background == NULL)
+    {
+        return false;
+    }
+
+    // load the stick figure
+    hud = load_image("hud.png");
+
+    // if the stick figure didn't load
+    if (hud == NULL)
+    {
+        return false;
+    }
+    return true;
+}
+
+void clean_up()
+{
+    // Free the surfaces
+    SDL_FreeSurface(background);
+    SDL_FreeSurface(hud);
+
+    // Quit SDL
+    SDL_Quit();
+}
+
+// sdl test //
