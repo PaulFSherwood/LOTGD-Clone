@@ -119,7 +119,7 @@ int main()
 
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
-    apply_surface(240, 190, hud, screen);
+    apply_surface(0, 0, hud, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
