@@ -273,7 +273,7 @@ bool init()
 bool load_files()
 {
     // Load the background image
-    background = load_image("background.png");
+    background = load_image("img/background.png");
 
     // if the background didn't load
     if (background == NULL)
@@ -282,7 +282,7 @@ bool load_files()
     }
 
     // load the stick figure
-    hud = load_image("hud.png");
+    hud = load_image("img/hud.png");
 
     // if the stick figure didn't load
     if (hud == NULL)

@@ -32,6 +32,6 @@ HEADERS += \
     warrior.h
 
 OTHER_FILES += \
-    background.png \
-    foo.png
+    img/background.png \
+    img/hud.png
 
