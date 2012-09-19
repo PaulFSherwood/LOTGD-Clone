@@ -44,51 +44,11 @@ SDL_Surface *screen = NULL;
 SDL_Event event;
 
 // surface loading
-SDL_Surface *load_image(string filename)
-{
-    // the image that's loaded
-    SDL_Surface *loadedImage = NULL;
-
-    // the optimized image that will be used
-    SDL_Surface *optimizedImage = NULL;
-
-    // load the image
-    loadedImage = IMG_Load(filename.c_str());
-
-    // if the image loaded
-    if (loadedImage != NULL)
-    {
-        // creat an optimized image
-        optimizedImage = SDL_DisplayFormat(loadedImage);
-
-        // free the old image
-        SDL_FreeSurface(loadedImage);
-
-        // if the image was optimized just fine
-        if (optimizedImage != NULL)
-        {
-            // map the color key
-            Uint32 colorkey = SDL_MapRGB(optimizedImage->format, 0 , 0xFF, 0xFF);
-
-            // set all the pixels to color r 0, g 0xFF, g 0xFF to be transparent
-            SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, colorkey);
-        }
-    }
-    // return the optimized image
-    return optimizedImage;
-}
-
+SDL_Surface *load_image(string filename);
 void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
-
 bool init();
-
 bool load_files();
-
 void clean_up();
-
-
-
-
 // sdl test //
 
 int main()
@@ -233,6 +193,40 @@ int main()
 }
 // sdl test //
 
+SDL_Surface *load_image(string filename)
+{
+    // the image that's loaded
+    SDL_Surface *loadedImage = NULL;
+
+    // the optimized image that will be used
+    SDL_Surface *optimizedImage = NULL;
+
+    // load the image
+    loadedImage = IMG_Load(filename.c_str());
+
+    // if the image loaded
+    if (loadedImage != NULL)
+    {
+        // creat an optimized image
+        optimizedImage = SDL_DisplayFormat(loadedImage);
+
+        // free the old image
+        SDL_FreeSurface(loadedImage);
+
+        // if the image was optimized just fine
+        if (optimizedImage != NULL)
+        {
+            // map the color key
+            Uint32 colorkey = SDL_MapRGB(optimizedImage->format, 0 , 0xFF, 0xFF);
+
+            // set all the pixels to color r 0, g 0xFF, g 0xFF to be transparent
+            SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, colorkey);
+        }
+    }
+    // return the optimized image
+    return optimizedImage;
+}
+
 void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination)
 {
     // temp rectangle to hold the offsets
@@ -266,7 +260,7 @@ bool init()
     // set the winow caption
     SDL_WM_SetCaption("SDL HUD TEST", NULL);
 
-    // If everthing initializedfine
+    // If everthing initialized fine
     return true;
 }
 
@@ -281,10 +275,10 @@ bool load_files()
         return false;
     }
 
-    // load the stick figure
+    // load the hud figure
     hud = load_image("img/hud.png");
 
-    // if the stick figure didn't load
+    // if the hud figure didn't load
     if (hud == NULL)
     {
         return false;
