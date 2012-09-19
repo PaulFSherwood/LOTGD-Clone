@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <cmath>
+#include "warrior.h"
 #include "xp.h"
 using namespace std;
 
@@ -10,7 +11,7 @@ xp::xp(int WxptotalP, int WlvlP,  int OlvlP)
  Olvl(OlvlP)
 {}
 
-// editing for git (test)
+
 int  xp::getxprecieved()
 {
 
@@ -35,7 +36,7 @@ int  xp::getxprecieved()
     return xprecieved;
 }
 
-int xp::getmaxxp(int &WlvlP)
+int xp::getmaxxp(int WlvlP)
 {
     int xpmax = 0;
     xpmax = ((100)*(pow(2, WlvlP)));
@@ -43,15 +44,17 @@ int xp::getmaxxp(int &WlvlP)
     return xpmax;
 }
 
-void xp::canlvl(int &currentxp, int &maxxp, int &WhpP, int &WstrP, int &WlvlP)
+void xp::canlvl(mywarrior * mySoilder)
 {
     // check current xp and see if you can level
-    if (currentxp >= maxxp){
+    if (mySoilder->GetWXptotalP() >= mySoilder->GetWMaxxpP()){
+        int WlvlP = mySoilder->GetWLvlP();
         WlvlP += 1;
+        mySoilder->SetWLvlP(WlvlP);
         double tempHP = 0;
-        tempHP = (WhpP * .1);
-        WhpP += (tempHP + 10);
-        WstrP += 5;
+        tempHP = ((mySoilder->GetWHpP() * .1) + 10) + mySoilder->GetWHpP();
+        mySoilder->SetWHpP(tempHP);
+        mySoilder->SetWStrP(mySoilder->GetWStrP() + 5);
     }
     else {
         //return 0;

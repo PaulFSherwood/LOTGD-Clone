@@ -2,17 +2,14 @@
 #define TRAINING_H
 
 #include <iostream>
-#include "includes.h"
+#include "warrior.h"
 using namespace std;
-
-extern struct player warrior;
-extern struct npc orge;
 
 class training
 {
 public:
     training();
-    void Warrior_Training(player &warrior);
+    void Warrior_Training(mywarrior * warrior_Object);
 };
 
 #endif // TRAINING_H

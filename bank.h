@@ -3,18 +3,15 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "includes.h"
+#include "warrior.h"
 using namespace std;
-
-extern struct player warrior;
-extern struct npc orge;
 
 class bank
 {
 public:
     bank();
 
-    void old_Bank(player &warrior);
+    void old_Bank(mywarrior * mySoilder);
 };
 
 #endif // BANK_H

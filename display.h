@@ -2,23 +2,20 @@
 #define DISPLAY_H
 
 #include <iostream>
-#include "includes.h"
+#include "orge.h"
+#include "warrior.h"
 using namespace std;
-
-extern struct player warrior;
-extern struct npc orge;
 
 class display
 {
 public:
     display();
 
-    void mainDisplay(player &warrior);
-    void forrestDisplay(player &warrior);
-    void fightDisplay(player &warrior, npc &orge);
-    void old_Bank(player &warrior);
+    void mainDisplay(mywarrior * warrior_Object);
+    void forrestDisplay(mywarrior * warrior_Object);
+    void fightDisplay(mywarrior * warrior_Object, npc_orge * npc_Object);
+    void old_Bank(mywarrior * warrior_Object);
 
-    void Shop_Entrance();
     void Weapon_Shop(string &systemMessage);
     void Armor_Shop(string &systemMessage);
 };

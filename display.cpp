@@ -3,11 +3,10 @@
 #include <stdlib.h>
 #include <cmath>
 #include "display.h"
+#include "orge.h"
 #include "shop.h"
+#include "warrior.h"
 using namespace std;
-
-extern player warrior;
-extern npc orge;
 
 display::display(){}
 
@@ -15,7 +14,7 @@ display::display(){}
 shop *Weapon = new shop();
 
 // display functions
-void display::mainDisplay(player &warrior)
+void display::mainDisplay(mywarrior * warrior_Object)
 {
     #ifdef WIN32
         system("cls");
@@ -24,24 +23,25 @@ void display::mainDisplay(player &warrior)
         printf("\033[2J\033[1;1H");
     #endif
     cout << "##Village Gate##" << "\t\t" << "##Vital Info##" << endl;
-    cout << "(F)orest" << "\t\t\t" << "Name: " << warrior.WNameP << endl;
-    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << warrior.WLvlP << endl;
-    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << warrior.WHpP << endl;
+    cout << "(F)orest" << "\t\t\t" << "Name: " << warrior_Object->GetWNameP() << endl;
+    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << warrior_Object->GetWLvlP() << endl;
+    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << warrior_Object->GetWHpP() << endl;
     cout << "##Market Street##" << "\t\t" << "Turns: " << endl;
-    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << warrior.WStrP << endl;
-    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << warrior.WAtkP << endl;
-    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << warrior.WDefP << endl;
-    cout << "(H)eal your self\t\t" << "Race: " << warrior.WRaceP << endl;
+    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << warrior_Object->GetWStrP() << endl;
+    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << warrior_Object->GetWAtkP() << endl;
+    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << warrior_Object->GetWDefP() << endl;
+    cout << "(H)eal your self\t\t" << "Race: " << warrior_Object->GetWRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior.WGoldP << endl;
+    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetWGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior.WWeaponP) << endl;
-    cout << "\t\t\t\t" << "Armour: " << Weapon->GetArmor(warrior.WArmorP) << endl;
-    cout << "\t\t\t\t" << "Experience: " << warrior.WXptotalP << "|" << warrior.WMaxxpP << endl;
+    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetWWeaponP()) << endl;
+    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetWArmorTypeP()) << endl;
+    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
 }
 
-void display::forrestDisplay(player &warrior)
+void display::forrestDisplay(mywarrior * warrior_Object)
 {
     #ifdef WIN32
         system("cls");
@@ -50,24 +50,25 @@ void display::forrestDisplay(player &warrior)
         printf("\033[2J\033[1;1H");
     #endif
     cout << "##Forest##" << "\t\t\t" << "##Vital Info##" << endl;
-    cout << "(C)hange Orges level" << "\t\t" << "Name: " << warrior.WNameP << endl;
-    cout << "(L)ook for a fight" << "\t\t" << "Level: " << warrior.WLvlP << endl;
-    cout << "(R)eturn to village" << "\t\t" << "Hitpoints: " << warrior.WHpP << endl;
+    cout << "(C)hange Orges level" << "\t\t" << "Name: " << warrior_Object->GetWNameP() << endl;
+    cout << "(L)ook for a fight" << "\t\t" << "Level: " << warrior_Object->GetWLvlP() << endl;
+    cout << "(R)eturn to village" << "\t\t" << "Hitpoints: " << warrior_Object->GetWHpP() << endl;
     cout << "\t\t\t\t" << "Turns: " << endl;
-    cout << "\t\t\t\t" << "Strength: " << warrior.WStrP << endl;
-    cout << "\t\t\t\t" << "Attack: " << warrior.WAtkP << endl;
-    cout << "\t\t\t\t" << "Defense: " << warrior.WDefP << endl;
-    cout << "\t\t\t\t" << "Race: " << endl;
+    cout << "\t\t\t\t" << "Strength: " << warrior_Object->GetWStrP() << endl;
+    cout << "\t\t\t\t" << "Attack: " << warrior_Object->GetWAtkP() << endl;
+    cout << "\t\t\t\t" << "Defense: " << warrior_Object->GetWDefP() << endl;
+    cout << "\t\t\t\t" << "Race: " << warrior_Object->GetWRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior.WGoldP << endl;
+    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetWGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior.WWeaponP) << endl;
-    cout << "\t\t\t\t" << "Armour: " << Weapon->GetArmor(warrior.WArmorP) << endl;
-    cout << "\t\t\t\t" << "Experience: " << warrior.WXptotalP << "|" << warrior.WMaxxpP << endl;
+    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetWWeaponP()) << endl;
+    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetWArmorTypeP()) << endl;
+    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
 }
 
-void display::fightDisplay(player &warrior, npc &orge)
+void display::fightDisplay(mywarrior * warrior_Object, npc_orge * npc_Object)
 {
     #ifdef WIN32
         system("cls");
@@ -76,24 +77,25 @@ void display::fightDisplay(player &warrior, npc &orge)
         printf("\033[2J\033[1;1H");
     #endif
     cout << "##Fighting##" << "\t\t\t" << "##Vital Info##" << endl;
-    cout << "Orger Info" << "\t\t\t" << "Name: " << warrior.WNameP << endl;
-    if (orge.OHpC >= -1) { cout << "Hp: " << orge.OHpC << "\t\t\t\t" << "Level: " << warrior.WLvlP << endl; }
-    else { cout << "Hp: " << orge.OHpC << "\t\t\t" << "Level: " << warrior.WLvlP << endl; }
-    cout << "Str: " << orge.OStrC << "\t\t\t" << "Hitpoints: " << warrior.WHpP << endl;
-    cout << "Lvl: " << orge.OLvlC << "\t\t\t\t" << "Turns: " << endl;
-    cout << "\t\t\t\t" << "Strength: " << warrior.WStrP << endl;
-    cout << "\t\t\t\t" << "Attack: " << warrior.WAtkP << endl;
-    cout << "\t\t\t\t" << "Defense: " << warrior.WDefP << endl;
-    cout << "\t\t\t\t" << "Race: " << endl;
+    cout << "Orger Info" << "\t\t\t" << "Name: " << warrior_Object->GetWNameP() << endl;
+    if (npc_Object->GetOHpC() >= -1) { cout << "Hp: " << npc_Object->GetOHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetWLvlP() << endl; }
+    else { cout << "Hp: " << npc_Object->GetOHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetWLvlP() << endl; }
+    cout << "Str: " << npc_Object->GetOStrC() << "\t\t\t" << "Hitpoints: " << warrior_Object->GetWHpP() << endl;
+    cout << "Lvl: " << npc_Object->GetOLvlC() << "\t\t\t\t" << "Turns: " << endl;
+    cout << "Atk:" << npc_Object->GetOAtkC() << "\t\t\t\t" << "Strength: " << warrior_Object->GetWStrP() << endl;
+    cout << "Def:" << npc_Object->GetODefC() << "\t\t\t\t" << "Attack: " << warrior_Object->GetWAtkP() << endl;
+    cout << "Armor Value:" << npc_Object->GetOArmorValueC() << "\t\t\t" << "Defense: " << warrior_Object->GetWDefP() << endl;
+    cout << "\t\t\t\t" << "Race: " << warrior_Object->GetWRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior.WGoldP << endl;
+    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetWGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior.WWeaponP) << endl;
-    cout << "\t\t\t\t" << "Armour: " << Weapon->GetArmor(warrior.WArmorP) << endl;
-    cout << "\t\t\t\t" << "Experience: " << warrior.WXptotalP << "|" << warrior.WMaxxpP << endl;
+    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetWWeaponP()) << endl;
+    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetWArmorTypeP()) << endl;
+    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
 }
-void display::old_Bank(player &warrior)
+void display::old_Bank(mywarrior * warrior_Object)
 {
     #ifdef WIN32
         system("cls");
@@ -102,21 +104,22 @@ void display::old_Bank(player &warrior)
         printf("\033[2J\033[1;1H");
     #endif
     cout << "##GrrBank##" << "\t\t\t" << "##Vital Info##" << endl;
-    cout << "You can deposit your money" << "\t" << "Name: " << warrior.WNameP << endl;
-    cout << "here for save keeping." << "\t\t" << "Level: " << warrior.WLvlP << endl;
-    cout << "\t\t\t\t" << "Hitpoints: " << warrior.WHpP << endl;
-    cout << "Account Balance: " << warrior.WSavingsP << "\t\t" << "Turns: " << endl;
-    cout << "\t\t\t\t" << "Strength: " << warrior.WStrP << endl;
-    cout << "\t\t\t\t" << "Attack: " << warrior.WAtkP << endl;
-    cout << "\t\t\t\t" << "Defense: " << warrior.WDefP << endl;
-    cout << "\t\t\t\t" << "Race: " << endl;
+    cout << "You can deposit your money" << "\t" << "Name: " << warrior_Object->GetWNameP() << endl;
+    cout << "here for save keeping." << "\t\t" << "Level: " << warrior_Object->GetWLvlP() << endl;
+    cout << "\t\t\t\t" << "Hitpoints: " << warrior_Object->GetWHpP() << endl;
+    cout << "Account Balance: " << warrior_Object->GetWSavingsP() << "\t\t" << "Turns: " << endl;
+    cout << "\t\t\t\t" << "Strength: " << warrior_Object->GetWStrP() << endl;
+    cout << "\t\t\t\t" << "Attack: " << warrior_Object->GetWAtkP() << endl;
+    cout << "\t\t\t\t" << "Defense: " << warrior_Object->GetWDefP() << endl;
+    cout << "\t\t\t\t" << "Race: " << warrior_Object->GetWRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior.WGoldP << endl;
+    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetWGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "(D)eposit" << "\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior.WWeaponP) << endl;
-    cout << "(W)idthdraw" << "\t\t\t" << "Armour: " << Weapon->GetArmor(warrior.WArmorP) << endl;
-    cout << "(E)xit Bank" << "\t\t\t" << "Experience: " << warrior.WXptotalP << "|" << warrior.WMaxxpP << endl;
+    cout << "(D)eposit" << "\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetWWeaponP()) << endl;
+    cout << "(W)idthdraw" << "\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetWArmorTypeP()) << endl;
+    cout << "(E)xit Bank" << "\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
+    cout << "\t\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
 }
 
 void display::Weapon_Shop(string &systemMessage)

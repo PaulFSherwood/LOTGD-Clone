@@ -4,20 +4,17 @@
 #include "xp.h"
 using namespace std;
 
-extern player warrior;
-extern npc orge;
-
 training::training(){}
 
-void training::Warrior_Training(player &warrior)
+void training::Warrior_Training(mywarrior * warrior_Object)
 {
     // Set up trainer
-    int Thp = warrior.WHpP + (warrior.WHpP / 2);
-    int Tstr = warrior.WLvlP * 90;
-    int Tlvl = warrior.WLvlP + 5;
+    int Thp = warrior_Object->GetWHpP() + (warrior_Object->GetWHpP() / 2);
+    int Tstr = warrior_Object->GetWLvlP() * 90;
+    int Tlvl = warrior_Object->GetWLvlP() + 5;
 
     // initilize pointer class calls
-    xp *getNewXP = new xp(warrior.WXptotalP, warrior.WLvlP, Tlvl);
+    xp *getNewXP = new xp(warrior_Object->GetWXptotalP(), warrior_Object->GetWLvlP(), Tlvl);
 
     cout << "Would you like to Fight the Master?\n";
     cout << "(F)ight\n";
@@ -30,28 +27,32 @@ void training::Warrior_Training(player &warrior)
         break;
     case 'F':
         cout << "The master wishes you luck." << endl;
-        cout << "Player: " << warrior.WHpP << "\t" << "Master: " << Thp << endl;
-        while ((Thp >= 1) && (warrior.WHpP >= 1)) {
+        cout << "Player: " << warrior_Object->GetWHpP() << "\t" << "Master: " << Thp << endl;
+        while ((Thp >= 1) && (warrior_Object->GetWHpP() >= 1)) {
             cout << "how many times do you want to try to hit" << endl;
             int hit;
             cin >> hit;
-            while ((hit >= 1) && (Thp >= 1) && (warrior.WHpP >= 1)){
+            while ((hit >= 1) && (Thp >= 1) && (warrior_Object->GetWHpP() >= 1)){
                 cout << "hit\t" << "WstrP\t" << "WhpP\t" << "Tstr\t" << "Thp" << "\t\n";
-                cout << hit << "\t" << warrior.WStrP << "\t" << warrior.WHpP << "\t" << warrior.WStrP << "\t" << warrior.WHpP << "\t\n\n";
-                Thp = Thp - (warrior.WStrP + warrior.WAtkP);
+                cout << hit << "\t" << warrior_Object->GetWStrP() << "\t" << warrior_Object->GetWHpP() << "\t" << warrior_Object->GetWStrP() << "\t" << warrior_Object->GetWHpP() << "\t\n\n";
+                // reduce hp based on players str and attack power
+                Thp = Thp - (warrior_Object->GetWStrP() + warrior_Object->GetWAtkP());
+                // reduce players hp based on hp + defence then subtract cpu strength
+                warrior_Object->SetWHpP((warrior_Object->GetWHpP() + warrior_Object->GetWDefP()) - Tstr);
+                // print out results
                 cout << "Master HP: " << Thp << endl;
-                warrior.WHpP = (warrior.WHpP + warrior.WDefP) - Tstr;
-                cout << "Player HP: " << warrior.WHpP << endl;
+                cout << "Player HP: " << warrior_Object->GetWHpP() << endl;
+                // change hit counter
                 hit = hit - 1;
             }
             if ((Thp) <= 0){
                 // pass info to do xp calculation
                 int tempXP = getNewXP->getxprecieved();
-                warrior.WXptotalP = warrior.WXptotalP + tempXP;
-                printf("%d XP recieved || Total XP: %d", tempXP, warrior.WXptotalP);
+                warrior_Object->SetWXptotalP(warrior_Object->GetWXptotalP() + tempXP);
+                printf("%d XP recieved || Total XP: %d", tempXP, warrior_Object->GetWXptotalP());
 
-                getNewXP->canlvl(warrior.WXptotalP, warrior.WMaxxpP, warrior.WHpP, warrior.WStrP, warrior.WLvlP);
-                warrior.WMaxxpP = getNewXP->getmaxxp(warrior.WLvlP);
+                getNewXP->canlvl(warrior_Object);
+                warrior_Object->SetWMaxxpP(getNewXP->getmaxxp(warrior_Object->GetWLvlP()));
 
                 break;
             }

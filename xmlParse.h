@@ -5,16 +5,15 @@
 #include "includes.h"
 using namespace std;
 
-extern struct player warrior;
-extern struct npc orge;
-
 class xmlParse
 {
 public:
 
-void readXML(struct player &warrior, struct npc &orge);
+void writeXML_Class_Object(mywarrior * warrior_Object, npc_orge * npc_Object);
 
-void writeXML(struct player &warrior, struct npc &orge);
+void readXML_Class_Object(mywarrior * warrior_Object);
+
+void readXML_Class_Object(npc_orge * npc_Object);
 
 };
 

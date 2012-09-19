@@ -10,8 +10,8 @@ class xp
 public:
     xp(int WxptotalP, int WlvlP,  int OlvlP);
     int getxprecieved();
-    int getmaxxp(int &WlvlP);
-    void canlvl(int &currentxp, int &maxxp, int &WhpP, int &WstrP, int &WlvlP);
+    int getmaxxp(int WlvlP);
+    void canlvl(mywarrior * mySoilder);
 private:
     int currentxp;
     int Wlvl;

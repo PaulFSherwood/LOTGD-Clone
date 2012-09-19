@@ -2,15 +2,14 @@
 #include <stdio.h>
 #include "forrest.h"
 #include "display.h"
+#include "orge.h"
 #include "fighttable.h"
+#include "warrior.h"
 using namespace std;
-
-extern player warrior;
-extern npc orge;
 
 forrest::forrest(){}
 
-int forrest::ForestLvl1(player &warrior, npc &orge)
+void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre)
 
 {
     // Initilize pointer class calls
@@ -20,25 +19,32 @@ int forrest::ForestLvl1(player &warrior, npc &orge)
     bool inForrest = true;
 
     while (inForrest){
-        getDisplay->forrestDisplay(warrior);
+        // Display user stats
+        getDisplay->forrestDisplay(mySoilder);
 
         char e;
         cin >> e;
         switch (e){
-        case 'L':       // Look for a fight
-            getFighttable->Fight_Table(warrior, orge);
+        case 'L':	// Look for a fight
+            getFighttable->Fight_Table(mySoilder, randomOgre);
             cin.ignore().get();
             break;
-        case 'R':       // Return to world menu
+        case 'R':	// Return to world menu
             inForrest = false;
             break;
         case 'C':   // change Orge level
             cout << "Enter Orges new level" << endl;
-            cin >> orge.OLvlC;
-            warrior.WHpP = ((orge.OLvlC * 10) + 200); // const is changing this back to the original variable
-            orge.OStrC = ((orge.OLvlC * 5) + 100);
+            int templvl;
+            cin >> templvl;
+            // set cpu level
+            randomOgre->SetOLvlC(templvl);
+            // set cpu strength
+            randomOgre->SetOStrC((randomOgre->GetOLvlC() * 5) + 100);
+            break;
         case 'X': // add xp
-            warrior.WXptotalP += 100 * warrior.WLvlP;
+            int tempxptotal;
+            tempxptotal += 100 * mySoilder->GetWLvlP();
+            mySoilder->SetWXptotalP(tempxptotal);
             break;
         default:
             printf("i have detected an error and its you\n");
@@ -46,5 +52,6 @@ int forrest::ForestLvl1(player &warrior, npc &orge)
         }
         cout << endl;
     }
-    return 0;
+    delete getDisplay;
+    delete getFighttable;
 }

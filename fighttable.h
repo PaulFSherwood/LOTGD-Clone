@@ -3,18 +3,17 @@
 
 #include <iostream>
 #include <cmath>
-#include "includes.h"
+#include "orge.h"
+#include "warrior.h"
 using namespace std;
-
-extern struct player warrior;
-extern struct npc orge;
 
 class fighttable
 {
 public:
     fighttable();
-    void Fight_Table(player &warrior, npc &orge);
-//
+    void Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge);
+
+    int incommingDmg(int DmgPotential, int DmgMitigation);
 };
 
 #endif // FIGHTTABLE_H

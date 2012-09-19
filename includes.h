@@ -4,7 +4,6 @@
 #include <iostream>
 using namespace std;
 
-
 struct player
 {
     int WHpP;
@@ -27,6 +26,8 @@ struct npc
     int OHpC;
     int OStrC;
     int OLvlC;
+    int OAtk;
+    int ODef;
     string ONameC;
 
 };

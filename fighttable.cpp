@@ -2,25 +2,36 @@
 #include <stdio.h>
 #include <cmath>
 #include "display.h"
+#include "orge.h"
 #include "fighttable.h"
+#include "warrior.h"
 #include "xp.h"
 using namespace std;
 
-extern player warrior;
-extern npc orge;
-
 fighttable::fighttable(){}
 
-void fighttable::Fight_Table(player &warrior, npc &orge)
+void fighttable::Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge)
 {
     // Initilize pointer class calls
     display *getDisplay = new display();
-    xp *getNewXP = new xp(warrior.WXptotalP, warrior.WLvlP, orge.OLvlC);
+    xp *getNewXP = new xp(mySoilder->GetWXptotalP(), mySoilder->GetWLvlP(), randomOrge->GetOLvlC());
 
+    // setting up player and npc stats for the fight
+    int DmgPotential_Player = mySoilder->GetWStrP() + mySoilder->GetWAtkP();
+    int DmgPotential_npc = randomOrge->GetOStrC() + randomOrge->GetOAtkC();
+
+    int DmgMitigation_Player = mySoilder->GetWDefP() + mySoilder->GetWArmorValueP();
+    int DmgMitigation_npc = randomOrge->GetODefC() + randomOrge->GetOArmorValueC();
+    /*
+    cout << "DmgPotential_Player: " << DmgPotential_Player << endl;
+    cout << "DmgPotential_npc: " << DmgPotential_npc << endl;
+    cout << "DmgMitigation_Player: " << DmgMitigation_Player << endl;
+    cout << "DmgMitigation_npc: " << DmgMitigation_npc << endl;
+    */
     // reseting orges hp is there a better way???
-    int const Const_OhpP_temp = orge.OHpC;
+    int const Const_OhpP_temp = randomOrge->GetOHpC();
     // Show info
-    getDisplay->fightDisplay(warrior, orge);
+    getDisplay->fightDisplay(mySoilder, randomOrge);
     cout << "get ready to rumble...or not\n";
     cout << "(R)un, (F)ight\n";
 
@@ -33,53 +44,61 @@ void fighttable::Fight_Table(player &warrior, npc &orge)
     case 'F':
         cout << "let the fight begin" << endl;
         // cout << "Player: " << WhpP << "\t" << "Ogre: " << OhpP << endl;
-        getDisplay->fightDisplay(warrior, orge);
+        getDisplay->fightDisplay(mySoilder, randomOrge);
 
-        while ((orge.OHpC >= 1) && (warrior.WHpP >= 1)) {
+        while ((randomOrge->GetOHpC() >= 1) && (mySoilder->GetWHpP() >= 1)) {
             cout << "how many times do you want to try to hit" << endl;
             int hit;
             cin >> hit;
             // while you can still hit and everyone has enough hp
-            while ((hit >= 1) && (orge.OHpC >= 1) && (warrior.WHpP >= 1)){
+            while ((hit >= 1) && (randomOrge->GetOHpC() >= 1) && (mySoilder->GetWHpP() >= 1)){
                 // alter health of both parties
-                orge.OHpC = orge.OHpC - (warrior.WStrP + warrior.WAtkP);
-                warrior.WHpP = (warrior.WHpP + warrior.WDefP) - orge.OStrC;
-                // Show updated info
-                getDisplay->fightDisplay(warrior, orge);
+                /*find how much dmg will be taken and subtract from original then set hp*/
+                mySoilder->SetWHpP(mySoilder->GetWHpP() - incommingDmg(DmgPotential_npc, DmgMitigation_Player));
+                /*find how much dmg will be taken and subtract from original then set hp*/
+                randomOrge->SetOHpC(randomOrge->GetOHpC() -
+                                   incommingDmg(DmgPotential_Player, DmgMitigation_npc));
+                // update screen
+                getDisplay->fightDisplay(mySoilder, randomOrge);
 
                 // decrament the hit counter
                 hit = hit - 1;
             }
-            if ((orge.OHpC) <= 0)
+            if ((randomOrge->GetOHpC()) <= 0)
             {
                 // pass info to do xp calculation
                 int tempXP = getNewXP->getxprecieved();
-                warrior.WXptotalP = warrior.WXptotalP + tempXP;
+                mySoilder->SetWXptotalP(mySoilder->GetWXptotalP() + tempXP);
                 printf("%d XP recieved ", tempXP);
 
                 // check to see if you can level
-                getNewXP->canlvl(warrior.WXptotalP, warrior.WMaxxpP, warrior.WHpP, warrior.WStrP, warrior.WLvlP);
-                warrior.WMaxxpP = getNewXP->getmaxxp(warrior.WLvlP);
+                getNewXP->canlvl(mySoilder);
+                mySoilder->SetWMaxxpP(getNewXP->getmaxxp(mySoilder->GetWLvlP()));
 
                 // Give some gold based on lvl difference
-                warrior.WGoldP += 100 * warrior.WLvlP;
+                // some wierd reason i cant do this in one shot
+                // mySoilder->SetWGoldP(mySoilder->GetWGoldP() += (100 * mySoilder->GetWLvlP()));
+                int tempGold = mySoilder->GetWGoldP();
+                tempGold += 100 * mySoilder->GetWLvlP();
+                mySoilder->SetWGoldP(tempGold);
 
                 // reset Orge hp back to values based on level
-                orge.OHpC = Const_OhpP_temp;
+                randomOrge->SetOHpC(Const_OhpP_temp);
                 break;
             }
             // if the warrior dies make it hurt
-            if ((warrior.WHpP) <= 0)
+            if ((mySoilder->GetWHpP()) <= 0)
             {
-                warrior.WGoldP = 0;
-                if (warrior.WXptotalP > warrior.WMaxxpP)
+                mySoilder->SetWGoldP(0);
+                // set xp to zero
+                if (mySoilder->GetWXptotalP() > mySoilder->GetWMaxxpP())
                 {
-                    warrior.WXptotalP = warrior.WXptotalP - warrior.WMaxxpP;
+                    mySoilder->SetWXptotalP(mySoilder->GetWXptotalP() - mySoilder->GetWMaxxpP());
                 } else {
-                    warrior.WXptotalP = 0;
-                    warrior.WLvlP = 0;
-                    warrior.WWeaponP = 0;
-                    warrior.WArmorP = 0;
+                    mySoilder->SetWXptotalP(0);
+                    mySoilder->SetWLvlP(0);
+                    mySoilder->SetWWeaponP(0);
+                    mySoilder->SetWArmorTypeP(0);
                 }
             }
         }
@@ -87,5 +106,17 @@ void fighttable::Fight_Table(player &warrior, npc &orge)
     default:
         printf ("i have detected an error and its you\n");
         break;
+    }
+    delete getDisplay;
+    delete getNewXP;
+}
+
+int fighttable::incommingDmg(int DmgPotential, int DmgMitigation)
+{
+    if ((DmgPotential - DmgMitigation) <= 0)
+    {
+        return 10;
+    } else {
+        return DmgPotential - DmgMitigation;
     }
 }

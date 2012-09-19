@@ -2,28 +2,26 @@
 #include <stdio.h>
 #include "bank.h"
 #include "display.h"
+#include "warrior.h"
 using namespace std;
-
-extern player warrior;
-extern npc orge;
 
 bank::bank(){}
 
-void bank::old_Bank(player &warrior)
+void bank::old_Bank(mywarrior * mySoilder)
 {
 
     // Initilize pointer class calls
     display *getDisplay = new display();
 
     // display the shop
-    getDisplay->old_Bank(warrior);
+    getDisplay->old_Bank(mySoilder);
 
     bool inBank = true;
 
     while (inBank)
     {
         // display the shop
-        getDisplay->old_Bank(warrior);
+        getDisplay->old_Bank(mySoilder);
 
         // select the weapon you want
         char e;
@@ -35,8 +33,9 @@ void bank::old_Bank(player &warrior)
             {
                 cout << "Please enter the Deposit ammount" << endl;
                 cin >> money;
-                warrior.WGoldP = warrior.WGoldP - money;
-                warrior.WSavingsP = warrior.WSavingsP + money;
+                // remove amount from you and add it to the bank account
+                mySoilder->SetWGoldP(mySoilder->GetWGoldP() - money);
+                mySoilder->SetWSavingsP(mySoilder->GetWSavingsP() + money);
                 // cout << "Your deposit of (" << money << ") was recorded" << endl;
                 break;
             }
@@ -44,8 +43,9 @@ void bank::old_Bank(player &warrior)
             {
                 cout << "Please enter the Withdraw ammount" << endl;
                 cin >> money;
-                warrior.WSavingsP = warrior.WSavingsP - money;
-                warrior.WGoldP = warrior.WGoldP + money;
+                // remove ammount from bank account and give it to you
+                mySoilder->SetWSavingsP(mySoilder->GetWSavingsP() - money);
+                mySoilder->SetWGoldP(mySoilder->GetWGoldP() + money);
                 // cout << "Your withdraw of (" << money << ") was recorded" << endl;
                 break;
             }
@@ -56,4 +56,5 @@ void bank::old_Bank(player &warrior)
             }
         }
     }
+    delete getDisplay;
 }
