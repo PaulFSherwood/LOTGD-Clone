@@ -11,7 +11,9 @@ SOURCES += main.cpp \
     fighttable.cpp \
     training.cpp \
     shop.cpp \
-    bank.cpp
+    bank.cpp \
+    orge.cpp \
+    warrior.cpp
 
 HEADERS += \
     xp.h \
@@ -23,5 +25,7 @@ HEADERS += \
     training.h \
     includes.h \
     shop.h \
-    bank.h
+    bank.h \
+    orge.h \
+    warrior.h
 
