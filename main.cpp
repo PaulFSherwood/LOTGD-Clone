@@ -27,6 +27,7 @@
 // sdl test //
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include "SDL/SDL_ttf.h"
 // sdl test //
 using namespace std;
 
@@ -40,8 +41,15 @@ const int SCREEN_BPP = 32;
 SDL_Surface *background = NULL;
 SDL_Surface *hud = NULL;
 SDL_Surface *screen = NULL;
+SDL_Surface *message = NULL;
 
 SDL_Event event;
+
+//The font that's going to be used
+TTF_Font *font = NULL;
+
+//The color of the font
+SDL_Color textColor = { 255, 255, 255 };
 
 // surface loading
 SDL_Surface *load_image(string filename);
@@ -74,12 +82,22 @@ int main()
     // Load the files
     if (load_files() == false)
     {
+        cout << "load failed" << endl;
+        return 1;
+    }
+
+    message = TTF_RenderText_Solid(font, "the quick brown fox", textColor);
+
+    // if therere was an erro in rending the text
+    if (message == NULL)
+    {
         return 1;
     }
 
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     apply_surface(0, 0, hud, screen);
+    apply_surface(50, 400, message, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -245,7 +263,7 @@ bool init()
     // init all SDL_subsystems
     if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
     {
-        return 1;
+        return false;
     }
 
     // set up the screen
@@ -254,7 +272,13 @@ bool init()
     // If there was an error in setting up the screen
     if(screen == NULL)
     {
-        return 1;
+        return false;
+    }
+
+    // Initialize SDL_ttf
+    if (TTF_Init() == -1)
+    {
+        return false;
     }
 
     // set the winow caption
@@ -272,17 +296,30 @@ bool load_files()
     // if the background didn't load
     if (background == NULL)
     {
+        cout << "background load failed" << endl;
         return false;
     }
 
-    // load the hud figure
+    // load the stick figure
     hud = load_image("img/hud.png");
 
     // if the hud figure didn't load
     if (hud == NULL)
     {
+        cout << "hud load failed" << endl;
         return false;
     }
+
+    // Open the font
+    font = TTF_OpenFont("arial.ttf", 28);
+
+    // if there was an error in loading the font
+    if (font == NULL)
+    {
+        cout << "font load failed" << endl;
+        return false;
+    }
+
     return true;
 }
 
@@ -291,6 +328,10 @@ void clean_up()
     // Free the surfaces
     SDL_FreeSurface(background);
     SDL_FreeSurface(hud);
+    SDL_FreeSurface(message);
+
+    // quit sdl_ttf
+    TTF_Quit();
 
     // Quit SDL
     SDL_Quit();

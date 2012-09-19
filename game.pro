@@ -3,7 +3,7 @@ CONFIG += console
 CONFIG += qt
 QT      += xml
 
-LIBS += -L/usr/local/lib -lSDL -lSDLmain -lSDL_image
+LIBS += -L/usr/local/lib -lSDL -lSDLmain -lSDL_image -lSDL_ttf
 
 SOURCES += main.cpp \
     xp.cpp \
