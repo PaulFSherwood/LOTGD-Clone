@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include "boost/lexical_cast.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
@@ -81,14 +83,11 @@ void display::mainDisplay(mywarrior * warrior_Object)
         //return 1;
     }
 
-    QString str1 = "Test";
-    QByteArray ba = str1.toLatin1();
-    const char *c_str2 = ba.data();
-    printf("str2: %s", c_str2);
+//    std::stringstream strm;
+//    strm << warrior_Object->GetWXptotalP();
+//    message = TTF_RenderText_Solid(font, strm.str().c_str(), textColor);
 
 
-    message = TTF_RenderText_Solid(font, "some random text", textColor);
-    // message = TTF_RenderText_Solid(font, warrior_Object->GetWXptotalP(), textColor);
 
     // if there was an error in rendering the text
     if (message == NULL)
@@ -99,7 +98,8 @@ void display::mainDisplay(mywarrior * warrior_Object)
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     apply_surface(0, 0, hud, screen);
-    apply_surface(10, 400, message, screen);
+    // apply_surface(10, 400, message, screen);
+    superApplySurface(warrior_Object->GetWXptotalP(), 10, 400, message, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -352,6 +352,23 @@ void display::clean_up()
 
     // Quit SDL
     SDL_Quit();
+}
+
+void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
+{
+    // convert int to char* for use in surface
+    std::stringstream strm;
+    strm << number;
+
+    source = TTF_RenderText_Solid(font, strm.str().c_str(), textColor);
+
+    if (source == NULL)
+    {
+        cout << "source not loaded" << endl;
+    }
+    // apply the surface to the screen
+    apply_surface(X, Y, source, destination);
+
 }
 
 // sdl test //
