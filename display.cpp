@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
+#include <QtGui>
 #include "display.h"
 #include "orge.h"
 #include "shop.h"
@@ -80,7 +81,14 @@ void display::mainDisplay(mywarrior * warrior_Object)
         //return 1;
     }
 
+    QString str1 = "Test";
+    QByteArray ba = str1.toLatin1();
+    const char *c_str2 = ba.data();
+    printf("str2: %s", c_str2);
+
+
     message = TTF_RenderText_Solid(font, "some random text", textColor);
+    // message = TTF_RenderText_Solid(font, warrior_Object->GetWXptotalP(), textColor);
 
     // if there was an error in rendering the text
     if (message == NULL)
