@@ -9,7 +9,7 @@ using namespace std;
 
 forrest::forrest(){}
 
-void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre)
+void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup * uiDataValues)
 
 {
     // Initilize pointer class calls
@@ -20,7 +20,7 @@ void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre)
 
     while (inForrest){
         // Display user stats
-        getDisplay->forrestDisplay(mySoilder);
+        getDisplay->forrestDisplay(mySoilder, uiDataValues);
 
         char e;
         cin >> e;

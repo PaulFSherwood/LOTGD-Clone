@@ -31,7 +31,7 @@ void xmlParse::writeXML_Class_Object(mywarrior * warrior_Object, npc_orge * npc_
     QString OArmorValueC = QString::number(npc_Object->GetOArmorValueC());
 
     // pull file for use
-    QString fileName = "myData.xml";
+    QString fileName = "data/myData.xml";
 
     // file checking
     if (fileName.isEmpty())
@@ -84,7 +84,7 @@ void xmlParse::writeXML_Class_Object(mywarrior * warrior_Object, npc_orge * npc_
 void xmlParse::readXML_Class_Object(mywarrior * warrior_Object)
 {
     // pull file for use
-    QString fileName = "myData.xml";
+    QString fileName = "data/myData.xml";
 
     // file checking
     if (fileName.isEmpty())
@@ -174,7 +174,7 @@ void xmlParse::readXML_Class_Object(mywarrior * warrior_Object)
 void xmlParse::readXML_Class_Object(npc_orge * npc_Object)
 {
     // pull file for use
-    QString fileName = "myData.xml";
+    QString fileName = "data/myData.xml";
 
     // file checking
     if (fileName.isEmpty())
@@ -236,7 +236,7 @@ void xmlParse::readXML_Class_Object(npc_orge * npc_Object)
 void xmlParse::readXML_ui_Class_Object(uiGroup * uiObject)
 {
     // pull file for use
-    QString fileName = "uiData.xml";
+    QString fileName = "data/uiData.xml";
 
     // file checking
     if (fileName.isEmpty())

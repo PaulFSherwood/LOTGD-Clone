@@ -18,7 +18,7 @@ public:
     display();
 
     void mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues);
-    void forrestDisplay(mywarrior * warrior_Object);
+    void forrestDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues);
     void fightDisplay(mywarrior * warrior_Object, npc_orge * npc_Object);
     void old_Bank(mywarrior * warrior_Object);
 

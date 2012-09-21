@@ -158,7 +158,7 @@ void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
 
 }
 
-void display::forrestDisplay(mywarrior * warrior_Object)
+void display::forrestDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
 {
     // #ifdef WIN32
     //     system("cls");

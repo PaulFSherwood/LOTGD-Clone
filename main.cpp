@@ -76,7 +76,7 @@ int main()
         {
             case 'F':   // Enter Forest
             {
-                newForest->ForestLvl1(mySoilder, randomOgre);
+                newForest->ForestLvl1(mySoilder, randomOgre, uiDataValues);
                 break;
             }
             case 'Q':	// Quit to the fields

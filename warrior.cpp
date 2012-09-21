@@ -1,5 +1,4 @@
 #include <iostream>
-#include "includes.h"
 #include "warrior.h"
 using namespace std;
 
