@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     shop.cpp \
     bank.cpp \
     orge.cpp \
-    warrior.cpp
+    warrior.cpp \
+    uiGroup.cpp
 
 HEADERS += \
     xp.h \
@@ -29,7 +30,8 @@ HEADERS += \
     shop.h \
     bank.h \
     orge.h \
-    warrior.h
+    warrior.h \
+    uiGroup.h
 
 OTHER_FILES += \
     img/background.png \

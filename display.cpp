@@ -1,6 +1,5 @@
 #include <iostream>
 #include <sstream>
-#include "boost/lexical_cast.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
@@ -32,6 +31,30 @@ SDL_Surface *background = NULL;
 SDL_Surface *hud = NULL;
 SDL_Surface *screen = NULL;
 SDL_Surface *message = NULL;
+SDL_Surface *name_tag_left = NULL;
+SDL_Surface *name_value_right = NULL;
+SDL_Surface *level_tag_left = NULL;
+SDL_Surface *level_value_right = NULL;
+SDL_Surface *hp_tag_left = NULL;
+SDL_Surface *hp_value_right = NULL;
+SDL_Surface *race_tag_left = NULL;
+SDL_Surface *race_value_right = NULL;
+SDL_Surface *str_tag_left = NULL;
+SDL_Surface *str_value_right = NULL;
+SDL_Surface *atk_tag_left = NULL;
+SDL_Surface *atk_value_right = NULL;
+SDL_Surface *def_tag_left = NULL;
+SDL_Surface *def_value_right = NULL;
+SDL_Surface *armv_tag_left = NULL;
+SDL_Surface *armv_value_right = NULL;
+SDL_Surface *gold_tag_left = NULL;
+SDL_Surface *gold_value_right = NULL;
+SDL_Surface *wep_tag_left = NULL;
+SDL_Surface *wep_value_right = NULL;
+SDL_Surface *arm_tag_left = NULL;
+SDL_Surface *arm_value_right = NULL;
+SDL_Surface *exp_tag_left = NULL;
+SDL_Surface *exp_value_right = NULL;
 
 SDL_Event event;
 
@@ -83,22 +106,11 @@ void display::mainDisplay(mywarrior * warrior_Object)
         //return 1;
     }
 
-//    std::stringstream strm;
-//    strm << warrior_Object->GetWXptotalP();
-//    message = TTF_RenderText_Solid(font, strm.str().c_str(), textColor);
-
-
-
-    // if there was an error in rendering the text
-    if (message == NULL)
-    {
-        //return 1;
-    }
-
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     apply_surface(0, 0, hud, screen);
     // apply_surface(10, 400, message, screen);
+
     superApplySurface(warrior_Object->GetWXptotalP(), 10, 400, message, screen);
 
     // Update the screen
