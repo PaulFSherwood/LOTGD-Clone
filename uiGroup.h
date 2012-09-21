@@ -224,7 +224,7 @@ private:
     int arm_value_right_x;
     int arm_value_right_y;
     string arm_value_right_text;
-    int exp_tag_left_x();
+    int exp_tag_left_x;
     int exp_tag_left_y;
     string exp_tag_left_text;
     int exp_value_right_x;
