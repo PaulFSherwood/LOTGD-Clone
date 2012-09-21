@@ -2,7 +2,6 @@
 #define WARRIOR_H_
 
 #include <iostream>
-#include "includes.h"
 using namespace std;
 
 class mywarrior
