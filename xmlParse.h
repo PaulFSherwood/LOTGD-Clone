@@ -16,7 +16,7 @@ void readXML_Class_Object(mywarrior * warrior_Object);
 
 void readXML_Class_Object(npc_orge * npc_Object);
 
-void readXML_Class_Object(uiGroup * uiObject);
+void readXML_ui_Class_Object(uiGroup * uiObject);
 
 };
 

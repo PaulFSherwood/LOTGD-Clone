@@ -48,7 +48,7 @@ int main()
     // pull all info from the xml file and put it into the class objects
     importData->readXML_Class_Object(mySoilder);
     importData->readXML_Class_Object(randomOgre);
-    importData->readXML_Class_Object(uiDataValues);
+    importData->readXML_ui_Class_Object(uiDataValues);
 
     // set game state to running
     bool running = true;

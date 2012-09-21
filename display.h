@@ -32,6 +32,7 @@ public:
     bool load_files();
     void clean_up();
     void superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination);
+    void superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination);
     // sdl test //
 };
 

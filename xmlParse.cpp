@@ -233,7 +233,7 @@ void xmlParse::readXML_Class_Object(npc_orge * npc_Object)
     }
 }
 
-void xmlParse::readXML_Class_Object(uiGroup * uiObject)
+void xmlParse::readXML_ui_Class_Object(uiGroup * uiObject)
 {
     // pull file for use
     QString fileName = "uiData.xml";

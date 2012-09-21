@@ -20,6 +20,7 @@ display::display(){}
 
 // Initilize pointer class calls
 shop *Weapon = new shop();
+// uiGroup *uiData = new uiGroup();
 
 // sdl test //
 // screen atributes
@@ -65,30 +66,6 @@ TTF_Font *font = NULL;
 // display functions
 void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
 {
-    #ifdef WIN32
-        system("cls");
-    #endif
-    #ifdef linux
-        printf("\033[2J\033[1;1H");
-    #endif
-    cout << "##Village Gate##" << "\t\t" << "##Vital Info##" << endl;
-    cout << "(F)orest" << "\t\t\t" << "Name: " << warrior_Object->GetWNameP() << endl;
-    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << warrior_Object->GetWLvlP() << endl;
-    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << warrior_Object->GetWHpP() << endl;
-    cout << "##Market Street##" << "\t\t" << "Turns: " << endl;
-    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << warrior_Object->GetWStrP() << endl;
-    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << warrior_Object->GetWAtkP() << endl;
-    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << warrior_Object->GetWDefP() << endl;
-    cout << "(H)eal your self\t\t" << "Race: " << warrior_Object->GetWRaceP() << endl;
-    cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetWGoldP() << endl;
-    cout << "\t\t\t\t" << "Gem: " << endl;
-    cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetWWeaponP()) << endl;
-    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetWArmorTypeP()) << endl;
-    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
-    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
-
     // sdl test //
     // Initialize
     if (init() == false)
@@ -107,7 +84,48 @@ void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     apply_surface(0, 0, hud, screen);
     // apply_surface(10, 400, message, screen);
 
-    superApplySurface(warrior_Object->GetWXptotalP(), 5, 375, message, screen);
+    // Left
+    // Print name
+    superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
+    superApplySurface(warrior_Object->GetWNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
+    // Print Level
+    superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
+    superApplySurface(warrior_Object->GetWLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
+    // Print HP
+    superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
+    superApplySurface(warrior_Object->GetWHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    // Print Race
+    superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
+    superApplySurface(warrior_Object->GetWRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
+
+
+    // Middle
+    // Print STR
+    superApplySurface(uiDataValues->Getstr_tag_left_text(), uiDataValues->Getstr_tag_left_x(), uiDataValues->Getstr_tag_left_y(), str_tag_left, screen);
+    superApplySurface(warrior_Object->GetWStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
+    // Print ATK
+    superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
+    superApplySurface(warrior_Object->GetWAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
+    // Print DEF
+    superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
+    superApplySurface(warrior_Object->GetWDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
+    // Print Armor Value
+    superApplySurface(uiDataValues->Getarmv_tag_left_text(), uiDataValues->Getarmv_tag_left_x(), uiDataValues->Getarmv_tag_left_y(), armv_tag_left, screen);
+    superApplySurface(warrior_Object->GetWArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
+
+    // Right
+    // Print Gold
+    superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
+    superApplySurface(warrior_Object->GetWGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
+    // Print Weapon
+    superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
+    superApplySurface(warrior_Object->GetWWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
+    // Print Armor Type
+    superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
+    superApplySurface(warrior_Object->GetWArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
+    // Print Experience
+    superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
+    superApplySurface(warrior_Object->GetWXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -362,6 +380,26 @@ void display::clean_up()
     SDL_Quit();
 }
 
+void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
+{
+    //The color of the font
+    SDL_Color textColor = { 255, 255, 255 };
+
+    // convert int to char* for use in surface
+    std::stringstream strm;
+    strm << text;
+
+    source = TTF_RenderText_Solid(font, strm.str().c_str(), textColor);
+
+    if (source == NULL)
+    {
+        cout << "source string: " << text << " not loaded" << endl;
+    }
+    // apply the surface to the screen
+    apply_surface(X, Y, source, destination);
+
+}
+
 void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
 {
     //The color of the font
@@ -375,7 +413,7 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
 
     if (source == NULL)
     {
-        cout << "source not loaded" << endl;
+        cout << "source int: " << number << " not loaded" << endl;
     }
     // apply the surface to the screen
     apply_surface(X, Y, source, destination);

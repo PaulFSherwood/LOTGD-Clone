@@ -164,66 +164,77 @@ private:
     int name_value_right_x;
     int name_value_right_y;
     string name_value_right_text;
+
     int level_tag_left_x;
     int level_tag_left_y;
     string level_tag_left_text;
     int level_value_right_x;
     int level_value_right_y;
     string level_value_right_text;
+
     int hp_tag_left_x;
     int hp_tag_left_y;
     string hp_tag_left_text;
     int hp_value_right_x;
     int hp_value_right_y;
     string hp_value_right_text;
+
     int race_tag_left_x;
     int race_tag_left_y;
     string race_tag_left_text;
     int race_value_right_x;
     int race_value_right_y;
     string race_value_right_text;
+
     int str_tag_left_x;
     int str_tag_left_y;
     string str_tag_left_text;
     int str_value_right_x;
     int str_value_right_y;
     string str_value_right_text;
+
     int atk_tag_left_x;
     int atk_tag_left_y;
     string atk_tag_left_text;
     int atk_value_right_x;
     int atk_value_right_y;
     string atk_value_right_text;
+
     int def_tag_left_x;
     int def_tag_left_y;
     string def_tag_left_text;
     int def_value_right_x;
     int def_value_right_y;
     string def_value_right_text;
+
     int armv_tag_left_x;
     int armv_tag_left_y;
     string armv_tag_left_text;
     int armv_value_right_x;
     int armv_value_right_y;
     string armv_value_right_text;
+
     int gold_tag_left_x;
     int gold_tag_left_y;
     string gold_tag_left_text;
     int gold_value_right_x;
     int gold_value_right_y;
     string gold_value_right_text;
+
     int wep_tag_left_x;
     int wep_tag_left_y;
     string wep_tag_left_text;
     int wep_value_right_x;
     int wep_value_right_y;
     string wep_value_right_text;
+
     int arm_tag_left_x;
     int arm_tag_left_y;
     string arm_tag_left_text;
     int arm_value_right_x;
     int arm_value_right_y;
     string arm_value_right_text;
+
     int exp_tag_left_x;
     int exp_tag_left_y;
     string exp_tag_left_text;
