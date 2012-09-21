@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "orge.h"
+#include "uiGroup.h"
 #include "warrior.h"
 // sdl test //
 #include "SDL/SDL.h"
@@ -16,7 +17,7 @@ class display
 public:
     display();
 
-    void mainDisplay(mywarrior * warrior_Object);
+    void mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues);
     void forrestDisplay(mywarrior * warrior_Object);
     void fightDisplay(mywarrior * warrior_Object, npc_orge * npc_Object);
     void old_Bank(mywarrior * warrior_Object);

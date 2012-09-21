@@ -7,6 +7,7 @@
 #include "display.h"
 #include "orge.h"
 #include "shop.h"
+#include "uiGroup.h"
 #include "warrior.h"
 // sdl test //
 #include "SDL/SDL.h"
@@ -61,13 +62,8 @@ SDL_Event event;
 //The font that's going to be used
 TTF_Font *font = NULL;
 
-//The color of the font
-SDL_Color textColor = { 255, 255, 255 };
-
-
-
 // display functions
-void display::mainDisplay(mywarrior * warrior_Object)
+void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
 {
     #ifdef WIN32
         system("cls");
@@ -111,7 +107,7 @@ void display::mainDisplay(mywarrior * warrior_Object)
     apply_surface(0, 0, hud, screen);
     // apply_surface(10, 400, message, screen);
 
-    superApplySurface(warrior_Object->GetWXptotalP(), 10, 400, message, screen);
+    superApplySurface(warrior_Object->GetWXptotalP(), 5, 375, message, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -340,7 +336,7 @@ bool display::load_files()
     }
 
     // Open the font
-    font = TTF_OpenFont("arial.ttf", 28);
+    font = TTF_OpenFont("arial.ttf", 12);
 
     // if there was an error in loading the font
     if (font == NULL)
@@ -368,6 +364,9 @@ void display::clean_up()
 
 void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
 {
+    //The color of the font
+    SDL_Color textColor = { 255, 255, 255 };
+
     // convert int to char* for use in surface
     std::stringstream strm;
     strm << number;

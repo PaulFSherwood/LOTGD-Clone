@@ -21,6 +21,7 @@
 #include "orge.h"
 #include "shop.h"
 #include "training.h"
+#include "uiGroup.h"
 #include "warrior.h"
 #include "xmlParse.h"
 #include "xp.h"
@@ -37,16 +38,17 @@ int main()
     bank *getBank = new bank();
     training *getTraining = new training();
     xmlParse *importData = new xmlParse();
-    // class test for a new warrior
     mywarrior *mySoilder = new mywarrior();
     npc_orge *randomOgre = new npc_orge();
+    uiGroup *uiDataValues = new uiGroup();
 
     // Import player and orge settings from a xml file
     // importData->readXML(warrior, orge);
 
-    // pull all info from the xml file and put it into the class object
+    // pull all info from the xml file and put it into the class objects
     importData->readXML_Class_Object(mySoilder);
     importData->readXML_Class_Object(randomOgre);
+    importData->readXML_Class_Object(uiDataValues);
 
     // set game state to running
     bool running = true;
@@ -57,7 +59,7 @@ int main()
     while (running)
     {
         // Show main display
-        getDisplay->mainDisplay(mySoilder);
+        getDisplay->mainDisplay(mySoilder, uiDataValues);
 
         // sdl test //
         //if (SDL_PollEvent(&event))
