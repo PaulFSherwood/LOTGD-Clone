@@ -27,8 +27,6 @@
 #include "xp.h"
 using namespace std;
 
-
-
 int main()
 {
     // Initilize pointer class calls

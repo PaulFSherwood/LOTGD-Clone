@@ -35,5 +35,7 @@ HEADERS += \
 
 OTHER_FILES += \
     img/background.png \
-    img/hud.png
+    img/hud.png \
+    img/xpBlue.png \
+    img/xpRed.png
 

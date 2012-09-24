@@ -60,8 +60,6 @@ SDL_Surface *arm_value_right = NULL;
 SDL_Surface *exp_tag_left = NULL;
 SDL_Surface *exp_value_right = NULL;
 
-SDL_Event event;
-
 //The font that's going to be used
 TTF_Font *font = NULL;
 
@@ -503,6 +501,34 @@ void display::clean_up()
     SDL_FreeSurface(background);
     SDL_FreeSurface(hud);
     SDL_FreeSurface(message);
+    SDL_FreeSurface(screen);
+    SDL_FreeSurface(xpRedBar);
+    SDL_FreeSurface(xpBlueBar);
+    SDL_FreeSurface(name_tag_left);
+    SDL_FreeSurface(name_value_right);
+    SDL_FreeSurface(level_tag_left);
+    SDL_FreeSurface(level_value_right);
+    SDL_FreeSurface(hp_tag_left);
+    SDL_FreeSurface(hp_value_right);
+    SDL_FreeSurface(race_tag_left);
+    SDL_FreeSurface(race_value_right);
+    SDL_FreeSurface(str_tag_left);
+    SDL_FreeSurface(str_value_right);
+    SDL_FreeSurface(atk_tag_left);
+    SDL_FreeSurface(atk_value_right);
+    SDL_FreeSurface(def_tag_left);
+    SDL_FreeSurface(def_value_right);
+    SDL_FreeSurface(armv_tag_left);
+    SDL_FreeSurface(armv_value_right);
+    SDL_FreeSurface(gold_tag_left);
+    SDL_FreeSurface(gold_value_right);
+    SDL_FreeSurface(wep_tag_left);
+    SDL_FreeSurface(wep_value_right);
+    SDL_FreeSurface(arm_tag_left);
+    SDL_FreeSurface(arm_value_right);
+    SDL_FreeSurface(exp_tag_left);
+    SDL_FreeSurface(exp_value_right);
+
 
     // quit sdl_ttf
     TTF_Quit();
