@@ -28,6 +28,7 @@ public:
     // surface loading
     SDL_Surface *load_image(string filename);
     void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
+    void showXPBar(mywarrior * warrior_Object, int x, int y, SDL_Surface *red, SDL_Surface *blue, SDL_Surface *destination);
     bool init();
     bool load_files();
     void clean_up();

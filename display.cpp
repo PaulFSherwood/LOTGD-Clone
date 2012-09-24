@@ -33,6 +33,8 @@ SDL_Surface *background = NULL;
 SDL_Surface *hud = NULL;
 SDL_Surface *screen = NULL;
 SDL_Surface *message = NULL;
+SDL_Surface *xpRedBar = NULL;
+SDL_Surface *xpBlueBar = NULL;
 SDL_Surface *name_tag_left = NULL;
 SDL_Surface *name_value_right = NULL;
 SDL_Surface *level_tag_left = NULL;
@@ -147,7 +149,9 @@ void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     superApplySurface(warrior_Object->GetWArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
     // Print Experience
     superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
-    superApplySurface(warrior_Object->GetWXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
+    // superApplySurface(warrior_Object->GetWXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
+
+    showXPBar(warrior_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -389,6 +393,25 @@ void display::apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest
     SDL_BlitSurface(source, NULL, destination, &offset);
 }
 
+void display::showXPBar(mywarrior * warrior_Object, int x, int y, SDL_Surface *red, SDL_Surface *blue, SDL_Surface *destination)
+{
+    // print the bar
+    apply_surface(x, y, red, destination);
+
+    // find the percentage
+    int currentPercentage = 0;
+    currentPercentage = (warrior_Object->GetWXptotalP() * 100) / warrior_Object->GetWMaxxpP();
+
+    // print the current xp percentage
+    while (currentPercentage > 1)
+    {
+        // print one line of blue for each percent
+        apply_surface(x, y, blue, destination);
+        x = x + 1;
+        currentPercentage = currentPercentage - 1;
+    }
+}
+
 bool display::init()
 {
     // init all SDL_subsystems
@@ -438,6 +461,26 @@ bool display::load_files()
     if (hud == NULL)
     {
         cout << "hud load failed" << endl;
+        return false;
+    }
+
+    // Load the xpRed image
+    xpRedBar = load_image("img/xpRed.png");
+
+    // if the xpRed didn't load
+    if (xpRedBar == NULL)
+    {
+        cout << "xpRedBar load failed" << endl;
+        return false;
+    }
+
+    // Load the xpBlueBar image
+    xpBlueBar = load_image("img/xpBlue.png");
+
+    // if the xpBlueBar didn't load
+    if (xpBlueBar == NULL)
+    {
+        cout << "xpBlueBar load failed" << endl;
         return false;
     }
 
