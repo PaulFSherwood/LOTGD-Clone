@@ -67,62 +67,63 @@ int main()
             /* look for key events */
             switch( event.key.keysym.sym )
             {
-            case SDLK_f://'F':   // Enter Forest
-            {
-                newForest->ForestLvl1(mySoilder, randomOgre, uiDataValues);
-                break;
-            }
-            case SDLK_q://'Q':	// Quit to the fields
-            {
-                importData->writeXML_Class_Object(mySoilder, randomOgre);
-
-                running = false;
-                break;
-            }
-            case SDLK_w://'W':	// Warrior Training
-            {
-                        // this should be used to level your character after you ahve enoguh exp.
-                getTraining->Warrior_Training(mySoilder);
-                break;
-            }
-            case SDLK_m://'M':	// MightE's Weaponry
-            {
-                        // this should be used to multiply your dmg
-                getShop->Weapon_Shop(mySoilder);
-
-                break;
-            }
-            case SDLK_a://'A':	// Pegasus Armor
-            {
-                        // this should be used to alter reduction in dmg
-                getShop->Armor_Shop(mySoilder);
-                break;
-            }
-            case SDLK_b://'B':	// ye old bank
-            {
-                getBank->old_Bank(mySoilder);
-                break;
-            }
-            case SDLK_h://'H':	// easy heal bot
-            {
-            if (mySoilder->GetWLvlP() == 1){
-                    // reset health to original
-                    mySoilder->SetWHpP(ConstWHpP);
-                }else{
-                    // reset health based on level
-                    mySoilder->SetWHpP(ConstWHpP + (mySoilder->GetWLvlP() * 100));
+                case SDLK_f://'F':   // Enter Forest
+                {
+                    newForest->ForestLvl1(mySoilder, randomOgre, uiDataValues);
+                    break;
                 }
-                // need to update this for the gui
-                cout << "With a wave of the wand your are not so much deader" << endl;
-                cin.ignore().get();
-                break;
+                case SDLK_q://'Q':	// Quit to the fields
+                {
+                    importData->writeXML_Class_Object(mySoilder, randomOgre);
+
+                    running = false;
+                    break;
+                }
+                case SDLK_w://'W':	// Warrior Training
+                {
+                    // this should be used to level your character after you ahve enoguh exp.
+                    getTraining->Warrior_Training(mySoilder);
+                    break;
+                }
+                case SDLK_m://'M':	// MightE's Weaponry
+                {
+                    // this should be used to multiply your dmg
+                    getShop->Weapon_Shop(mySoilder);
+
+                    break;
+                }
+                case SDLK_a://'A':	// Pegasus Armor
+                {
+                    // this should be used to alter reduction in dmg
+                    getShop->Armor_Shop(mySoilder);
+                    break;
+                }
+                case SDLK_b://'B':	// ye old bank
+                {
+                    getBank->old_Bank(mySoilder);
+                    break;
+                }
+                case SDLK_h://'H':	// easy heal bot
+                {
+                if (mySoilder->GetWLvlP() == 1){
+                        // reset health to original
+                        mySoilder->SetWHpP(ConstWHpP);
+                    }else{
+                        // reset health based on level
+                        mySoilder->SetWHpP(ConstWHpP + (mySoilder->GetWLvlP() * 100));
+                    }
+                    // need to update this for the gui
+                    cout << "With a wave of the wand your are not so much deader" << endl;
+                    cin.ignore().get();
+                    break;
+                }
+                default:
+                {
+                    // printf("i have detected an error and its you\n");
+                    break;
+                }
             }
-            default:
-            {
-                // printf("i have detected an error and its you\n");
-                break;
-            }
-        }}
+        }
     }
     // sdl test //
     getDisplay->clean_up();

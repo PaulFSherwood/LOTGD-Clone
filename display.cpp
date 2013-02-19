@@ -9,11 +9,9 @@
 #include "shop.h"
 #include "uiGroup.h"
 #include "warrior.h"
-// sdl test //
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include "SDL/SDL_ttf.h"
-// sdl test //
 using namespace std;
 
 display::display(){}
@@ -22,7 +20,6 @@ display::display(){}
 shop *Weapon = new shop();
 // uiGroup *uiData = new uiGroup();
 
-// sdl test //
 // screen atributes
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -66,7 +63,6 @@ TTF_Font *font = NULL;
 // display functions
 void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
 {
-    cout << "TeSt\n" << endl;
     // #ifdef WIN32
     //     system("cls");
     // #endif
@@ -91,7 +87,6 @@ void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     // cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
     // cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
 
-    // sdl test //
     // Initialize
     if (init() == false)
     {
@@ -107,6 +102,8 @@ void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     apply_surface(0, 0, hud, screen);
+    // set the caption
+    SDL_WM_SetCaption("In Town", NULL);
 
     // Left
     // Print name
@@ -157,8 +154,6 @@ void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     {
         //return 1;
     }
-    // sdl test //
-
 }
 
 void display::forrestDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
@@ -187,7 +182,6 @@ void display::forrestDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     // cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetWArmorValueP() << endl;
     // cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetWXptotalP() << "|" << warrior_Object->GetWMaxxpP() << endl;
 
-    // sdl test //
     // Initialize
     if (init() == false)
     {
@@ -203,6 +197,8 @@ void display::forrestDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     apply_surface(0, 0, hud, screen);
+    // set the caption
+    SDL_WM_SetCaption("Forrest", NULL);
 
     // Left
     // Print name
@@ -251,7 +247,6 @@ void display::forrestDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
     {
         //return 1;
     }
-    // sdl test //
 }
 
 void display::fightDisplay(mywarrior * warrior_Object, npc_orge * npc_Object)
@@ -343,8 +338,6 @@ void display::Armor_Shop(string &systemMessage)
     cout << systemMessage << endl << endl;
 }
 
-// sdl test //
-
 SDL_Surface *display::load_image(string filename)
 {
     // the image that's loaded
@@ -433,9 +426,6 @@ bool display::init()
     {
         return false;
     }
-
-    // set the winow caption
-    SDL_WM_SetCaption("SDL HUD TEST", NULL);
 
     // If everthing initialized fine
     return true;
@@ -577,5 +567,3 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
     apply_surface(X, Y, source, destination);
 
 }
-
-// sdl test //
