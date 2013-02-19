@@ -40,6 +40,9 @@ int main()
     npc_orge *randomOgre = new npc_orge();
     uiGroup *uiDataValues = new uiGroup();
 
+    // The event structure
+    SDL_Event event;
+
     // Import player and orge settings from a xml file
     // importData->readXML(warrior, orge);
 
@@ -59,59 +62,48 @@ int main()
         // Show main display
         getDisplay->mainDisplay(mySoilder, uiDataValues);
 
-        // sdl test //
-        //if (SDL_PollEvent(&event))
-        //{
-        //    if (event.type == SDL_QUIT)
-        //    {
-        //        running = false;
-        //    }
-        //}
-        // sdl test //
-        char e;
-        cin >> e;
-        switch (e)
+        while( SDL_PollEvent( &event ) )
         {
-            case 'F':   // Enter Forest
+            /* look for key events */
+            switch( event.key.keysym.sym )
+            {
+            case SDLK_f://'F':   // Enter Forest
             {
                 newForest->ForestLvl1(mySoilder, randomOgre, uiDataValues);
                 break;
             }
-            case 'Q':	// Quit to the fields
+            case SDLK_q://'Q':	// Quit to the fields
             {
-                // mySoilder->PrintStats(); // testing passing around information in classes
-                // cout << "======================" << endl;
-                // randomOgre->PrintStats(); // testing passing around information in classes
                 importData->writeXML_Class_Object(mySoilder, randomOgre);
 
                 running = false;
                 break;
             }
-            case 'W':	// Warrior Training
+            case SDLK_w://'W':	// Warrior Training
             {
                         // this should be used to level your character after you ahve enoguh exp.
                 getTraining->Warrior_Training(mySoilder);
                 break;
             }
-            case 'M':	// MightE's Weaponry
+            case SDLK_m://'M':	// MightE's Weaponry
             {
                         // this should be used to multiply your dmg
                 getShop->Weapon_Shop(mySoilder);
 
                 break;
             }
-            case 'A':	// Pegasus Armor
+            case SDLK_a://'A':	// Pegasus Armor
             {
                         // this should be used to alter reduction in dmg
                 getShop->Armor_Shop(mySoilder);
                 break;
             }
-            case 'B':	// ye old bank
+            case SDLK_b://'B':	// ye old bank
             {
                 getBank->old_Bank(mySoilder);
                 break;
             }
-            case 'H':	// easy heal bot
+            case SDLK_h://'H':	// easy heal bot
             {
             if (mySoilder->GetWLvlP() == 1){
                     // reset health to original
@@ -120,16 +112,17 @@ int main()
                     // reset health based on level
                     mySoilder->SetWHpP(ConstWHpP + (mySoilder->GetWLvlP() * 100));
                 }
+                // need to update this for the gui
                 cout << "With a wave of the wand your are not so much deader" << endl;
                 cin.ignore().get();
                 break;
             }
             default:
             {
-                printf("i have detected an error and its you\n");
+                // printf("i have detected an error and its you\n");
                 break;
             }
-        }
+        }}
     }
     // sdl test //
     getDisplay->clean_up();

@@ -66,6 +66,7 @@ TTF_Font *font = NULL;
 // display functions
 void display::mainDisplay(mywarrior * warrior_Object, uiGroup * uiDataValues)
 {
+    cout << "TeSt\n" << endl;
     // #ifdef WIN32
     //     system("cls");
     // #endif
