@@ -520,8 +520,7 @@ void display::clean_up()
     SDL_FreeSurface(exp_tag_left);
     SDL_FreeSurface(exp_value_right);
 
-
-    // quit sdl_ttf
+    // Quit sdl_ttf
     TTF_Quit();
 
     // Quit SDL

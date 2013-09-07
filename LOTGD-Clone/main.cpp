@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : game.cpp
-// Author      : paul
+// Author      : Paul Sherwood
 // Version     :
 // Lord Macaulay said this concerning Jeremiah: “It is difficult to conceive
 // any situation more painful than that of a great man, condemned to watch

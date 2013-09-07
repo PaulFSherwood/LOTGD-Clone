@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel version="1.0">
+    <MyData>
+        <Name>Billy</Name>
+        <Hp>12150</Hp>
+        <Str>150</Str>
+        <Lvl>10</Lvl>
+        <xpTotal>57930</xpTotal>
+        <maxXP>102400</maxXP>
+        <Gold>5310</Gold>
+        <Savings>9200</Savings>
+        <Weapon>3</Weapon>
+        <ArmorType>3</ArmorType>
+        <ArmorValue>300</ArmorValue>
+        <Attack>50</Attack>
+        <Defense>500</Defense>
+        <Race>Human</Race>
+        <OHp>400</OHp>
+        <OStr>150</OStr>
+        <OLvl>10</OLvl>
+        <OAtk>110</OAtk>
+        <ODef>10</ODef>
+        <OArmorValueC>100</OArmorValueC>
+        <Oname>Orge_01</Oname>
+    </MyData>
+</xbel>

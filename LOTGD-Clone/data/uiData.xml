@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel version="1.0">
+	<uiData>
+		<name_tag_left_x>44</name_tag_left_x>
+		<name_tag_left_y>407</name_tag_left_y>
+		<name_tag_left_text>Name:</name_tag_left_text>
+		<name_value_right_x>87</name_value_right_x>
+		<name_value_right_y>407</name_value_right_y>
+		<name_value_right_text></name_value_right_text>
+
+		<level_tag_left_x>44</level_tag_left_x>
+		<level_tag_left_y>426</level_tag_left_y>
+		<level_tag_left_text>Level:</level_tag_left_text>
+		<level_value_right_x>87</level_value_right_x>
+		<level_value_right_y>426</level_value_right_y>
+		<level_value_right_text></level_value_right_text>
+
+		<hp_tag_left_x>44</hp_tag_left_x>
+		<hp_tag_left_y>445</hp_tag_left_y>
+		<hp_tag_left_text>HP:</hp_tag_left_text>
+		<hp_value_right_x>87</hp_value_right_x>
+		<hp_value_right_y>445</hp_value_right_y>
+		<hp_value_right_text></hp_value_right_text>
+
+		<race_tag_left_x>44</race_tag_left_x>
+		<race_tag_left_y>464</race_tag_left_y>
+		<race_tag_left_text>Race:</race_tag_left_text>
+		<race_value_right_x>87</race_value_right_x>
+		<race_value_right_y>464</race_value_right_y>
+		<race_value_right_text></race_value_right_text>
+
+		<str_tag_left_x>253</str_tag_left_x>
+		<str_tag_left_y>407</str_tag_left_y>
+		<str_tag_left_text>STR:</str_tag_left_text>
+		<str_value_right_x>296</str_value_right_x>
+		<str_value_right_y>407</str_value_right_y>
+		<str_value_right_text></str_value_right_text>
+
+		<atk_tag_left_x>253</atk_tag_left_x>
+		<atk_tag_left_y>426</atk_tag_left_y>
+		<atk_tag_left_text>ATK:</atk_tag_left_text>
+		<atk_value_right_x>296</atk_value_right_x>
+		<atk_value_right_y>426</atk_value_right_y>
+		<atk_value_right_text></atk_value_right_text>
+
+		<def_tag_left_x>254</def_tag_left_x>
+		<def_tag_left_y>445</def_tag_left_y>
+		<def_tag_left_text>DEF:</def_tag_left_text>
+		<def_value_right_x>296</def_value_right_x>
+		<def_value_right_y>445</def_value_right_y>
+		<def_value_right_text></def_value_right_text>
+
+		<armv_tag_left_x>253</armv_tag_left_x>
+		<armv_tag_left_y>464</armv_tag_left_y>
+		<armv_tag_left_text>ArmorV:</armv_tag_left_text>
+		<armv_value_right_x>296</armv_value_right_x>
+		<armv_value_right_y>464</armv_value_right_y>
+		<armv_value_right_text></armv_value_right_text>
+
+		<gold_tag_left_x>486</gold_tag_left_x>
+		<gold_tag_left_y>407</gold_tag_left_y>
+		<gold_tag_left_text>Gold:</gold_tag_left_text>
+		<gold_value_right_x>529</gold_value_right_x>
+		<gold_value_right_y>407</gold_value_right_y>
+		<gold_value_right_text></gold_value_right_text>
+
+		<wep_tag_left_x>486</wep_tag_left_x>
+		<wep_tag_left_y>426</wep_tag_left_y>
+		<wep_tag_left_text>WEP:</wep_tag_left_text>
+		<wep_value_right_x>529</wep_value_right_x>
+		<wep_value_right_y>426</wep_value_right_y>
+		<wep_value_right_text></wep_value_right_text>
+
+		<arm_tag_left_x>486</arm_tag_left_x>
+		<arm_tag_left_y>445</arm_tag_left_y>
+		<arm_tag_left_text>Armor:</arm_tag_left_text>
+		<arm_value_right_x>529</arm_value_right_x>
+		<arm_value_right_y>445</arm_value_right_y>
+		<arm_value_right_text></arm_value_right_text>
+
+		<exp_tag_left_x>486</exp_tag_left_x>
+		<exp_tag_left_y>464</exp_tag_left_y>
+		<exp_tag_left_text>EXP:</exp_tag_left_text> 
+		<exp_value_right_x>529</exp_value_right_x>
+		<exp_value_right_y>464</exp_value_right_y>
+		<exp_value_right_text></exp_value_right_text>
+	</uiData>
+</xbel>
