@@ -2,6 +2,7 @@
 #define XMLPARSE_H
 
 #include <iostream>
+#include <QtXml>
 #include "uiGroup.h"
 using namespace std;
 
