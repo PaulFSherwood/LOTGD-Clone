@@ -36,8 +36,12 @@ int main()
     bank *getBank = new bank();
     training *getTraining = new training();
     xmlParse *importData = new xmlParse();
+
+    // these names are an issue all mySoilder should be myPlayer
+    // all npc/orge blag should be myCreature
     mywarrior *mySoilder = new mywarrior();
     npc_orge *randomOgre = new npc_orge();
+
     uiGroup *uiDataValues = new uiGroup();
 
     // The event structure

@@ -36,6 +36,8 @@ void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup *
             case SDLK_r://'R':	// Return to world menu
                 inForrest = false;
                 break;
+
+            // this is only for debug should be deleted.
             case SDLK_c://'C':   // change Orge level
                 cout << "Enter Orges new level" << endl;
                 int templvl;
@@ -50,6 +52,7 @@ void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup *
                 tempxptotal += 100 * mySoilder->GetWLvlP();
                 mySoilder->SetWXptotalP(tempxptotal);
                 break;
+
             default:
                 //printf("i have detected an error and its you\n");
                 break;

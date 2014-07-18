@@ -30,6 +30,36 @@ void fighttable::Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge)
     */
     // reseting orges hp is there a better way???
     int const Const_OhpP_temp = randomOrge->GetOHpC();
+
+    // Set up monster should be only 1 level above player
+    // if needed reset monster hp
+
+    // getCreatureStats(based on player) {
+
+    // getCreatureHp(based on players base stats){
+    //      creatureHp = some math % of players base Hp }
+    int creatureHp = getCreatureHp(mySoilder, randomOrge);
+
+
+    // getCreatureDef(based on players base stats){
+    //      creatureDef = some math % of players base def }
+    int creatureDef = getCreatureDef(mySoilder, randomOrge);
+
+    // getCreatureName(){
+    //      creatureName = some random name from a list in an xml file }
+    string creatureName = getCreatureName(randomOrge);
+
+    // getCreatureWeapon(){
+    //      could use this to add some special % chance to do extra dmg
+    //      creatureWeapon = some random weapon from a list in an xml file
+    string creatureWeapon = getCreatureWeapon(randomOrge);
+
+    // getCreatureAttack(based on players base stats){
+    //      not sure if i should take into account creatures weapon
+    //      creatureAttack = some math % of players base attack
+    int creatureAttack = getCreatureAttack(mySoilder, randomOrge);
+
+
     // Show info
     getDisplay->fightDisplay(mySoilder, randomOrge);
     cout << "get ready to rumble...or not\n";
@@ -61,7 +91,7 @@ void fighttable::Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge)
                 // update screen
                 getDisplay->fightDisplay(mySoilder, randomOrge);
 
-                // decrament the hit counter
+                // decrement the hit counter
                 hit = hit - 1;
             }
             if ((randomOrge->GetOHpC()) <= 0)
@@ -119,4 +149,36 @@ int fighttable::incommingDmg(int DmgPotential, int DmgMitigation)
     } else {
         return DmgPotential - DmgMitigation;
     }
+}
+
+int fighttable::getCreatureHp(mywarrior *warrior_Object, npc_orge *npc_Object)
+{
+    // temp fix for this playerHp problem.
+    // playerHp will always be chaning so to base the npcHp off of the playerHp would be odd
+    // going to set npcHp to a % or something of the players level.
+    // this can be changed latter
+    int playerLvl = warrior_Object->GetWLvlP();
+    int creatureHp = (playerLvl * 100);
+    return creatureHp;
+}
+int fighttable::getCreatureDef(mywarrior *warrior_Object, npc_orge *npc_Object)
+{
+    // solving issue with temp solution till i get something better.
+    // baseing stats off of level
+    int playerLvl = warrior_Object->GetWLvlP();
+    int creatureDef = (playerLvl * 10);
+
+    return creatureDef;
+}
+string fighttable::getCreatureName(npc_orge *npc_Object)
+{
+
+}
+string fighttable::getCreatureWeapon(npc_orge *npc_Object)
+{
+
+}
+int fighttable::getCreatureAttack(mywarrior *warrior_Object, npc_orge *npc_Object)
+{
+
 }
