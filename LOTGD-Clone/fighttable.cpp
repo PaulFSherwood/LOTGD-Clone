@@ -40,7 +40,6 @@ void fighttable::Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge)
     //      creatureHp = some math % of players base Hp }
     int creatureHp = getCreatureHp(mySoilder, randomOrge);
 
-
     // getCreatureDef(based on players base stats){
     //      creatureDef = some math % of players base def }
     int creatureDef = getCreatureDef(mySoilder, randomOrge);
@@ -186,5 +185,4 @@ int fighttable::getCreatureAttack(mywarrior *warrior_Object, npc_orge *npc_Objec
     int creatureAttack = (playerLvl * 10);
 
     return creatureAttack;
-
 }
