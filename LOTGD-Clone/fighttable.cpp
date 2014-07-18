@@ -34,6 +34,7 @@ void fighttable::Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge)
 
     THIS SHOULD BE A CALLED FUNCTION THE CREATION OF STATS SHOULD BE IN THE CREATURE CLASS
 
+
     // Set up monster should be only 1 level above player
     // if needed reset monster hp
 
