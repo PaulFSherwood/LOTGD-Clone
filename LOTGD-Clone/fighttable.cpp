@@ -172,13 +172,19 @@ int fighttable::getCreatureDef(mywarrior *warrior_Object, npc_orge *npc_Object)
 }
 string fighttable::getCreatureName(npc_orge *npc_Object)
 {
+    // need a xml list of creature names to work with
 
 }
 string fighttable::getCreatureWeapon(npc_orge *npc_Object)
 {
+    // need an xml list of creature weapons to work with
 
 }
 int fighttable::getCreatureAttack(mywarrior *warrior_Object, npc_orge *npc_Object)
 {
+    int playerLvl = warrior_Object->GetWLvlP();
+    int creatureAttack = (playerLvl * 10);
+
+    return creatureAttack;
 
 }
