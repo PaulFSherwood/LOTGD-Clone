@@ -10,35 +10,40 @@ class mycreature
 public:
     mycreature();
 
-    void SetOHpC(int hp);
-    void SetOStrC(int str);
-    void SetOLvlC(int lvl);
-    void SetOAtkC(int atk);
-    void SetODefC(int def);
-    void SetOArmorValueC(int armorvalue);
-    void SetONameC(string name);
+    void SetCreatureHpC(int hp);
+    void SetCreatureStrC(int str);
+    void SetCreatureLvlC(int lvl);
 
-    int GetOHpC();
-    int GetOStrC();
-    int GetOLvlC();
-    int GetOAtkC();
-    int GetODefC();
-    int GetOArmorValueC();
-    string GetONameC();
+    void SetCreatureAtkC(int atk);
+    void SetCreatureDefC(int def);
+    void SetCreatureDodgeC(int dod);
+    void SetCreatureArmorValueC(int armorvalue);
+    void SetCreatureNameC(string name);
+
+    int GetCreatureHpC();
+    int GetCreatureStrC();
+    int GetCreatureLvlC();
+
+    int GetCreatureAtkC();
+    int GetCreatureDefC();
+    int GetCreatureDodgeC();
+    int GetCreatureArmorValueC();
+    string GetCreatureNameC();
     void getNewCreature(myplayer * myPlayer, mycreature * myCreature);
 
     void PrintStats();
 
 private:
-    int OHpC;
-    int OStrC;
-    int OLvlC;
+    int CreatureHpC;
+    int CreatureStrC;
+    int CreatureLvlC;
 
-    int OAtkC;
-    int ODefC;
-    int OArmorValueC;
+    int CreatureAtkC;
+    int CreatureDefC;
+    int CreatureDodgeC;
+    int CreatureArmorValueC;
 
-    string ONameC;
+    string CreatureNameC;
 };
 
 #endif // ORGE_H

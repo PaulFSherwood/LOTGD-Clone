@@ -23,12 +23,12 @@ void xmlParse::writeXML_Class_Object(myplayer * warrior_Object, mycreature * cre
     QString Defense = QString::number(warrior_Object->GetPlayerDefP());
     QString Race = QString::fromStdString(warrior_Object->GetPlayerRaceP());
 
-    QString Ohp = QString::number(creature_Object->GetOHpC());
-    QString Ostr = QString::number(creature_Object->GetOStrC());
-    QString OLvl = QString::number(creature_Object->GetOLvlC());
-    QString OAtk = QString::number(creature_Object->GetOAtkC());
-    QString ODef = QString::number(creature_Object->GetODefC());
-    QString OArmorValueC = QString::number(creature_Object->GetOArmorValueC());
+    QString Ohp = QString::number(creature_Object->GetCreatureHpC());
+    QString Ostr = QString::number(creature_Object->GetCreatureStrC());
+    QString OLvl = QString::number(creature_Object->GetCreatureLvlC());
+    QString OAtk = QString::number(creature_Object->GetCreatureAtkC());
+    QString ODef = QString::number(creature_Object->GetCreatureDefC());
+    QString OArmorValueC = QString::number(creature_Object->GetCreatureArmorValueC());
 
     // pull file for use
     QString fileName = "data/myData.xml";
@@ -200,31 +200,31 @@ void xmlParse::readXML_Class_Object(mycreature * creature_Object)
 
                 }else if (xml.name() == "OHp"){
                     QString OHp = xml.readElementText();
-                    creature_Object->SetOHpC(OHp.toInt());
+                    creature_Object->SetCreatureHpC(OHp.toInt());
 
                 }else if (xml.name() == "OStr"){
                     QString OStr = xml.readElementText();
-                    creature_Object->SetOStrC(OStr.toInt());
+                    creature_Object->SetCreatureStrC(OStr.toInt());
 
                 }else if (xml.name() == "OLvl"){
                     QString OLvl = xml.readElementText();
-                    creature_Object->SetOLvlC(OLvl.toInt());
+                    creature_Object->SetCreatureLvlC(OLvl.toInt());
 
                 }else if (xml.name() == "OAtk"){
                     QString OAtk = xml.readElementText();
-                    creature_Object->SetOAtkC(OAtk.toInt());
+                    creature_Object->SetCreatureAtkC(OAtk.toInt());
 
                 }else if (xml.name() == "ODef"){
                     QString ODef = xml.readElementText();
-                    creature_Object->SetODefC(ODef.toInt());
+                    creature_Object->SetCreatureDefC(ODef.toInt());
 
                 }else if (xml.name() == "OArmorValueC"){
                     QString OArmorValueC = xml.readElementText();
-                    creature_Object->SetOArmorValueC(OArmorValueC.toInt());
+                    creature_Object->SetCreatureArmorValueC(OArmorValueC.toInt());
 
                 }else if (xml.name() == "Oname"){
                     QString Oname = xml.readElementText();
-                    creature_Object->SetONameC(Oname.toStdString());
+                    creature_Object->SetCreatureNameC(Oname.toStdString());
 
                 }else
                     xml.skipCurrentElement();

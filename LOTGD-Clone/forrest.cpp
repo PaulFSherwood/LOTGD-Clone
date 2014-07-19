@@ -43,9 +43,9 @@ void forrest::ForestLvl1(myplayer * myPlayer, mycreature * randomOgre, uiGroup *
                 int templvl;
                 cin >> templvl;
                 // set cpu level
-                randomOgre->SetOLvlC(templvl);
+                randomOgre->SetCreatureLvlC(templvl);
                 // set cpu strength
-                randomOgre->SetOStrC((randomOgre->GetOLvlC() * 5) + 100);
+                randomOgre->SetCreatureStrC((randomOgre->GetCreatureLvlC() * 5) + 100);
                 break;
             case SDLK_x://'X': // add xp
                 int tempxptotal;

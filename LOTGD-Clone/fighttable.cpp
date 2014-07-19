@@ -15,14 +15,14 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
     // Initilize pointer class calls
     display *getDisplay = new display();
 
-    xp *getNewXP = new xp(myPlayer->GetPlayerXptotalP(), myPlayer->GetPlayerLvlP(), myCreature->GetOLvlC());
+    xp *getNewXP = new xp(myPlayer->GetPlayerXptotalP(), myPlayer->GetPlayerLvlP(), myCreature->GetCreatureLvlC());
 
     // setting up player and npc stats for the fight
     int DmgPotential_Player = myPlayer->GetPlayerStrP() + myPlayer->GetPlayerAtkP();
-    int DmgPotential_npc = myCreature->GetOStrC() + myCreature->GetOAtkC();
+    int DmgPotential_npc = myCreature->GetCreatureStrC() + myCreature->GetCreatureAtkC();
 
     int DmgMitigation_Player = myPlayer->GetPlayerDefP() + myPlayer->GetPlayerArmorValueP();
-    int DmgMitigation_npc = myCreature->GetODefC() + myCreature->GetOArmorValueC();
+    int DmgMitigation_npc = myCreature->GetCreatureDefC() + myCreature->GetCreatureArmorValueC();
     /*
     cout << "DmgPotential_Player: " << DmgPotential_Player << endl;
     cout << "DmgPotential_npc: " << DmgPotential_npc << endl;
@@ -30,7 +30,7 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
     cout << "DmgMitigation_npc: " << DmgMitigation_npc << endl;
     */
     // reseting orges hp is there a better way???
-    int const Const_OhpP_temp = myCreature->GetOHpC();
+    int const Const_OhpP_temp = myCreature->GetCreatureHpC();
 
 
     //THIS SHOULD BE A CALLED FUNCTION THE CREATION OF STATS SHOULD BE IN THE CREATURE CLASS
@@ -80,17 +80,17 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
         // cout << "Player: " << WhpP << "\t" << "Ogre: " << OhpP << endl;
         getDisplay->fightDisplay(myPlayer, myCreature);
 
-        while ((myCreature->GetOHpC() >= 1) && (myPlayer->GetPlayerHpP() >= 1)) {
+        while ((myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpP() >= 1)) {
             cout << "how many times do you want to try to hit" << endl;
             int hit;
             cin >> hit;
             // while you can still hit and everyone has enough hp
-            while ((hit >= 1) && (myCreature->GetOHpC() >= 1) && (myPlayer->GetPlayerHpP() >= 1)){
+            while ((hit >= 1) && (myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpP() >= 1)){
                 // alter health of both parties
                 /*find how much dmg will be taken and subtract from original then set hp*/
                 myPlayer->SetPlayerHpP(myPlayer->GetPlayerHpP() - incommingDmg(DmgPotential_npc, DmgMitigation_Player));
                 /*find how much dmg will be taken and subtract from original then set hp*/
-                myCreature->SetOHpC(myCreature->GetOHpC() -
+                myCreature->SetCreatureHpC(myCreature->GetCreatureHpC() -
                                    incommingDmg(DmgPotential_Player, DmgMitigation_npc));
                 // update screen
                 getDisplay->fightDisplay(myPlayer, myCreature);
@@ -98,7 +98,7 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
                 // decrement the hit counter
                 hit = hit - 1;
             }
-            if ((myCreature->GetOHpC()) <= 0)
+            if ((myCreature->GetCreatureHpC()) <= 0)
             {
                 // pass info to do xp calculation
                 int tempXP = getNewXP->getxprecieved();
@@ -117,7 +117,7 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
                 myPlayer->SetPlayerGoldP(tempGold);
 
                 // reset Orge hp back to values based on level
-                myCreature->SetOHpC(Const_OhpP_temp);
+                myCreature->SetCreatureHpC(Const_OhpP_temp);
                 break;
             }
             // if the warrior dies make it hurt

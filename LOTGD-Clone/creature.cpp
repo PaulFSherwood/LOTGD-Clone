@@ -4,34 +4,41 @@ using namespace std;
 
 mycreature::mycreature(){}
 
-void mycreature::SetOHpC(int hp) { OHpC = hp; }
-void mycreature::SetOStrC(int str) { OStrC = str; }
-void mycreature::SetOLvlC(int lvl) { OLvlC = lvl; }
-void mycreature::SetOAtkC(int atk) { OAtkC = atk; }
-void mycreature::SetODefC(int def) { ODefC = def; }
-void mycreature::SetOArmorValueC(int armorvalue) { OArmorValueC = armorvalue; }
-void mycreature::SetONameC(string name) { ONameC = name; }
+void mycreature::SetCreatureHpC(int hp) { CreatureHpC = hp; }
+void mycreature::SetCreatureStrC(int str) { CreatureStrC = str; }
+void mycreature::SetCreatureLvlC(int lvl) { CreatureLvlC = lvl; }
+void mycreature::SetCreatureAtkC(int atk) { CreatureAtkC = atk; }
+void mycreature::SetCreatureDefC(int def) { CreatureDefC = def; }
+void mycreature::SetCreatureDodgeC(int dod) { CreatureDodgeC = dod; }
+void mycreature::SetCreatureArmorValueC(int armorvalue) { CreatureArmorValueC = armorvalue; }
+void mycreature::SetCreatureNameC(string name) { CreatureNameC = name; }
 
-int mycreature::GetOHpC() { return OHpC; }
-int mycreature::GetOStrC() { return OStrC; }
-int mycreature::GetOLvlC() { return OLvlC; }
-int mycreature::GetOAtkC() { return OAtkC; }
-int mycreature::GetODefC() { return ODefC; }
-int mycreature::GetOArmorValueC() { return OArmorValueC; }
-string mycreature::GetONameC() { return ONameC; }
+int mycreature::GetCreatureHpC() { return CreatureHpC; }
+int mycreature::GetCreatureStrC() { return CreatureStrC; }
+int mycreature::GetCreatureLvlC() { return CreatureLvlC; }
+int mycreature::GetCreatureAtkC() { return CreatureAtkC; }
+int mycreature::GetCreatureDefC() { return CreatureDefC; }
+int mycreature::GetCreatureArmorValueC() { return CreatureArmorValueC; }
+string mycreature::GetCreatureNameC() { return CreatureNameC; }
 void mycreature::getNewCreature(myplayer * myPlayer, mycreature * myCreature)
 {
     // going to assume that levels have associated stats
     myPlayer->GetPlayerLvlP();
+    // creature Strength
+    myCreature->SetCreatureStrC(myPlayer->GetPlayerLvlP() * 10);
+    // creature Attack power
+    myCreature->SetCreatureAtkC(myPlayer->GetPlayerLvlP() * 40);
+    // just going to assume creature has 82% dodge chance
+    myCreature->SetCreatureDodgeC(82);
 }
 
 void mycreature::PrintStats()
 {
-    cout << "HP: " <<  mycreature::GetOHpC() << endl;
-    cout << "Str: " <<  mycreature::GetOStrC() << endl;
-    cout << "Lvl: " <<  mycreature::GetOLvlC() << endl;
-    cout << "Atk: " <<  mycreature::GetOAtkC() << endl;
-    cout << "Def: " <<  mycreature::GetODefC() << endl;
-    cout << "Name: " <<  mycreature::GetONameC() << endl;
+    cout << "HP: " <<  mycreature::GetCreatureHpC() << endl;
+    cout << "Str: " <<  mycreature::GetCreatureStrC() << endl;
+    cout << "Lvl: " <<  mycreature::GetCreatureLvlC() << endl;
+    cout << "Atk: " <<  mycreature::GetCreatureAtkC() << endl;
+    cout << "Def: " <<  mycreature::GetCreatureDefC() << endl;
+    cout << "Name: " <<  mycreature::GetCreatureNameC() << endl;
 }
 

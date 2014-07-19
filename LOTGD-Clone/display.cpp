@@ -259,13 +259,13 @@ void display::fightDisplay(myplayer * warrior_Object, mycreature * creature_Obje
     #endif
     cout << "##Fighting##" << "\t\t\t" << "##Vital Info##" << endl;
     cout << "Orger Info" << "\t\t\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
-    if (creature_Object->GetOHpC() >= -1) { cout << "Hp: " << creature_Object->GetOHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl; }
-    else { cout << "Hp: " << creature_Object->GetOHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl; }
-    cout << "Str: " << creature_Object->GetOStrC() << "\t\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
-    cout << "Lvl: " << creature_Object->GetOLvlC() << "\t\t\t\t" << "Turns: " << endl;
-    cout << "Atk:" << creature_Object->GetOAtkC() << "\t\t\t\t" << "Strength: " << warrior_Object->GetPlayerStrP() << endl;
-    cout << "Def:" << creature_Object->GetODefC() << "\t\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
-    cout << "Armor Value:" << creature_Object->GetOArmorValueC() << "\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
+    if (creature_Object->GetCreatureHpC() >= -1) { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl; }
+    else { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl; }
+    cout << "Str: " << creature_Object->GetCreatureStrC() << "\t\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
+    cout << "Lvl: " << creature_Object->GetCreatureLvlC() << "\t\t\t\t" << "Turns: " << endl;
+    cout << "Atk:" << creature_Object->GetCreatureAtkC() << "\t\t\t\t" << "Strength: " << warrior_Object->GetPlayerStrP() << endl;
+    cout << "Def:" << creature_Object->GetCreatureDefC() << "\t\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
+    cout << "Armor Value:" << creature_Object->GetCreatureArmorValueC() << "\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
     cout << "\t\t\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
     cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
