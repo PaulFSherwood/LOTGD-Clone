@@ -32,6 +32,10 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
     // reseting orges hp is there a better way???
     int const Const_OhpP_temp = myCreature->GetOHpC();
 
+
+    //THIS SHOULD BE A CALLED FUNCTION THE CREATION OF STATS SHOULD BE IN THE CREATURE CLASS
+
+
     // Set up monster should be only 1 level above player
     // if needed reset monster hp
 
