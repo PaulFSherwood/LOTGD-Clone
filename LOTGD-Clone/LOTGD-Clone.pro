@@ -9,20 +9,19 @@ SOURCES += main.cpp \
     uiGroup.cpp \
     training.cpp \
     shop.cpp \
-    orge.cpp \
     forrest.cpp \
     fighttable.cpp \
     display.cpp \
     bank.cpp \
     xp.cpp \
     xmlParse.cpp \
-    warrior.cpp
+    creature.cpp \
+    player.cpp
 
 HEADERS += \
     uiGroup.h \
     training.h \
     shop.h \
-    orge.h \
     includes.h \
     forrest.h \
     fighttable.h \
@@ -30,7 +29,8 @@ HEADERS += \
     bank.h \
     xp.h \
     xmlParse.h \
-    warrior.h
+    creature.h \
+    player.h
 
 OTHER_FILES += \
     arial.ttf \

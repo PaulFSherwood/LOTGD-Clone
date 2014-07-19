@@ -1,34 +1,34 @@
 #include <QtGui>
 #include <iostream>
-#include "orge.h"
+#include "creature.h"
 #include "uiGroup.h"
-#include "warrior.h"
+#include "player.h"
 #include "xmlParse.h"
 using namespace std;
 
-void xmlParse::writeXML_Class_Object(mywarrior * warrior_Object, npc_orge * npc_Object)
+void xmlParse::writeXML_Class_Object(myplayer * warrior_Object, mycreature * creature_Object)
 {
     // variable setup to pass current values into xml
-    QString Whp = QString::number(warrior_Object->GetWHpP());
-    QString Wstr = QString::number(warrior_Object->GetWStrP());
-    QString Wlvl = QString::number(warrior_Object->GetWLvlP());
-    QString Xptotal = QString::number(warrior_Object->GetWXptotalP());
-    QString Maxxp = QString::number(warrior_Object->GetWMaxxpP());
-    QString Gold = QString::number(warrior_Object->GetWGoldP());
-    QString Savings = QString::number(warrior_Object->GetWSavingsP());
-    QString Weapon = QString::number(warrior_Object->GetWWeaponP());
-    QString ArmorType = QString::number(warrior_Object->GetWArmorTypeP());
-    QString ArmorValue = QString::number(warrior_Object->GetWArmorValueP());
-    QString Attack = QString::number(warrior_Object->GetWAtkP());
-    QString Defense = QString::number(warrior_Object->GetWDefP());
-    QString Race = QString::fromStdString(warrior_Object->GetWRaceP());
+    QString Whp = QString::number(warrior_Object->GetPlayerHpP());
+    QString Wstr = QString::number(warrior_Object->GetPlayerStrP());
+    QString Wlvl = QString::number(warrior_Object->GetPlayerLvlP());
+    QString Xptotal = QString::number(warrior_Object->GetPlayerXptotalP());
+    QString Maxxp = QString::number(warrior_Object->GetPlayerMaxxpP());
+    QString Gold = QString::number(warrior_Object->GetPlayerGoldP());
+    QString Savings = QString::number(warrior_Object->GetPlayerSavingsP());
+    QString Weapon = QString::number(warrior_Object->GetPlayerWeaponP());
+    QString ArmorType = QString::number(warrior_Object->GetPlayerArmorTypeP());
+    QString ArmorValue = QString::number(warrior_Object->GetPlayerArmorValueP());
+    QString Attack = QString::number(warrior_Object->GetPlayerAtkP());
+    QString Defense = QString::number(warrior_Object->GetPlayerDefP());
+    QString Race = QString::fromStdString(warrior_Object->GetPlayerRaceP());
 
-    QString Ohp = QString::number(npc_Object->GetOHpC());
-    QString Ostr = QString::number(npc_Object->GetOStrC());
-    QString OLvl = QString::number(npc_Object->GetOLvlC());
-    QString OAtk = QString::number(npc_Object->GetOAtkC());
-    QString ODef = QString::number(npc_Object->GetODefC());
-    QString OArmorValueC = QString::number(npc_Object->GetOArmorValueC());
+    QString Ohp = QString::number(creature_Object->GetOHpC());
+    QString Ostr = QString::number(creature_Object->GetOStrC());
+    QString OLvl = QString::number(creature_Object->GetOLvlC());
+    QString OAtk = QString::number(creature_Object->GetOAtkC());
+    QString ODef = QString::number(creature_Object->GetODefC());
+    QString OArmorValueC = QString::number(creature_Object->GetOArmorValueC());
 
     // pull file for use
     QString fileName = "data/myData.xml";
@@ -81,7 +81,7 @@ void xmlParse::writeXML_Class_Object(mywarrior * warrior_Object, npc_orge * npc_
     xml.writeEndDocument();
 }
 
-void xmlParse::readXML_Class_Object(mywarrior * warrior_Object)
+void xmlParse::readXML_Class_Object(myplayer * warrior_Object)
 {
     // pull file for use
     QString fileName = "data/myData.xml";
@@ -110,59 +110,59 @@ void xmlParse::readXML_Class_Object(mywarrior * warrior_Object)
 
                 }else if (xml.name() == "Name"){
                     QString Name = xml.readElementText();
-                    warrior_Object->SetWNameP(Name.toStdString());
+                    warrior_Object->SetPlayerNameP(Name.toStdString());
 
                 }else if (xml.name() == "Hp"){
                     QString Hp = xml.readElementText();
-                    warrior_Object->SetWHpP(Hp.toInt());
+                    warrior_Object->SetPlayerHpP(Hp.toInt());
 
                 }else if (xml.name() == "Str"){
                     QString Str = xml.readElementText();
-                    warrior_Object->SetWStrP(Str.toInt());
+                    warrior_Object->SetPlayerStrP(Str.toInt());
 
                 }else if (xml.name() == "Lvl"){
                     QString lvl = xml.readElementText();
-                    warrior_Object->SetWLvlP(lvl.toInt());
+                    warrior_Object->SetPlayerLvlP(lvl.toInt());
 
                 }else if (xml.name() == "xpTotal"){
                     QString xpTotal = xml.readElementText();
-                    warrior_Object->SetWXptotalP(xpTotal.toInt());
+                    warrior_Object->SetPlayerXptotalP(xpTotal.toInt());
 
                 }else if (xml.name() == "maxXP"){
                     QString maxXP = xml.readElementText();
-                    warrior_Object->SetWMaxxpP(maxXP.toInt());
+                    warrior_Object->SetPlayerMaxxpP(maxXP.toInt());
 
                 }else if (xml.name() == "Gold"){
                     QString Gold = xml.readElementText();
-                    warrior_Object->SetWGoldP(Gold.toInt());
+                    warrior_Object->SetPlayerGoldP(Gold.toInt());
 
                 }else if (xml.name() == "Savings"){
                     QString Savings = xml.readElementText();
-                    warrior_Object->SetWSavingsP(Savings.toInt());
+                    warrior_Object->SetPlayerSavingsP(Savings.toInt());
 
                 }else if (xml.name() == "Weapon"){
                     QString Weapon = xml.readElementText();
-                    warrior_Object->SetWWeaponP(Weapon.toInt());
+                    warrior_Object->SetPlayerWeaponP(Weapon.toInt());
 
                 }else if (xml.name() == "ArmorType"){
                     QString ArmorType = xml.readElementText();
-                    warrior_Object->SetWArmorTypeP(ArmorType.toInt());
+                    warrior_Object->SetPlayerArmorTypeP(ArmorType.toInt());
 
                 }else if (xml.name() == "ArmorValue"){
                     QString ArmorValue = xml.readElementText();
-                    warrior_Object->SetWArmorValueP(ArmorValue.toInt());
+                    warrior_Object->SetPlayerArmorValueP(ArmorValue.toInt());
 
                 }else if (xml.name() == "Attack"){
                     QString Attack = xml.readElementText();
-                    warrior_Object->SetWAtkP(Attack.toInt());
+                    warrior_Object->SetPlayerAtkP(Attack.toInt());
 
                 }else if (xml.name() == "Defense"){
                     QString Defense = xml.readElementText();
-                    warrior_Object->SetWDefP(Defense.toInt());
+                    warrior_Object->SetPlayerDefP(Defense.toInt());
 
                 }else if (xml.name() == "Race"){
                     QString Race = xml.readElementText();
-                    warrior_Object->SetWRaceP(Race.toStdString());
+                    warrior_Object->SetPlayerRaceP(Race.toStdString());
 
                 }else
                     xml.skipCurrentElement();
@@ -171,7 +171,7 @@ void xmlParse::readXML_Class_Object(mywarrior * warrior_Object)
     }
 }
 
-void xmlParse::readXML_Class_Object(npc_orge * npc_Object)
+void xmlParse::readXML_Class_Object(mycreature * creature_Object)
 {
     // pull file for use
     QString fileName = "data/myData.xml";
@@ -200,31 +200,31 @@ void xmlParse::readXML_Class_Object(npc_orge * npc_Object)
 
                 }else if (xml.name() == "OHp"){
                     QString OHp = xml.readElementText();
-                    npc_Object->SetOHpC(OHp.toInt());
+                    creature_Object->SetOHpC(OHp.toInt());
 
                 }else if (xml.name() == "OStr"){
                     QString OStr = xml.readElementText();
-                    npc_Object->SetOStrC(OStr.toInt());
+                    creature_Object->SetOStrC(OStr.toInt());
 
                 }else if (xml.name() == "OLvl"){
                     QString OLvl = xml.readElementText();
-                    npc_Object->SetOLvlC(OLvl.toInt());
+                    creature_Object->SetOLvlC(OLvl.toInt());
 
                 }else if (xml.name() == "OAtk"){
                     QString OAtk = xml.readElementText();
-                    npc_Object->SetOAtkC(OAtk.toInt());
+                    creature_Object->SetOAtkC(OAtk.toInt());
 
                 }else if (xml.name() == "ODef"){
                     QString ODef = xml.readElementText();
-                    npc_Object->SetODefC(ODef.toInt());
+                    creature_Object->SetODefC(ODef.toInt());
 
                 }else if (xml.name() == "OArmorValueC"){
                     QString OArmorValueC = xml.readElementText();
-                    npc_Object->SetOArmorValueC(OArmorValueC.toInt());
+                    creature_Object->SetOArmorValueC(OArmorValueC.toInt());
 
                 }else if (xml.name() == "Oname"){
                     QString Oname = xml.readElementText();
-                    npc_Object->SetONameC(Oname.toStdString());
+                    creature_Object->SetONameC(Oname.toStdString());
 
                 }else
                     xml.skipCurrentElement();

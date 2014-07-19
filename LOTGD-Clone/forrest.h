@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include "display.h"
-#include "orge.h"
-#include "warrior.h"
+#include "creature.h"
+#include "player.h"
 using namespace std;
 
 class forrest
@@ -12,7 +12,7 @@ class forrest
 public:
     forrest();
 
-    void ForestLvl1(mywarrior * mySoilder, npc_orge * randomOrge, uiGroup * uiDataValues);
+    void ForestLvl1(myplayer * myPlayer, mycreature * myCreature, uiGroup * uiDataValues);
 };
 
 #endif // FORREST_H

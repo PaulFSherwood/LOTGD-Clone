@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "display.h"
 #include "shop.h"
-#include "warrior.h"
+#include "player.h"
 
 // Define Prices
 // with static const for syntax checking #define would not give
@@ -23,7 +23,7 @@ shop::shop()
 :systemMessage("\0")
 {}
 
-void shop::Weapon_Shop(mywarrior * mySoilder)
+void shop::Weapon_Shop(myplayer * myPlayer)
 {
     // inside the shop
     bool inTheShop = true;
@@ -40,22 +40,22 @@ void shop::Weapon_Shop(mywarrior * mySoilder)
         {
             case 'W': // Wooden Stick
             {
-                WeaponPriceCheck(mySoilder, Wooden_Stick);
+                WeaponPriceCheck(myPlayer, Wooden_Stick);
                 break;
             }
             case 'D': // Dull Knife
             {
-                WeaponPriceCheck(mySoilder, Dull_Knife);
+                WeaponPriceCheck(myPlayer, Dull_Knife);
                 break;
             }
             case 'S': // Long Sword
             {
-                WeaponPriceCheck(mySoilder, Long_Sword);
+                WeaponPriceCheck(myPlayer, Long_Sword);
                 break;
             }
             case 'L': // Lazer Pistol
             {
-                WeaponPriceCheck(mySoilder, Lazer_Pistol);
+                WeaponPriceCheck(myPlayer, Lazer_Pistol);
                 break;
             }
             default:
@@ -68,7 +68,7 @@ void shop::Weapon_Shop(mywarrior * mySoilder)
     }
 }
 
-void shop::Armor_Shop(mywarrior * mySoilder)
+void shop::Armor_Shop(myplayer * myPlayer)
 {
     // inside the shop
     bool inTheShop = true;
@@ -85,22 +85,22 @@ void shop::Armor_Shop(mywarrior * mySoilder)
         {
             case 'P': // Paper Bag
             {
-                ArmorPriceCheck(mySoilder, Paper_Bag);
+                ArmorPriceCheck(myPlayer, Paper_Bag);
                 break;
             }
             case 'W': // Long Sword
             {
-                ArmorPriceCheck(mySoilder, Worn_Jacket);
+                ArmorPriceCheck(myPlayer, Worn_Jacket);
                 break;
             }
             case 'C': // Chain Mail
             {
-                ArmorPriceCheck(mySoilder, Chain_Mail);
+                ArmorPriceCheck(myPlayer, Chain_Mail);
                 break;
             }
             case 'F': // Force Shield
             {
-                ArmorPriceCheck(mySoilder, Force_Shield);
+                ArmorPriceCheck(myPlayer, Force_Shield);
                 break;
             }
             default:
@@ -113,7 +113,7 @@ void shop::Armor_Shop(mywarrior * mySoilder)
     }
 }
 // check to see if it can be purchased
-void shop::WeaponPriceCheck(mywarrior * mySoilder, int ItemPrice)
+void shop::WeaponPriceCheck(myplayer * myPlayer, int ItemPrice)
 {
     int tempWGoldP = 0;
 
@@ -122,29 +122,29 @@ void shop::WeaponPriceCheck(mywarrior * mySoilder, int ItemPrice)
     {
         case 300:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWWeaponP(1);
-                mySoilder->SetWAtkP(100);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerWeaponP(1);
+                myPlayer->SetPlayerAtkP(100);
                 systemMessage = "You are now the proud owner of a Wooden Stick";
 
             } else {
                 cout << "You dont have enough funds";
-                cout << "WGold: " << mySoilder->GetWGoldP() << " ItemPrice: " << ItemPrice << endl;
+                cout << "WGold: " << myPlayer->GetPlayerGoldP() << " ItemPrice: " << ItemPrice << endl;
                 break;
             }
             break;
         }
         case 500:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWWeaponP(2);
-                mySoilder->SetWAtkP(200);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerWeaponP(2);
+                myPlayer->SetPlayerAtkP(200);
                 systemMessage = "You are now the proud owner of a Dull Knife";
 
             } else {
@@ -155,12 +155,12 @@ void shop::WeaponPriceCheck(mywarrior * mySoilder, int ItemPrice)
         }
         case 1000:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWWeaponP(3);
-                mySoilder->SetWAtkP(500);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerWeaponP(3);
+                myPlayer->SetPlayerAtkP(500);
                 systemMessage = "You are now the proud owner of a Long Sword";
 
             } else {
@@ -171,12 +171,12 @@ void shop::WeaponPriceCheck(mywarrior * mySoilder, int ItemPrice)
         }
         case 5000:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWWeaponP(4);
-                mySoilder->SetWAtkP(1000);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerWeaponP(4);
+                myPlayer->SetPlayerAtkP(1000);
                 systemMessage = "You are now the proud owner of a Lazer Pistol";
 
             } else {
@@ -192,7 +192,7 @@ void shop::WeaponPriceCheck(mywarrior * mySoilder, int ItemPrice)
     }
 }
 
-void shop::ArmorPriceCheck(mywarrior * mySoilder, int ItemPrice)
+void shop::ArmorPriceCheck(myplayer * myPlayer, int ItemPrice)
 {
     int tempWGoldP = 0;
 
@@ -200,13 +200,13 @@ void shop::ArmorPriceCheck(mywarrior * mySoilder, int ItemPrice)
     {
         case 300:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWArmorTypeP(1);
-                mySoilder->SetWArmorValueP(100);
-                mySoilder->SetWDefP(100);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerArmorTypeP(1);
+                myPlayer->SetPlayerArmorValueP(100);
+                myPlayer->SetPlayerDefP(100);
                 systemMessage = "You are now the proud owner of a Paper Bag";
 
             } else {
@@ -217,13 +217,13 @@ void shop::ArmorPriceCheck(mywarrior * mySoilder, int ItemPrice)
         }
         case 500:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWArmorTypeP(2);
-                mySoilder->SetWArmorValueP(200);
-                mySoilder->SetWDefP(200);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerArmorTypeP(2);
+                myPlayer->SetPlayerArmorValueP(200);
+                myPlayer->SetPlayerDefP(200);
                 systemMessage = "You are now the proud owner of a Worn Jacket";
 
             } else {
@@ -234,13 +234,13 @@ void shop::ArmorPriceCheck(mywarrior * mySoilder, int ItemPrice)
         }
         case 1000:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWArmorTypeP(3);
-                mySoilder->SetWArmorValueP(300);
-                mySoilder->SetWDefP(500);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerArmorTypeP(3);
+                myPlayer->SetPlayerArmorValueP(300);
+                myPlayer->SetPlayerDefP(500);
                 systemMessage = "You are now the proud owner of a Chain Mail";
 
             } else {
@@ -251,13 +251,13 @@ void shop::ArmorPriceCheck(mywarrior * mySoilder, int ItemPrice)
         }
         case 5000:
         {
-            if (mySoilder->GetWGoldP() >= ItemPrice)
+            if (myPlayer->GetPlayerGoldP() >= ItemPrice)
             {
-                tempWGoldP = mySoilder->GetWGoldP() - ItemPrice;
-                mySoilder->SetWGoldP(tempWGoldP);
-                mySoilder->SetWArmorTypeP(4);
-                mySoilder->SetWArmorValueP(400);
-                mySoilder->SetWDefP(1000);
+                tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
+                myPlayer->SetPlayerGoldP(tempWGoldP);
+                myPlayer->SetPlayerArmorTypeP(4);
+                myPlayer->SetPlayerArmorValueP(400);
+                myPlayer->SetPlayerDefP(1000);
                 systemMessage = "You are now the proud owner of a Force Shield";
 
             } else {

@@ -3,21 +3,21 @@
 
 #include <iostream>
 #include <cmath>
-#include "orge.h"
-#include "warrior.h"
+#include "creature.h"
+#include "player.h"
 using namespace std;
 
 class fighttable
 {
 public:
     fighttable();
-    void Fight_Table(mywarrior * mySoilder, npc_orge * randomOrge);
+    void Fight_Table(myplayer * myPlayer, mycreature * myCreature);
 
-    int getCreatureHp(mywarrior * warrior_Object, npc_orge * npc_Object);
-    int getCreatureDef(mywarrior * warrior_Object, npc_orge * npc_Object);
-    string getCreatureName(npc_orge * npc_Object);
-    string getCreatureWeapon(npc_orge * npc_Object);
-    int getCreatureAttack(mywarrior * warrior_Object, npc_orge * npc_Object);
+    int getCreatureHp(myplayer * warrior_Object, mycreature * creature_Object);
+    int getCreatureDef(myplayer * warrior_Object, mycreature * creature_Object);
+    string getCreatureName(mycreature * creature_Object);
+    string getCreatureWeapon(mycreature * creature_Object);
+    int getCreatureAttack(myplayer * warrior_Object, mycreature * creature_Object);
 
     int incommingDmg(int DmgPotential, int DmgMitigation);
 };

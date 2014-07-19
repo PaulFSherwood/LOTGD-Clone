@@ -10,11 +10,11 @@ class xmlParse
 {
 public:
 
-void writeXML_Class_Object(mywarrior * warrior_Object, npc_orge * npc_Object);
+void writeXML_Class_Object(myplayer * warrior_Object, mycreature * creature_Object);
 
-void readXML_Class_Object(mywarrior * warrior_Object);
+void readXML_Class_Object(myplayer * warrior_Object);
 
-void readXML_Class_Object(npc_orge * npc_Object);
+void readXML_Class_Object(mycreature * creature_Object);
 
 void readXML_ui_Class_Object(uiGroup * uiObject);
 

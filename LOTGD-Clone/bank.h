@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "warrior.h"
+#include "player.h"
 using namespace std;
 
 class bank
@@ -11,7 +11,7 @@ class bank
 public:
     bank();
 
-    void old_Bank(mywarrior * mySoilder);
+    void old_Bank(myplayer * myPlayer);
 };
 
 #endif // BANK_H

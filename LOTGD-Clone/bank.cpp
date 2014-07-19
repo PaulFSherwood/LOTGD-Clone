@@ -2,26 +2,26 @@
 #include <stdio.h>
 #include "bank.h"
 #include "display.h"
-#include "warrior.h"
+#include "player.h"
 using namespace std;
 
 bank::bank(){}
 
-void bank::old_Bank(mywarrior * mySoilder)
+void bank::old_Bank(myplayer * myPlayer)
 {
 
     // Initilize pointer class calls
     display *getDisplay = new display();
 
     // display the shop
-    getDisplay->old_Bank(mySoilder);
+    getDisplay->old_Bank(myPlayer);
 
     bool inBank = true;
 
     while (inBank)
     {
         // display the shop
-        getDisplay->old_Bank(mySoilder);
+        getDisplay->old_Bank(myPlayer);
 
         // select the weapon you want
         char e;
@@ -34,8 +34,8 @@ void bank::old_Bank(mywarrior * mySoilder)
                 cout << "Please enter the Deposit ammount" << endl;
                 cin >> money;
                 // remove amount from you and add it to the bank account
-                mySoilder->SetWGoldP(mySoilder->GetWGoldP() - money);
-                mySoilder->SetWSavingsP(mySoilder->GetWSavingsP() + money);
+                myPlayer->SetPlayerGoldP(myPlayer->GetPlayerGoldP() - money);
+                myPlayer->SetPlayerSavingsP(myPlayer->GetPlayerSavingsP() + money);
                 // cout << "Your deposit of (" << money << ") was recorded" << endl;
                 break;
             }
@@ -44,8 +44,8 @@ void bank::old_Bank(mywarrior * mySoilder)
                 cout << "Please enter the Withdraw ammount" << endl;
                 cin >> money;
                 // remove ammount from bank account and give it to you
-                mySoilder->SetWSavingsP(mySoilder->GetWSavingsP() - money);
-                mySoilder->SetWGoldP(mySoilder->GetWGoldP() + money);
+                myPlayer->SetPlayerSavingsP(myPlayer->GetPlayerSavingsP() - money);
+                myPlayer->SetPlayerGoldP(myPlayer->GetPlayerGoldP() + money);
                 // cout << "Your withdraw of (" << money << ") was recorded" << endl;
                 break;
             }

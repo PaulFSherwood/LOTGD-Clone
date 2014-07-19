@@ -11,7 +11,7 @@ public:
     xp(int WxptotalP, int WlvlP,  int OlvlP);
     int getxprecieved();
     int getmaxxp(int WlvlP);
-    void canlvl(mywarrior * mySoilder);
+    void canlvl(myplayer * myPlayer);
 private:
     int currentxp;
     int Wlvl;

@@ -18,11 +18,11 @@
 #include "display.h"
 #include "fighttable.h"
 #include "forrest.h"
-#include "orge.h"
+#include "creature.h"
+#include "player.h"
 #include "shop.h"
 #include "training.h"
 #include "uiGroup.h"
-#include "warrior.h"
 #include "xmlParse.h"
 #include "xp.h"
 using namespace std;
@@ -37,10 +37,9 @@ int main()
     training *getTraining = new training();
     xmlParse *importData = new xmlParse();
 
-    // these names are an issue all mySoilder should be myPlayer
     // all npc/orge blag should be myCreature
-    mywarrior *mySoilder = new mywarrior();
-    npc_orge *randomOgre = new npc_orge();
+    myplayer *myPlayer = new myplayer();
+    mycreature *myCreature = new mycreature();
 
     uiGroup *uiDataValues = new uiGroup();
 
@@ -51,20 +50,20 @@ int main()
     // importData->readXML(warrior, orge);
 
     // pull all info from the xml file and put it into the class objects
-    importData->readXML_Class_Object(mySoilder);
-    importData->readXML_Class_Object(randomOgre);
+    importData->readXML_Class_Object(myPlayer);
+    importData->readXML_Class_Object(myCreature);
     importData->readXML_ui_Class_Object(uiDataValues);
 
     // set game state to running
     bool running = true;
 
     // set a constant to reset HP
-    const int ConstWHpP = mySoilder->GetWHpP();// warrior.WHpP;
+    const int ConstWHpP = myPlayer->GetPlayerHpP();// warrior.WHpP;
 
     while (running)
     {
         // Show main display
-        getDisplay->mainDisplay(mySoilder, uiDataValues);
+        getDisplay->mainDisplay(myPlayer, uiDataValues);
 
         while( SDL_PollEvent( &event ) )
         {
@@ -73,12 +72,12 @@ int main()
             {
                 case SDLK_f://'F':   // Enter Forest
                 {
-                    newForest->ForestLvl1(mySoilder, randomOgre, uiDataValues);
+                    newForest->ForestLvl1(myPlayer, myCreature, uiDataValues);
                     break;
                 }
                 case SDLK_q://'Q':	// Quit to the fields
                 {
-                    importData->writeXML_Class_Object(mySoilder, randomOgre);
+                    importData->writeXML_Class_Object(myPlayer, myCreature);
 
                     running = false;
                     break;
@@ -86,35 +85,35 @@ int main()
                 case SDLK_w://'W':	// Warrior Training
                 {
                     // this should be used to level your character after you ahve enoguh exp.
-                    getTraining->Warrior_Training(mySoilder);
+                    getTraining->Warrior_Training(myPlayer);
                     break;
                 }
                 case SDLK_m://'M':	// MightE's Weaponry
                 {
                     // this should be used to multiply your dmg
-                    getShop->Weapon_Shop(mySoilder);
+                    getShop->Weapon_Shop(myPlayer);
 
                     break;
                 }
                 case SDLK_a://'A':	// Pegasus Armor
                 {
                     // this should be used to alter reduction in dmg
-                    getShop->Armor_Shop(mySoilder);
+                    getShop->Armor_Shop(myPlayer);
                     break;
                 }
                 case SDLK_b://'B':	// ye old bank
                 {
-                    getBank->old_Bank(mySoilder);
+                    getBank->old_Bank(myPlayer);
                     break;
                 }
                 case SDLK_h://'H':	// easy heal bot
                 {
-                if (mySoilder->GetWLvlP() == 1){
+                if (myPlayer->GetPlayerLvlP() == 1){
                         // reset health to original
-                        mySoilder->SetWHpP(ConstWHpP);
+                        myPlayer->SetPlayerHpP(ConstWHpP);
                     }else{
                         // reset health based on level
-                        mySoilder->SetWHpP(ConstWHpP + (mySoilder->GetWLvlP() * 100));
+                        myPlayer->SetPlayerHpP(ConstWHpP + (myPlayer->GetPlayerLvlP() * 100));
                     }
                     // need to update this for the gui
                     cout << "With a wave of the wand your are not so much deader" << endl;
@@ -138,7 +137,7 @@ int main()
     delete getBank;
     delete getTraining;
     delete importData;
-    delete mySoilder;
-    delete randomOgre;
+    delete myPlayer;
+    delete myCreature;
     return 0;
 }
