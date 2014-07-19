@@ -434,7 +434,9 @@ bool display::init()
 bool display::load_files()
 {
     // Load the background image
-    background = load_image("img/background.png");
+    if (background == NULL) {
+        background = load_image("img/background.png");
+    }
 
     // if the background didn't load
     if (background == NULL)
@@ -444,7 +446,9 @@ bool display::load_files()
     }
 
     // load the stick figure
-    hud = load_image("img/hud.png");
+    if (hud == NULL) {
+        hud = load_image("img/hud.png");
+    }
 
     // if the hud figure didn't load
     if (hud == NULL)
@@ -454,7 +458,9 @@ bool display::load_files()
     }
 
     // Load the xpRed image
-    xpRedBar = load_image("img/xpRed.png");
+    if (xpRedBar == NULL){
+        xpRedBar = load_image("img/xpRed.png");
+    }
 
     // if the xpRed didn't load
     if (xpRedBar == NULL)
@@ -464,7 +470,9 @@ bool display::load_files()
     }
 
     // Load the xpBlueBar image
-    xpBlueBar = load_image("img/xpBlue.png");
+    if (xpBlueBar == NULL) {
+        xpBlueBar = load_image("img/xpBlue.png");
+    }
 
     // if the xpBlueBar didn't load
     if (xpBlueBar == NULL)
@@ -474,7 +482,9 @@ bool display::load_files()
     }
 
     // Open the font
-    font = TTF_OpenFont("arial.ttf", 12);
+    if (font == NULL) {
+        font = TTF_OpenFont("arial.ttf", 12);
+    }
 
     // if there was an error in loading the font
     if (font == NULL)

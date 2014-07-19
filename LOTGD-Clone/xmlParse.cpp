@@ -579,7 +579,6 @@ void xmlParse::readXML_Fight_Data(mycreature * myCreature)
     QXmlStreamReader xml(&file);
     while(!xml.atEnd())
     {
-
         xml.readNext();
         if(xml.isStartElement())
         {
