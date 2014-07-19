@@ -33,7 +33,11 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
     int const Const_OhpP_temp = myCreature->GetOHpC();
 
 
+<<<<<<< HEAD
     //THIS SHOULD BE A CALLED FUNCTION THE CREATION OF STATS SHOULD BE IN THE CREATURE CLASS
+=======
+    THIS SHOULD BE A CALLED FUNCTION THE CREATION OF STATS SHOULD BE IN THE CREATURE CLASS
+>>>>>>> d1a9a69bc3b6bddaa65f83cedbdf33ce03c8655d
 
 
     // Set up monster should be only 1 level above player
