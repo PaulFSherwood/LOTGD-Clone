@@ -69,23 +69,23 @@ void display::mainDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
     // #ifdef linux
     //     printf("\033[2J\033[1;1H");
     // #endif
-    // cout << "##Village Gate##" << "\t\t" << "##Vital Info##" << endl;
-    // cout << "(F)orest" << "\t\t\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
-    // cout << "(Q)uit to the fields" << "\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl;
-    // cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
-    // cout << "##Market Street##" << "\t\t" << "Turns: " << endl;
-    // cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << warrior_Object->GetPlayerStrP() << endl;
-    // cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
-    // cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
-    // cout << "(H)eal your self\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
-    // cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    // cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
-    // cout << "\t\t\t\t" << "Gem: " << endl;
-    // cout << "\t\t\t\t" << "##Equipment##" << endl;
-    // cout << "\t\t\t\t" << "Weapon: " << Weapon->GetPlayereapon(warrior_Object->GetPlayerWeaponP()) << endl;
-    // cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetPlayerArmorTypeP()) << endl;
-    // cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetPlayerArmorValueP() << endl;
-    // cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetPlayerXptotalP() << "|" << warrior_Object->GetPlayerMaxxpP() << endl;
+    cout << "##Village Gate##" << "\t\t" << "##Vital Info##" << endl;
+    cout << "(F)orest" << "\t\t\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
+    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl;
+    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
+    cout << "##Market Street##" << "\t\t" << "Turns: " << endl;
+    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << warrior_Object->GetPlayerStrP() << endl;
+    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
+    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
+    cout << "(H)eal your self\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
+    cout << "\t\t\t\t" << "##Personnel Info##" << endl;
+    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
+    cout << "\t\t\t\t" << "Gem: " << endl;
+    cout << "\t\t\t\t" << "##Equipment##" << endl;
+    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetPlayerWeaponP()) << endl;
+    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetPlayerArmorTypeP()) << endl;
+    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetPlayerArmorValueP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetPlayerXptotalP() << "|" << warrior_Object->GetPlayerMaxxpP() << endl;
 
     // Initialize
     if (init() == false)

@@ -60,10 +60,11 @@ int main()
     // set a constant to reset HP
     const int ConstWHpP = myPlayer->GetPlayerHpP();// warrior.WHpP;
 
+    // Show main display
+    getDisplay->mainDisplay(myPlayer, uiDataValues);
+
     while (running)
     {
-        // Show main display
-        getDisplay->mainDisplay(myPlayer, uiDataValues);
 
         while( SDL_PollEvent( &event ) )
         {
