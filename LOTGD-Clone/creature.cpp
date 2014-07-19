@@ -1,5 +1,6 @@
 #include <iostream>
 #include "creature.h"
+#include "xmlParse.h"  // should this just be done in main?
 using namespace std;
 
 mycreature::mycreature(){}
@@ -33,6 +34,8 @@ string mycreature::GetFightVectorData(int index) { return CreatureVectorData[ind
 
 void mycreature::GetNewCreature(myplayer * myPlayer, mycreature * myCreature)
 {
+    xmlParse *importData = new xmlParse();
+
     // going to assume that levels have associated stats
     myPlayer->GetPlayerLvlP();
     // creature Strength
@@ -45,9 +48,8 @@ void mycreature::GetNewCreature(myplayer * myPlayer, mycreature * myCreature)
     myCreature->SetCreatureDodgeC(13);
     // creatures dont have armor????
     myCreature->SetCreatureArmorValueC(0);
-    // pull in a funny name for the creature... still waiting on that list
-
-    // pull in a funny weapon for the creature.. still waiting on that list
+    // pull in a funny name / weapons / and deaths for the creature... still waiting on that list
+    importData->readXML_Fight_Data(myCreature);
 }
 
 void mycreature::PrintStats()
