@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <cmath>
-#include "warrior.h"
+#include "player.h"
 #include "xp.h"
 using namespace std;
 
@@ -44,17 +44,17 @@ int xp::getmaxxp(int WlvlP)
     return xpmax;
 }
 
-void xp::canlvl(mywarrior * mySoilder)
+void xp::canlvl(myplayer * myPlayer)
 {
     // check current xp and see if you can level
-    if (mySoilder->GetWXptotalP() >= mySoilder->GetWMaxxpP()){
-        int WlvlP = mySoilder->GetWLvlP();
+    if (myPlayer->GetPlayerXptotalP() >= myPlayer->GetPlayerMaxxpP()){
+        int WlvlP = myPlayer->GetPlayerLvlP();
         WlvlP += 1;
-        mySoilder->SetWLvlP(WlvlP);
+        myPlayer->SetPlayerLvlP(WlvlP);
         double tempHP = 0;
-        tempHP = ((mySoilder->GetWHpP() * .1) + 10) + mySoilder->GetWHpP();
-        mySoilder->SetWHpP(tempHP);
-        mySoilder->SetWStrP(mySoilder->GetWStrP() + 5);
+        tempHP = ((myPlayer->GetPlayerHpP() * .1) + 10) + myPlayer->GetPlayerHpP();
+        myPlayer->SetPlayerHpP(tempHP);
+        myPlayer->SetPlayerStrP(myPlayer->GetPlayerStrP() + 5);
     }
     else {
         //return 0;

@@ -49,26 +49,26 @@ SOURCES       = ../LOTGD-Clone/main.cpp \
 		../LOTGD-Clone/uiGroup.cpp \
 		../LOTGD-Clone/training.cpp \
 		../LOTGD-Clone/shop.cpp \
-		../LOTGD-Clone/orge.cpp \
 		../LOTGD-Clone/forrest.cpp \
 		../LOTGD-Clone/fighttable.cpp \
 		../LOTGD-Clone/display.cpp \
 		../LOTGD-Clone/bank.cpp \
 		../LOTGD-Clone/xp.cpp \
 		../LOTGD-Clone/xmlParse.cpp \
-		../LOTGD-Clone/warrior.cpp 
+		../LOTGD-Clone/creature.cpp \
+		../LOTGD-Clone/player.cpp 
 OBJECTS       = main.o \
 		uiGroup.o \
 		training.o \
 		shop.o \
-		orge.o \
 		forrest.o \
 		fighttable.o \
 		display.o \
 		bank.o \
 		xp.o \
 		xmlParse.o \
-		warrior.o
+		creature.o \
+		player.o
 DIST          = /home/grrwood/Qt/5.3/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/grrwood/Qt/5.3/gcc_64/mkspecs/common/shell-unix.conf \
 		/home/grrwood/Qt/5.3/gcc_64/mkspecs/common/unix.conf \
@@ -179,14 +179,14 @@ DIST          = /home/grrwood/Qt/5.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../LOTGD-Clone/uiGroup.cpp \
 		../LOTGD-Clone/training.cpp \
 		../LOTGD-Clone/shop.cpp \
-		../LOTGD-Clone/orge.cpp \
 		../LOTGD-Clone/forrest.cpp \
 		../LOTGD-Clone/fighttable.cpp \
 		../LOTGD-Clone/display.cpp \
 		../LOTGD-Clone/bank.cpp \
 		../LOTGD-Clone/xp.cpp \
 		../LOTGD-Clone/xmlParse.cpp \
-		../LOTGD-Clone/warrior.cpp
+		../LOTGD-Clone/creature.cpp \
+		../LOTGD-Clone/player.cpp
 QMAKE_TARGET  = LOTGD-Clone
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = LOTGD-Clone
@@ -447,7 +447,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/LOTGD-Clone1.0.0 || mkdir -p .tmp/LOTGD-Clone1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/uiGroup.h ../LOTGD-Clone/training.h ../LOTGD-Clone/shop.h ../LOTGD-Clone/orge.h ../LOTGD-Clone/includes.h ../LOTGD-Clone/forrest.h ../LOTGD-Clone/fighttable.h ../LOTGD-Clone/display.h ../LOTGD-Clone/bank.h ../LOTGD-Clone/xp.h ../LOTGD-Clone/xmlParse.h ../LOTGD-Clone/warrior.h .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/main.cpp ../LOTGD-Clone/uiGroup.cpp ../LOTGD-Clone/training.cpp ../LOTGD-Clone/shop.cpp ../LOTGD-Clone/orge.cpp ../LOTGD-Clone/forrest.cpp ../LOTGD-Clone/fighttable.cpp ../LOTGD-Clone/display.cpp ../LOTGD-Clone/bank.cpp ../LOTGD-Clone/xp.cpp ../LOTGD-Clone/xmlParse.cpp ../LOTGD-Clone/warrior.cpp .tmp/LOTGD-Clone1.0.0/ && (cd `dirname .tmp/LOTGD-Clone1.0.0` && $(TAR) LOTGD-Clone1.0.0.tar LOTGD-Clone1.0.0 && $(COMPRESS) LOTGD-Clone1.0.0.tar) && $(MOVE) `dirname .tmp/LOTGD-Clone1.0.0`/LOTGD-Clone1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/LOTGD-Clone1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/uiGroup.h ../LOTGD-Clone/training.h ../LOTGD-Clone/shop.h ../LOTGD-Clone/includes.h ../LOTGD-Clone/forrest.h ../LOTGD-Clone/fighttable.h ../LOTGD-Clone/display.h ../LOTGD-Clone/bank.h ../LOTGD-Clone/xp.h ../LOTGD-Clone/xmlParse.h ../LOTGD-Clone/creature.h ../LOTGD-Clone/player.h .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/main.cpp ../LOTGD-Clone/uiGroup.cpp ../LOTGD-Clone/training.cpp ../LOTGD-Clone/shop.cpp ../LOTGD-Clone/forrest.cpp ../LOTGD-Clone/fighttable.cpp ../LOTGD-Clone/display.cpp ../LOTGD-Clone/bank.cpp ../LOTGD-Clone/xp.cpp ../LOTGD-Clone/xmlParse.cpp ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/player.cpp .tmp/LOTGD-Clone1.0.0/ && (cd `dirname .tmp/LOTGD-Clone1.0.0` && $(TAR) LOTGD-Clone1.0.0.tar LOTGD-Clone1.0.0 && $(COMPRESS) LOTGD-Clone1.0.0.tar) && $(MOVE) `dirname .tmp/LOTGD-Clone1.0.0`/LOTGD-Clone1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/LOTGD-Clone1.0.0
 
 
 clean:compiler_clean 
@@ -485,9 +485,9 @@ compiler_clean:
 ####### Compile
 
 main.o: ../LOTGD-Clone/main.cpp ../LOTGD-Clone/bank.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/display.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/fighttable.h \
 		../LOTGD-Clone/forrest.h \
@@ -690,32 +690,29 @@ uiGroup.o: ../LOTGD-Clone/uiGroup.cpp ../LOTGD-Clone/uiGroup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o uiGroup.o ../LOTGD-Clone/uiGroup.cpp
 
 training.o: ../LOTGD-Clone/training.cpp ../LOTGD-Clone/training.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/xp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o training.o ../LOTGD-Clone/training.cpp
 
 shop.o: ../LOTGD-Clone/shop.cpp ../LOTGD-Clone/display.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/shop.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o shop.o ../LOTGD-Clone/shop.cpp
 
-orge.o: ../LOTGD-Clone/orge.cpp ../LOTGD-Clone/orge.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o orge.o ../LOTGD-Clone/orge.cpp
-
 forrest.o: ../LOTGD-Clone/forrest.cpp ../LOTGD-Clone/forrest.h \
 		../LOTGD-Clone/display.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/fighttable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o forrest.o ../LOTGD-Clone/forrest.cpp
 
 fighttable.o: ../LOTGD-Clone/fighttable.cpp ../LOTGD-Clone/display.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/fighttable.h \
 		../LOTGD-Clone/xp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fighttable.o ../LOTGD-Clone/fighttable.cpp
@@ -1014,20 +1011,20 @@ display.o: ../LOTGD-Clone/display.cpp /home/grrwood/Qt/5.3/gcc_64/include/QtGui/
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qvalidator.h \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qtguiversion.h \
 		../LOTGD-Clone/display.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/shop.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o display.o ../LOTGD-Clone/display.cpp
 
 bank.o: ../LOTGD-Clone/bank.cpp ../LOTGD-Clone/bank.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/display.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bank.o ../LOTGD-Clone/bank.cpp
 
-xp.o: ../LOTGD-Clone/xp.cpp ../LOTGD-Clone/warrior.h \
+xp.o: ../LOTGD-Clone/xp.cpp ../LOTGD-Clone/player.h \
 		../LOTGD-Clone/xp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o xp.o ../LOTGD-Clone/xp.cpp
 
@@ -1324,9 +1321,9 @@ xmlParse.o: ../LOTGD-Clone/xmlParse.cpp /home/grrwood/Qt/5.3/gcc_64/include/QtGu
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qdesktopservices.h \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qvalidator.h \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qtguiversion.h \
-		../LOTGD-Clone/orge.h \
+		../LOTGD-Clone/creature.h \
 		../LOTGD-Clone/uiGroup.h \
-		../LOTGD-Clone/warrior.h \
+		../LOTGD-Clone/player.h \
 		../LOTGD-Clone/xmlParse.h \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtXml/QtXml \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtXml/QtXmlDepends \
@@ -1336,8 +1333,11 @@ xmlParse.o: ../LOTGD-Clone/xmlParse.cpp /home/grrwood/Qt/5.3/gcc_64/include/QtGu
 		/home/grrwood/Qt/5.3/gcc_64/include/QtXml/qtxmlversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o xmlParse.o ../LOTGD-Clone/xmlParse.cpp
 
-warrior.o: ../LOTGD-Clone/warrior.cpp ../LOTGD-Clone/warrior.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o warrior.o ../LOTGD-Clone/warrior.cpp
+creature.o: ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/creature.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o creature.o ../LOTGD-Clone/creature.cpp
+
+player.o: ../LOTGD-Clone/player.cpp ../LOTGD-Clone/player.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../LOTGD-Clone/player.cpp
 
 ####### Install
 

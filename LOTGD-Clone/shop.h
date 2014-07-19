@@ -10,13 +10,13 @@ class shop
 public:
     shop();
 
-    void Weapon_Shop(mywarrior * mySoilder);
+    void Weapon_Shop(myplayer * myPlayer);
 
-    void Armor_Shop(mywarrior * mySoilder);
+    void Armor_Shop(myplayer * myPlayer);
 
-    void WeaponPriceCheck(mywarrior * mySoilder, int ItemPrice);
+    void WeaponPriceCheck(myplayer * myPlayer, int ItemPrice);
 
-    void ArmorPriceCheck(mywarrior * mySoilder, int ItemPrice);
+    void ArmorPriceCheck(myplayer * myPlayer, int ItemPrice);
 
     string GetWeapon(int currentWeapon);
 

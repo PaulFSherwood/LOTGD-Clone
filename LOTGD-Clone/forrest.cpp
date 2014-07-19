@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include "forrest.h"
 #include "display.h"
-#include "orge.h"
+#include "creature.h"
 #include "fighttable.h"
-#include "warrior.h"
+#include "player.h"
 using namespace std;
 
 forrest::forrest(){}
 
-void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup * uiDataValues)
+void forrest::ForestLvl1(myplayer * myPlayer, mycreature * randomOgre, uiGroup * uiDataValues)
 
 {
     // Initilize pointer class calls
@@ -22,7 +22,7 @@ void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup *
 
     while (inForrest){
         // Display user stats
-        getDisplay->forrestDisplay(mySoilder, uiDataValues);
+        getDisplay->forrestDisplay(myPlayer, uiDataValues);
 
         while( SDL_PollEvent( &event ) )
         {
@@ -30,7 +30,7 @@ void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup *
             switch( event.key.keysym.sym )
             {
             case SDLK_l://'L':	// Look for a fight
-                getFighttable->Fight_Table(mySoilder, randomOgre);
+                getFighttable->Fight_Table(myPlayer, randomOgre);
                 cin.ignore().get();
                 break;
             case SDLK_r://'R':	// Return to world menu
@@ -49,8 +49,8 @@ void forrest::ForestLvl1(mywarrior * mySoilder, npc_orge * randomOgre, uiGroup *
                 break;
             case SDLK_x://'X': // add xp
                 int tempxptotal;
-                tempxptotal += 100 * mySoilder->GetWLvlP();
-                mySoilder->SetWXptotalP(tempxptotal);
+                tempxptotal += 100 * myPlayer->GetPlayerLvlP();
+                myPlayer->SetPlayerXptotalP(tempxptotal);
                 break;
 
             default:

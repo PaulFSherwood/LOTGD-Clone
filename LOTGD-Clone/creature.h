@@ -2,12 +2,13 @@
 #define ORGE_H
 
 #include <iostream>
+#include "player.h"
 using namespace std;
 
-class npc_orge
+class mycreature
 {
 public:
-    npc_orge();
+    mycreature();
 
     void SetOHpC(int hp);
     void SetOStrC(int str);
@@ -24,6 +25,7 @@ public:
     int GetODefC();
     int GetOArmorValueC();
     string GetONameC();
+    void getNewCreature(myplayer * myPlayer, mycreature * myCreature);
 
     void PrintStats();
 

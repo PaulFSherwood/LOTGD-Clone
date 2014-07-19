@@ -2,14 +2,14 @@
 #define TRAINING_H
 
 #include <iostream>
-#include "warrior.h"
+#include "player.h"
 using namespace std;
 
 class training
 {
 public:
     training();
-    void Warrior_Training(mywarrior * warrior_Object);
+    void Warrior_Training(myplayer * warrior_Object);
 };
 
 #endif // TRAINING_H
