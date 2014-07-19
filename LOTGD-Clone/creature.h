@@ -2,6 +2,7 @@
 #define ORGE_H
 
 #include <iostream>
+#include <vector>
 #include "player.h"
 using namespace std;
 
@@ -21,7 +22,8 @@ public:
     void SetCreatureArmorValueC(int armorvalue);
     void SetCreatureNameC(string name);
 
-    void SetFightDataArrayCounter(int data);
+    void SetFightVectorCounter(int data);
+    string SetFightVectorData(string data, int index);
 
     int GetCreatureHpC();
     int GetCreatureStrC();
@@ -33,6 +35,9 @@ public:
     int GetCreatureDodgeC();
     int GetCreatureArmorValueC();
     string GetCreatureNameC();
+
+    int GetFightVectorCounter();
+    string GetFightVectorData(int index);
 
     void GetNewCreature(myplayer * myPlayer, mycreature * myCreature);
 
@@ -49,7 +54,8 @@ private:
     int CreatureDodgeC;
     int CreatureArmorValueC;
 
-    int FightDataArrayCounter;
+    int FightDataVectorCounter;
+    vector<string> CreatureVectorData;
 
     string CreatureNameC;
 };

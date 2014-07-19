@@ -573,33 +573,38 @@ void xmlParse::readXML_Fight_Data(mycreature * myCreature)
         return;
     }
 
+    int vectorSizeCounter = 0;
+
     // cycle through xml file and pull out and assign data to variables
     QXmlStreamReader xml(&file);
     while(!xml.atEnd())
     {
+
         xml.readNext();
         if(xml.isStartElement())
         {
             // Read the tag name.
             while (xml.readNextStartElement()) {
                 if (xml.name() == "fightData"){
-                ///// ///// /////
-                ///need an array that i can pop new information to
-                ///
+
                 }else if (xml.name() == "Name"){
                     QString Name = xml.readElementText();
-                    // myCreature->Setname_tag_left_x(name_tag_left_x.toStdString());
+                    vectorSizeCounter += 1;
+                    myCreature->SetFightVectorCounter(vectorSizeCounter);
+                    myCreature->SetFightVectorData(Name.toStdString(), vectorSizeCounter);
 
                 }else if (xml.name() == "Weapon"){
                     QString Weapon = xml.readElementText();
-                    // myCreature->Setexp_value_right_text(exp_value_right_text.toStdString());
+                    vectorSizeCounter += 1;
+                    myCreature->SetFightVectorCounter(vectorSizeCounter);
+                    myCreature->SetFightVectorData(Weapon.toStdString(), vectorSizeCounter);
 
                 }else if (xml.name() == "Death"){
                     QString Death = xml.readElementText();
-                    // myCreature->Setname_tag_left_x(name_tag_left_x.toStdString());
-                ///
-                ///
-                ///// ///// /////
+                    vectorSizeCounter += 1;
+                    myCreature->SetFightVectorCounter(vectorSizeCounter);
+                    myCreature->SetFightVectorData(Death.toStdString(), vectorSizeCounter);
+
                }else
                     xml.skipCurrentElement();
             }

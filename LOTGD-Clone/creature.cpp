@@ -15,7 +15,8 @@ void mycreature::SetCreatureDodgeC(int dod) { CreatureDodgeC = dod; }
 void mycreature::SetCreatureArmorValueC(int armorvalue) { CreatureArmorValueC = armorvalue; }
 void mycreature::SetCreatureNameC(string name) { CreatureNameC = name; }
 
-void mycreature::SetFightDataArrayCounter(int data) { FightDataArrayCounter = data; }
+void mycreature::SetFightVectorCounter(int data) { FightDataVectorCounter = data; }
+string mycreature::SetFightVectorData(string data, int index) { CreatureVectorData[index] = data; }
 
 int mycreature::GetCreatureHpC() { return CreatureHpC; }
 int mycreature::GetCreatureStrC() { return CreatureStrC; }
@@ -26,6 +27,9 @@ int mycreature::GetCreatureAtkC() { return CreatureAtkC; }
 int mycreature::GetCreatureDefC() { return CreatureDefC; }
 int mycreature::GetCreatureArmorValueC() { return CreatureArmorValueC; }
 string mycreature::GetCreatureNameC() { return CreatureNameC; }
+
+int mycreature::GetFightVectorCounter() { return FightDataVectorCounter; }
+string mycreature::GetFightVectorData(int index) { return CreatureVectorData[index]; }
 
 void mycreature::GetNewCreature(myplayer * myPlayer, mycreature * myCreature)
 {
