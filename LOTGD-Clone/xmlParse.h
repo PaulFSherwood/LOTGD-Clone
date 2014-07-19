@@ -18,6 +18,8 @@ void readXML_Class_Object(mycreature * creature_Object);
 
 void readXML_ui_Class_Object(uiGroup * uiObject);
 
+void readXML_Fight_Data(mycreature * myCreature);
+
 };
 
 #endif // XMLPARSE_H

@@ -21,6 +21,8 @@ public:
     void SetCreatureArmorValueC(int armorvalue);
     void SetCreatureNameC(string name);
 
+    void SetFightDataArrayCounter(int data);
+
     int GetCreatureHpC();
     int GetCreatureStrC();
     int GetCreatureLvlC();
@@ -46,6 +48,8 @@ private:
     int CreatureDefC;
     int CreatureDodgeC;
     int CreatureArmorValueC;
+
+    int FightDataArrayCounter;
 
     string CreatureNameC;
 };

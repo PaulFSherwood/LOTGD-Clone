@@ -696,23 +696,23 @@ training.o: ../LOTGD-Clone/training.cpp ../LOTGD-Clone/training.h \
 
 shop.o: ../LOTGD-Clone/shop.cpp ../LOTGD-Clone/display.h \
 		../LOTGD-Clone/creature.h \
-		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/player.h \
+		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/shop.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o shop.o ../LOTGD-Clone/shop.cpp
 
 forrest.o: ../LOTGD-Clone/forrest.cpp ../LOTGD-Clone/forrest.h \
 		../LOTGD-Clone/display.h \
 		../LOTGD-Clone/creature.h \
-		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/player.h \
+		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/fighttable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o forrest.o ../LOTGD-Clone/forrest.cpp
 
 fighttable.o: ../LOTGD-Clone/fighttable.cpp ../LOTGD-Clone/display.h \
 		../LOTGD-Clone/creature.h \
-		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/player.h \
+		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/fighttable.h \
 		../LOTGD-Clone/xp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o fighttable.o ../LOTGD-Clone/fighttable.cpp
@@ -1012,8 +1012,8 @@ display.o: ../LOTGD-Clone/display.cpp /home/grrwood/Qt/5.3/gcc_64/include/QtGui/
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qtguiversion.h \
 		../LOTGD-Clone/display.h \
 		../LOTGD-Clone/creature.h \
-		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/player.h \
+		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/shop.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o display.o ../LOTGD-Clone/display.cpp
 
@@ -1322,8 +1322,8 @@ xmlParse.o: ../LOTGD-Clone/xmlParse.cpp /home/grrwood/Qt/5.3/gcc_64/include/QtGu
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qvalidator.h \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtGui/qtguiversion.h \
 		../LOTGD-Clone/creature.h \
-		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/player.h \
+		../LOTGD-Clone/uiGroup.h \
 		../LOTGD-Clone/xmlParse.h \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtXml/QtXml \
 		/home/grrwood/Qt/5.3/gcc_64/include/QtXml/QtXmlDepends \
@@ -1333,7 +1333,8 @@ xmlParse.o: ../LOTGD-Clone/xmlParse.cpp /home/grrwood/Qt/5.3/gcc_64/include/QtGu
 		/home/grrwood/Qt/5.3/gcc_64/include/QtXml/qtxmlversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o xmlParse.o ../LOTGD-Clone/xmlParse.cpp
 
-creature.o: ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/creature.h
+creature.o: ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/creature.h \
+		../LOTGD-Clone/player.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o creature.o ../LOTGD-Clone/creature.cpp
 
 player.o: ../LOTGD-Clone/player.cpp ../LOTGD-Clone/player.h

@@ -554,3 +554,55 @@ void xmlParse::readXML_ui_Class_Object(uiGroup * uiObject)
         }
     }
 }
+
+
+
+void xmlParse::readXML_Fight_Data(mycreature * myCreature)
+{
+    // pull file for use
+    QString fileName = "data/fightData.xml";
+
+    // file checking
+    if (fileName.isEmpty())
+        return;
+
+    // set file operations to read only
+    QFile file(fileName);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        printf("Error opening file\n");
+        return;
+    }
+
+    // cycle through xml file and pull out and assign data to variables
+    QXmlStreamReader xml(&file);
+    while(!xml.atEnd())
+    {
+        xml.readNext();
+        if(xml.isStartElement())
+        {
+            // Read the tag name.
+            while (xml.readNextStartElement()) {
+                if (xml.name() == "fightData"){
+                ///// ///// /////
+                ///need an array that i can pop new information to
+                ///
+                }else if (xml.name() == "Name"){
+                    QString Name = xml.readElementText();
+                    // myCreature->Setname_tag_left_x(name_tag_left_x.toStdString());
+
+                }else if (xml.name() == "Weapon"){
+                    QString Weapon = xml.readElementText();
+                    // myCreature->Setexp_value_right_text(exp_value_right_text.toStdString());
+
+                }else if (xml.name() == "Death"){
+                    QString Death = xml.readElementText();
+                    // myCreature->Setname_tag_left_x(name_tag_left_x.toStdString());
+                ///
+                ///
+                ///// ///// /////
+               }else
+                    xml.skipCurrentElement();
+            }
+        }
+    }
+}

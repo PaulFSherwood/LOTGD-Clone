@@ -15,6 +15,8 @@ void mycreature::SetCreatureDodgeC(int dod) { CreatureDodgeC = dod; }
 void mycreature::SetCreatureArmorValueC(int armorvalue) { CreatureArmorValueC = armorvalue; }
 void mycreature::SetCreatureNameC(string name) { CreatureNameC = name; }
 
+void mycreature::SetFightDataArrayCounter(int data) { FightDataArrayCounter = data; }
+
 int mycreature::GetCreatureHpC() { return CreatureHpC; }
 int mycreature::GetCreatureStrC() { return CreatureStrC; }
 int mycreature::GetCreatureLvlC() { return CreatureLvlC; }
