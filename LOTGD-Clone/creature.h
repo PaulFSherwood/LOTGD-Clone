@@ -13,6 +13,7 @@ public:
     void SetCreatureHpC(int hp);
     void SetCreatureStrC(int str);
     void SetCreatureLvlC(int lvl);
+    void SetCreatureHitC(int hit);
 
     void SetCreatureAtkC(int atk);
     void SetCreatureDefC(int def);
@@ -23,13 +24,15 @@ public:
     int GetCreatureHpC();
     int GetCreatureStrC();
     int GetCreatureLvlC();
+    int GetCreatureHitC();
 
     int GetCreatureAtkC();
     int GetCreatureDefC();
     int GetCreatureDodgeC();
     int GetCreatureArmorValueC();
     string GetCreatureNameC();
-    void getNewCreature(myplayer * myPlayer, mycreature * myCreature);
+
+    void GetNewCreature(myplayer * myPlayer, mycreature * myCreature);
 
     void PrintStats();
 
@@ -37,6 +40,7 @@ private:
     int CreatureHpC;
     int CreatureStrC;
     int CreatureLvlC;
+    int CreatureHitC;
 
     int CreatureAtkC;
     int CreatureDefC;
