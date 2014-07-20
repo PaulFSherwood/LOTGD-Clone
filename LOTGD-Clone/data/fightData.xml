@@ -62,6 +62,10 @@
     <Weapon>Alcoholism</Weapon>
     <Death>Good thing you got him before cirrhosis did</Death>
 
+    <Name>Gar Man</Name>
+    <Weapon>Jar of Cotton Balls</Weapon>
+    <Death>There is but one Gar Man! And now he's just fluff!l</Death>
+
     <Name>Frog</Name>
     <Weapon>Long Sticky Tongue</Weapon>
     <Death>You know, if you had kissed that frog, the result might have been very different...</Death>
@@ -121,6 +125,27 @@
     <Name>Dekion's Birthday Cake</Name>
     <Weapon>Flaming Candles of DOOM!</Weapon>
     <Death>I knew he was old but I didn't know he was that OLD</Death>
+
+    <Name>Pygmy Ogre</Name>
+    <Weapon>Stones</Weapon>
+    <Death>Now that was a pitiful thing...</Death>
+
+    <Name>Parrot</Name>
+    <Weapon>Incessant Repeating</Weapon>
+    <Death>You wish you could get rid of the repeating in your head as easily as the parrot</Death>
+
+    <Name>Burly Man</Name>
+    <Weapon>Amazing Absorbency</Weapon>
+    <Death>Fantasize, fantasize about Burly ...Eeeh, Eeeh, Eeeh</Death>
+
+    <Name>uge Bald Programmer</Name>
+    <Weapon>Shining Forehead</Weapon>
+    <Death>You feel as if you have seen this man before in the village</Death>
+
+    <Name>Large Tarantula</Name>
+    <Weapon>Fangs</Weapon>
+    <Death>That was one very hairy spider...</Death>
+
 
     </MyData>
 </xbel>
