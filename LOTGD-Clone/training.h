@@ -9,7 +9,7 @@ class training
 {
 public:
     training();
-    void Warrior_Training(myplayer * warrior_Object);
+    void Warrior_Training(myplayer * myPlayer_Object);
 };
 
 #endif // TRAINING_H

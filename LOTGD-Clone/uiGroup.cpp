@@ -21,6 +21,8 @@ void uiGroup::Sethp_tag_left_y(int ui_hp_tag_left_y) { hp_tag_left_y = ui_hp_tag
 void uiGroup::Sethp_tag_left_text(string ui_hp_tag_left_text) { hp_tag_left_text = ui_hp_tag_left_text; }
 void uiGroup::Sethp_value_right_x(int ui_hp_value_right_x) { hp_value_right_x = ui_hp_value_right_x; }
 void uiGroup::Sethp_value_right_y(int ui_hp_value_right_y) { hp_value_right_y = ui_hp_value_right_y; }
+void uiGroup::Sethp_bar_right_x(int ui_hp_bar_right_x) { hp_bar_right_x = ui_hp_bar_right_x; }
+void uiGroup::Sethp_bar_right_y(int ui_hp_bar_right_y) { hp_bar_right_y = ui_hp_bar_right_y; }
 void uiGroup::Sethp_value_right_text(string ui_hp_value_right_text) { hp_value_right_text = ui_hp_value_right_text; }
 void uiGroup::Setrace_tag_left_x(int ui_race_tag_left_x) { race_tag_left_x = ui_race_tag_left_x; }
 void uiGroup::Setrace_tag_left_y(int ui_race_tag_left_y) { race_tag_left_y = ui_race_tag_left_y; }
@@ -77,75 +79,78 @@ void uiGroup::Setexp_value_right_x(int ui_exp_value_right_x) { exp_value_right_x
 void uiGroup::Setexp_value_right_y(int ui_exp_value_right_y) { exp_value_right_y = ui_exp_value_right_y; }
 void uiGroup::Setexp_value_right_text(string ui_exp_value_right_text) { exp_value_right_text = ui_exp_value_right_text; }
 
-int uiGroup::Getname_tag_left_x() { return name_tag_left_x; }
-int uiGroup::Getname_tag_left_y() { return name_tag_left_y; }
+int    uiGroup::Getname_tag_left_x() { return name_tag_left_x; }
+int    uiGroup::Getname_tag_left_y() { return name_tag_left_y; }
 string uiGroup::Getname_tag_left_text() { return name_tag_left_text; }
-int uiGroup::Getname_value_right_x() { return name_value_right_x; }
-int uiGroup::Getname_value_right_y() { return name_value_right_y; }
+int    uiGroup::Getname_value_right_x() { return name_value_right_x; }
+int    uiGroup::Getname_value_right_y() { return name_value_right_y; }
 string uiGroup::Getname_value_right_text() { return name_value_right_text; }
-int uiGroup::Getlevel_tag_left_x() { return level_tag_left_x; }
-int uiGroup::Getlevel_tag_left_y() { return level_tag_left_y; }
+int    uiGroup::Getlevel_tag_left_x() { return level_tag_left_x; }
+int    uiGroup::Getlevel_tag_left_y() { return level_tag_left_y; }
 string uiGroup::Getlevel_tag_left_text() { return level_tag_left_text; }
-int uiGroup::Getlevel_value_right_x() { return level_value_right_x; }
-int uiGroup::Getlevel_value_right_y() { return level_value_right_y; }
+int    uiGroup::Getlevel_value_right_x() { return level_value_right_x; }
+int    uiGroup::Getlevel_value_right_y() { return level_value_right_y; }
 string uiGroup::Getlevel_value_right_text() { return level_value_right_text; }
-int uiGroup::Gethp_tag_left_x() { return hp_tag_left_x; }
-int uiGroup::Gethp_tag_left_y() { return hp_tag_left_y; }
+int    uiGroup::Gethp_tag_left_x() { return hp_tag_left_x; }
+int    uiGroup::Gethp_tag_left_y() { return hp_tag_left_y; }
 string uiGroup::Gethp_tag_left_text() { return hp_tag_left_text; }
-int uiGroup::Gethp_value_right_x() { return hp_value_right_x; }
-int uiGroup::Gethp_value_right_y() { return hp_value_right_y; }
+int    uiGroup::Gethp_value_right_x() { return hp_value_right_x; }
+int    uiGroup::Gethp_value_right_y() { return hp_value_right_y; }
 string uiGroup::Gethp_value_right_text() { return hp_value_right_text; }
-int uiGroup::Getrace_tag_left_x() { return race_tag_left_x; }
-int uiGroup::Getrace_tag_left_y() { return race_tag_left_y; }
+int    uiGroup::Gethp_bar_right_x() { return hp_bar_right_x; }
+int    uiGroup::Gethp_bar_right_y() { return hp_bar_right_y; }
+
+int    uiGroup::Getrace_tag_left_x() { return race_tag_left_x; }
+int    uiGroup::Getrace_tag_left_y() { return race_tag_left_y; }
 string uiGroup::Getrace_tag_left_text() { return race_tag_left_text; }
-int uiGroup::Getrace_value_right_x() { return race_value_right_x; }
-int uiGroup::Getrace_value_right_y() { return race_value_right_y; }
+int    uiGroup::Getrace_value_right_x() { return race_value_right_x; }
+int    uiGroup::Getrace_value_right_y() { return race_value_right_y; }
 string uiGroup::Getrace_value_right_text() { return race_value_right_text; }
-int uiGroup::Getstr_tag_left_x() { return str_tag_left_x; }
-int uiGroup::Getstr_tag_left_y() { return str_tag_left_y; }
+int    uiGroup::Getstr_tag_left_x() { return str_tag_left_x; }
+int    uiGroup::Getstr_tag_left_y() { return str_tag_left_y; }
 string uiGroup::Getstr_tag_left_text() { return str_tag_left_text; }
-int uiGroup::Getstr_value_right_x() { return str_value_right_x; }
-int uiGroup::Getstr_value_right_y() { return str_value_right_y; }
+int    uiGroup::Getstr_value_right_x() { return str_value_right_x; }
+int    uiGroup::Getstr_value_right_y() { return str_value_right_y; }
 string uiGroup::Getstr_value_right_text() { return str_value_right_text; }
-int uiGroup::Getatk_tag_left_x() { return atk_tag_left_x; }
-int uiGroup::Getatk_tag_left_y() { return atk_tag_left_y; }
+int    uiGroup::Getatk_tag_left_x() { return atk_tag_left_x; }
+int    uiGroup::Getatk_tag_left_y() { return atk_tag_left_y; }
 string uiGroup::Getatk_tag_left_text() { return atk_tag_left_text; }
-int uiGroup::Getatk_value_right_x() { return atk_value_right_x; }
-int uiGroup::Getatk_value_right_y() { return atk_value_right_y; }
+int    uiGroup::Getatk_value_right_x() { return atk_value_right_x; }
+int    uiGroup::Getatk_value_right_y() { return atk_value_right_y; }
 string uiGroup::Getatk_value_right_text() { return atk_value_right_text; }
-int uiGroup::Getdef_tag_left_x() { return def_tag_left_x; }
-int uiGroup::Getdef_tag_left_y() { return def_tag_left_y; }
+int    uiGroup::Getdef_tag_left_x() { return def_tag_left_x; }
+int    uiGroup::Getdef_tag_left_y() { return def_tag_left_y; }
 string uiGroup::Getdef_tag_left_text() { return def_tag_left_text; }
-int uiGroup::Getdef_value_right_x() { return def_value_right_x; }
-int uiGroup::Getdef_value_right_y() { return def_value_right_y; }
+int    uiGroup::Getdef_value_right_x() { return def_value_right_x; }
+int    uiGroup::Getdef_value_right_y() { return def_value_right_y; }
 string uiGroup::Getdef_value_right_text() { return def_value_right_text; }
-int uiGroup::Getarmv_tag_left_x() { return armv_tag_left_x; }
-int uiGroup::Getarmv_tag_left_y() { return armv_tag_left_y; }
+int    uiGroup::Getarmv_tag_left_x() { return armv_tag_left_x; }
+int    uiGroup::Getarmv_tag_left_y() { return armv_tag_left_y; }
 string uiGroup::Getarmv_tag_left_text() { return armv_tag_left_text; }
-int uiGroup::Getarmv_value_right_x() { return armv_value_right_x; }
-int uiGroup::Getarmv_value_right_y() { return armv_value_right_y; }
+int    uiGroup::Getarmv_value_right_x() { return armv_value_right_x; }
+int    uiGroup::Getarmv_value_right_y() { return armv_value_right_y; }
 string uiGroup::Getarmv_value_right_text() { return armv_value_right_text; }
-int uiGroup::Getgold_tag_left_x() { return gold_tag_left_x; }
-int uiGroup::Getgold_tag_left_y() { return gold_tag_left_y; }
+int    uiGroup::Getgold_tag_left_x() { return gold_tag_left_x; }
+int    uiGroup::Getgold_tag_left_y() { return gold_tag_left_y; }
 string uiGroup::Getgold_tag_left_text() { return gold_tag_left_text; }
-int uiGroup::Getgold_value_right_x() { return gold_value_right_x; }
-int uiGroup::Getgold_value_right_y() { return gold_value_right_y; }
+int    uiGroup::Getgold_value_right_x() { return gold_value_right_x; }
+int    uiGroup::Getgold_value_right_y() { return gold_value_right_y; }
 string uiGroup::Getgold_value_right_text() { return gold_value_right_text; }
-int uiGroup::Getwep_tag_left_x() { return wep_tag_left_x; }
-int uiGroup::Getwep_tag_left_y() { return wep_tag_left_y; }
+int    uiGroup::Getwep_tag_left_x() { return wep_tag_left_x; }
+int    uiGroup::Getwep_tag_left_y() { return wep_tag_left_y; }
 string uiGroup::Getwep_tag_left_text() { return wep_tag_left_text; }
-int uiGroup::Getwep_value_right_x() { return wep_value_right_x; }
-int uiGroup::Getwep_value_right_y() { return wep_value_right_y; }
+int    uiGroup::Getwep_value_right_x() { return wep_value_right_x; }
+int    uiGroup::Getwep_value_right_y() { return wep_value_right_y; }
 string uiGroup::Getwep_value_right_text() { return wep_value_right_text; }
-int uiGroup::Getarm_tag_left_x() { return arm_tag_left_x; }
-int uiGroup::Getarm_tag_left_y() { return arm_tag_left_y; }
+int    uiGroup::Getarm_tag_left_x() { return arm_tag_left_x; }
+int    uiGroup::Getarm_tag_left_y() { return arm_tag_left_y; }
 string uiGroup::Getarm_tag_left_text() { return arm_tag_left_text; }
-int uiGroup::Getarm_value_right_x() { return arm_value_right_x; }
-int uiGroup::Getarm_value_right_y() { return arm_value_right_y; }
+int    uiGroup::Getarm_value_right_x() { return arm_value_right_x; }
+int    uiGroup::Getarm_value_right_y() { return arm_value_right_y; }
 string uiGroup::Getarm_value_right_text() { return arm_value_right_text; }
-int uiGroup::Getexp_tag_left_x() { return exp_tag_left_x; }
-int uiGroup::Getexp_tag_left_y() { return exp_tag_left_y; }
+int    uiGroup::Getexp_tag_left_x() { return exp_tag_left_x; }
+int    uiGroup::Getexp_tag_left_y() { return exp_tag_left_y; }
 string uiGroup::Getexp_tag_left_text() { return exp_tag_left_text; }
-int uiGroup::Getexp_value_right_x() { return exp_value_right_x; }
-int uiGroup::Getexp_value_right_y() { return exp_value_right_y; }
+int    uiGroup::Getexp_value_right_x() { return exp_value_right_x; }
+int    uiGroup::Getexp_value_right_y() { return exp_value_right_y; }
 string uiGroup::Getexp_value_right_text() { return exp_value_right_text; }

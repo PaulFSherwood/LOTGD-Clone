@@ -13,11 +13,11 @@ public:
     fighttable();
     void Fight_Table(myplayer * myPlayer, mycreature * myCreature);
 
-    int getCreatureHp(myplayer * warrior_Object, mycreature * creature_Object);
-    int getCreatureDef(myplayer * warrior_Object, mycreature * creature_Object);
+    int getCreatureHp(myplayer * myPlayer_Object, mycreature * creature_Object);
+    int getCreatureDef(myplayer * myPlayer_Object, mycreature * creature_Object);
     string getCreatureName(mycreature * creature_Object);
     string getCreatureWeapon(mycreature * creature_Object);
-    int getCreatureAttack(myplayer * warrior_Object, mycreature * creature_Object);
+    int getCreatureAttack(myplayer * myPlayer_Object, mycreature * creature_Object);
 
     int incommingDmg(int DmgPotential, int DmgMitigation);
 };

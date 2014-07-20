@@ -6,22 +6,22 @@
 #include "xmlParse.h"
 using namespace std;
 
-void xmlParse::writeXML_Class_Object(myplayer * warrior_Object, mycreature * creature_Object)
+void xmlParse::writeXML_Class_Object(myplayer * myPlayer_Object, mycreature * creature_Object)
 {
     // variable setup to pass current values into xml
-    QString Whp = QString::number(warrior_Object->GetPlayerHpP());
-    QString Wstr = QString::number(warrior_Object->GetPlayerStrP());
-    QString Wlvl = QString::number(warrior_Object->GetPlayerLvlP());
-    QString Xptotal = QString::number(warrior_Object->GetPlayerXptotalP());
-    QString Maxxp = QString::number(warrior_Object->GetPlayerMaxxpP());
-    QString Gold = QString::number(warrior_Object->GetPlayerGoldP());
-    QString Savings = QString::number(warrior_Object->GetPlayerSavingsP());
-    QString Weapon = QString::number(warrior_Object->GetPlayerWeaponP());
-    QString ArmorType = QString::number(warrior_Object->GetPlayerArmorTypeP());
-    QString ArmorValue = QString::number(warrior_Object->GetPlayerArmorValueP());
-    QString Attack = QString::number(warrior_Object->GetPlayerAtkP());
-    QString Defense = QString::number(warrior_Object->GetPlayerDefP());
-    QString Race = QString::fromStdString(warrior_Object->GetPlayerRaceP());
+    QString Whp = QString::number(myPlayer_Object->GetPlayerHpP());
+    QString Wstr = QString::number(myPlayer_Object->GetPlayerStrP());
+    QString Wlvl = QString::number(myPlayer_Object->GetPlayerLvlP());
+    QString Xptotal = QString::number(myPlayer_Object->GetPlayerXptotalP());
+    QString Maxxp = QString::number(myPlayer_Object->GetPlayerMaxxpP());
+    QString Gold = QString::number(myPlayer_Object->GetPlayerGoldP());
+    QString Savings = QString::number(myPlayer_Object->GetPlayerSavingsP());
+    QString Weapon = QString::number(myPlayer_Object->GetPlayerWeaponP());
+    QString ArmorType = QString::number(myPlayer_Object->GetPlayerArmorTypeP());
+    QString ArmorValue = QString::number(myPlayer_Object->GetPlayerArmorValueP());
+    QString Attack = QString::number(myPlayer_Object->GetPlayerAtkP());
+    QString Defense = QString::number(myPlayer_Object->GetPlayerDefP());
+    QString Race = QString::fromStdString(myPlayer_Object->GetPlayerRaceP());
 
     QString Ohp = QString::number(creature_Object->GetCreatureHpC());
     QString Ostr = QString::number(creature_Object->GetCreatureStrC());
@@ -81,7 +81,7 @@ void xmlParse::writeXML_Class_Object(myplayer * warrior_Object, mycreature * cre
     xml.writeEndDocument();
 }
 
-void xmlParse::readXML_Class_Object(myplayer * warrior_Object)
+void xmlParse::readXML_Class_Object(myplayer * myPlayer_Object)
 {
     // pull file for use
     QString fileName = "data/myData.xml";
@@ -110,59 +110,59 @@ void xmlParse::readXML_Class_Object(myplayer * warrior_Object)
 
                 }else if (xml.name() == "Name"){
                     QString Name = xml.readElementText();
-                    warrior_Object->SetPlayerNameP(Name.toStdString());
+                    myPlayer_Object->SetPlayerNameP(Name.toStdString());
 
                 }else if (xml.name() == "Hp"){
                     QString Hp = xml.readElementText();
-                    warrior_Object->SetPlayerHpP(Hp.toInt());
+                    myPlayer_Object->SetPlayerHpP(Hp.toInt());
 
                 }else if (xml.name() == "Str"){
                     QString Str = xml.readElementText();
-                    warrior_Object->SetPlayerStrP(Str.toInt());
+                    myPlayer_Object->SetPlayerStrP(Str.toInt());
 
                 }else if (xml.name() == "Lvl"){
                     QString lvl = xml.readElementText();
-                    warrior_Object->SetPlayerLvlP(lvl.toInt());
+                    myPlayer_Object->SetPlayerLvlP(lvl.toInt());
 
                 }else if (xml.name() == "xpTotal"){
                     QString xpTotal = xml.readElementText();
-                    warrior_Object->SetPlayerXptotalP(xpTotal.toInt());
+                    myPlayer_Object->SetPlayerXptotalP(xpTotal.toInt());
 
                 }else if (xml.name() == "maxXP"){
                     QString maxXP = xml.readElementText();
-                    warrior_Object->SetPlayerMaxxpP(maxXP.toInt());
+                    myPlayer_Object->SetPlayerMaxxpP(maxXP.toInt());
 
                 }else if (xml.name() == "Gold"){
                     QString Gold = xml.readElementText();
-                    warrior_Object->SetPlayerGoldP(Gold.toInt());
+                    myPlayer_Object->SetPlayerGoldP(Gold.toInt());
 
                 }else if (xml.name() == "Savings"){
                     QString Savings = xml.readElementText();
-                    warrior_Object->SetPlayerSavingsP(Savings.toInt());
+                    myPlayer_Object->SetPlayerSavingsP(Savings.toInt());
 
                 }else if (xml.name() == "Weapon"){
                     QString Weapon = xml.readElementText();
-                    warrior_Object->SetPlayerWeaponP(Weapon.toInt());
+                    myPlayer_Object->SetPlayerWeaponP(Weapon.toInt());
 
                 }else if (xml.name() == "ArmorType"){
                     QString ArmorType = xml.readElementText();
-                    warrior_Object->SetPlayerArmorTypeP(ArmorType.toInt());
+                    myPlayer_Object->SetPlayerArmorTypeP(ArmorType.toInt());
 
                 }else if (xml.name() == "ArmorValue"){
                     QString ArmorValue = xml.readElementText();
-                    warrior_Object->SetPlayerArmorValueP(ArmorValue.toInt());
+                    myPlayer_Object->SetPlayerArmorValueP(ArmorValue.toInt());
 
                 }else if (xml.name() == "Attack"){
                     QString Attack = xml.readElementText();
-                    warrior_Object->SetPlayerAtkP(Attack.toInt());
+                    myPlayer_Object->SetPlayerAtkP(Attack.toInt());
 
                 }else if (xml.name() == "Defense"){
                     QString Defense = xml.readElementText();
-                    warrior_Object->SetPlayerDefP(Defense.toInt());
+                    myPlayer_Object->SetPlayerDefP(Defense.toInt());
 
                 }else if (xml.name() == "Race"){
                     QString Race = xml.readElementText();
-                    warrior_Object->SetPlayerRaceP(Race.toStdString());
+                    myPlayer_Object->SetPlayerRaceP(Race.toStdString());
 
                 }else
                     xml.skipCurrentElement();
@@ -331,6 +331,14 @@ void xmlParse::readXML_ui_Class_Object(uiGroup * uiObject)
                 }else if (xml.name() == "hp_value_right_text"){
                     QString hp_value_right_text = xml.readElementText();
                     uiObject->Sethp_value_right_text(hp_value_right_text.toStdString());
+
+                }else if (xml.name() == "hp_bar_right_x"){
+                    QString hp_bar_right_x = xml.readElementText();
+                    uiObject->Sethp_bar_right_x(hp_bar_right_x.toInt());
+
+                }else if (xml.name() == "hp_bar_right_y"){
+                    QString hp_bar_right_y = xml.readElementText();
+                    uiObject->Sethp_bar_right_y(hp_bar_right_y.toInt());
                     ///////////////////////////////////////////////////////////////
                 }else if (xml.name() == "race_tag_left_x"){
                     QString race_tag_left_x = xml.readElementText();

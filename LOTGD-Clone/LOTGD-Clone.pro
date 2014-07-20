@@ -38,7 +38,6 @@ OTHER_FILES += \
     data/myData.xml \
     img/xpRed.png \
     img/xpBlue.png \
-    img/hud.png \
     img/background.png \
     data/fightData.xml
 

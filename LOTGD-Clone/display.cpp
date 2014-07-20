@@ -27,7 +27,7 @@ const int SCREEN_BPP = 32;
 
 // the surfaces
 SDL_Surface *background = NULL;
-SDL_Surface *hud = NULL;
+// SDL_Surface *hud = NULL;
 SDL_Surface *screen = NULL;
 SDL_Surface *message = NULL;
 SDL_Surface *xpRedBar = NULL;
@@ -61,7 +61,7 @@ SDL_Surface *exp_value_right = NULL;
 TTF_Font *font = NULL;
 
 // display functions
-void display::mainDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
+void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
     // #ifdef WIN32
     //     system("cls");
@@ -70,22 +70,22 @@ void display::mainDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
     //     printf("\033[2J\033[1;1H");
     // #endif
     cout << "##Village Gate##" << "\t\t" << "##Vital Info##" << endl;
-    cout << "(F)orest" << "\t\t\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
-    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl;
-    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
+    cout << "(F)orest" << "\t\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
+    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl;
+    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
     cout << "##Market Street##" << "\t\t" << "Turns: " << endl;
-    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << warrior_Object->GetPlayerStrP() << endl;
-    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
-    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
-    cout << "(H)eal your self\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
+    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << myPlayer_Object->GetPlayerStrP() << endl;
+    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
+    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
+    cout << "(H)eal your self\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
+    cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetPlayerWeaponP()) << endl;
-    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetPlayerArmorTypeP()) << endl;
-    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetPlayerArmorValueP() << endl;
-    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetPlayerXptotalP() << "|" << warrior_Object->GetPlayerMaxxpP() << endl;
+    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
+    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
+    cout << "\t\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
 
     // Initialize
     if (init() == false)
@@ -101,53 +101,55 @@ void display::mainDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
 
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
-    apply_surface(0, 0, hud, screen);
+    // apply_surface(0, 0, hud, screen);
     // set the caption
     SDL_WM_SetCaption("In Town", NULL);
 
     // Left
     // Print name
     superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
     // Print Level
     superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
     // Print HP
     superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    // Show HP Bar
+    showHPBar(myPlayer_Object, uiDataValues->Gethp_bar_right_x(), uiDataValues->Gethp_bar_right_y(), xpRedBar, xpBlueBar, screen);
     // Print Race
     superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
 
     // Middle
     // Print STR
     superApplySurface(uiDataValues->Getstr_tag_left_text(), uiDataValues->Getstr_tag_left_x(), uiDataValues->Getstr_tag_left_y(), str_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
     // Print ATK
     superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
     // Print DEF
     superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
     // Print Armor Value
     superApplySurface(uiDataValues->Getarmv_tag_left_text(), uiDataValues->Getarmv_tag_left_x(), uiDataValues->Getarmv_tag_left_y(), armv_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
 
     // Right
     // Print Gold
     superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
     // Print Weapon
     superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
     // Print Armor Type
     superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
     // Print Experience
     superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
-    // superApplySurface(warrior_Object->GetPlayerXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
+    // superApplySurface(myPlayer_Object->GetPlayerXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
 
-    showXPBar(warrior_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
+    showXPBar(myPlayer_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -156,7 +158,7 @@ void display::mainDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
     }
 }
 
-void display::forrestDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
+void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
     // #ifdef WIN32
     //     system("cls");
@@ -165,22 +167,22 @@ void display::forrestDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
     //     printf("\033[2J\033[1;1H");
     // #endif
     // cout << "##Forest##" << "\t\t\t" << "##Vital Info##" << endl;
-    // cout << "(C)hange Orges level" << "\t\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
-    // cout << "(L)ook for a fight" << "\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl;
-    // cout << "(R)eturn to village" << "\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
+    // cout << "(C)hange Orges level" << "\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
+    // cout << "(L)ook for a fight" << "\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl;
+    // cout << "(R)eturn to village" << "\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
     // cout << "\t\t\t\t" << "Turns: " << endl;
-    // cout << "\t\t\t\t" << "Strength: " << warrior_Object->GetPlayerStrP() << endl;
-    // cout << "\t\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
-    // cout << "\t\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
-    // cout << "\t\t\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
+    // cout << "\t\t\t\t" << "Strength: " << myPlayer_Object->GetPlayerStrP() << endl;
+    // cout << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
+    // cout << "\t\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
+    // cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
     // cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    // cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
+    // cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
     // cout << "\t\t\t\t" << "Gem: " << endl;
     // cout << "\t\t\t\t" << "##Equipment##" << endl;
-    // cout << "\t\t\t\t" << "Weapon: " << Weapon->GetPlayereapon(warrior_Object->GetPlayerWeaponP()) << endl;
-    // cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetPlayerArmorTypeP()) << endl;
-    // cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetPlayerArmorValueP() << endl;
-    // cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetPlayerXptotalP() << "|" << warrior_Object->GetPlayerMaxxpP() << endl;
+    // cout << "\t\t\t\t" << "Weapon: " << Weapon->GetPlayereapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
+    // cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
+    // cout << "\t\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
+    // cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
 
     // Initialize
     if (init() == false)
@@ -196,51 +198,53 @@ void display::forrestDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
 
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
-    apply_surface(0, 0, hud, screen);
+    // apply_surface(0, 0, hud, screen);
     // set the caption
     SDL_WM_SetCaption("Forrest", NULL);
 
     // Left
     // Print name
     superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
     // Print Level
     superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
     // Print HP
     superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    // Show HP Bar
+    showHPBar(myPlayer_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
     // Print Race
     superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
 
     // Middle
     // Print STR
     superApplySurface(uiDataValues->Getstr_tag_left_text(), uiDataValues->Getstr_tag_left_x(), uiDataValues->Getstr_tag_left_y(), str_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
     // Print ATK
     superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
     // Print DEF
     superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
     // Print Armor Value
     superApplySurface(uiDataValues->Getarmv_tag_left_text(), uiDataValues->Getarmv_tag_left_x(), uiDataValues->Getarmv_tag_left_y(), armv_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
 
     // Right
     // Print Gold
     superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
     // Print Weapon
     superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
     // Print Armor Type
     superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
     // Print Experience
     superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
-    superApplySurface(warrior_Object->GetPlayerXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -249,7 +253,7 @@ void display::forrestDisplay(myplayer * warrior_Object, uiGroup * uiDataValues)
     }
 }
 
-void display::fightDisplay(myplayer * warrior_Object, mycreature * creature_Object)
+void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object)
 {
     #ifdef WIN32
         system("cls");
@@ -258,25 +262,25 @@ void display::fightDisplay(myplayer * warrior_Object, mycreature * creature_Obje
         printf("\033[2J\033[1;1H");
     #endif
     cout << "##Fighting##" << "\t\t\t" << "##Vital Info##" << endl;
-    cout << "Orger Info" << "\t\t\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
-    if (creature_Object->GetCreatureHpC() >= -1) { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl; }
-    else { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl; }
-    cout << "Str: " << creature_Object->GetCreatureStrC() << "\t\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
+    cout << "Orger Info" << "\t\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
+    if (creature_Object->GetCreatureHpC() >= -1) { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl; }
+    else { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl; }
+    cout << "Str: " << creature_Object->GetCreatureStrC() << "\t\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
     cout << "Lvl: " << creature_Object->GetCreatureLvlC() << "\t\t\t\t" << "Turns: " << endl;
-    cout << "Atk:" << creature_Object->GetCreatureAtkC() << "\t\t\t\t" << "Strength: " << warrior_Object->GetPlayerStrP() << endl;
-    cout << "Def:" << creature_Object->GetCreatureDefC() << "\t\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
-    cout << "Armor Value:" << creature_Object->GetCreatureArmorValueC() << "\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
-    cout << "\t\t\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
+    cout << "Atk:" << creature_Object->GetCreatureAtkC() << "\t\t\t\t" << "Strength: " << myPlayer_Object->GetPlayerStrP() << endl;
+    cout << "Def:" << creature_Object->GetCreatureDefC() << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
+    cout << "Armor Value:" << creature_Object->GetCreatureArmorValueC() << "\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
+    cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
+    cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetPlayerWeaponP()) << endl;
-    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetPlayerArmorTypeP()) << endl;
-    cout << "\t\t\t\t" << "Armour Value: " << warrior_Object->GetPlayerArmorValueP() << endl;
-    cout << "\t\t\t\t" << "Experience: " << warrior_Object->GetPlayerXptotalP() << "|" << warrior_Object->GetPlayerMaxxpP() << endl;
+    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
+    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
+    cout << "\t\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
 }
-void display::old_Bank(myplayer * warrior_Object)
+void display::old_Bank(myplayer * myPlayer_Object)
 {
     #ifdef WIN32
         system("cls");
@@ -285,22 +289,22 @@ void display::old_Bank(myplayer * warrior_Object)
         printf("\033[2J\033[1;1H");
     #endif
     cout << "##GrrBank##" << "\t\t\t" << "##Vital Info##" << endl;
-    cout << "You can deposit your money" << "\t" << "Name: " << warrior_Object->GetPlayerNameP() << endl;
-    cout << "here for save keeping." << "\t\t" << "Level: " << warrior_Object->GetPlayerLvlP() << endl;
-    cout << "\t\t\t\t" << "Hitpoints: " << warrior_Object->GetPlayerHpP() << endl;
-    cout << "Account Balance: " << warrior_Object->GetPlayerSavingsP() << "\t\t" << "Turns: " << endl;
-    cout << "\t\t\t\t" << "Strength: " << warrior_Object->GetPlayerStrP() << endl;
-    cout << "\t\t\t\t" << "Attack: " << warrior_Object->GetPlayerAtkP() << endl;
-    cout << "\t\t\t\t" << "Defense: " << warrior_Object->GetPlayerDefP() << endl;
-    cout << "\t\t\t\t" << "Race: " << warrior_Object->GetPlayerRaceP() << endl;
+    cout << "You can deposit your money" << "\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
+    cout << "here for save keeping." << "\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl;
+    cout << "\t\t\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
+    cout << "Account Balance: " << myPlayer_Object->GetPlayerSavingsP() << "\t\t" << "Turns: " << endl;
+    cout << "\t\t\t\t" << "Strength: " << myPlayer_Object->GetPlayerStrP() << endl;
+    cout << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
+    cout << "\t\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
+    cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
     cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << warrior_Object->GetPlayerGoldP() << endl;
+    cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "(D)eposit" << "\t\t\t" << "Weapon: " << Weapon->GetWeapon(warrior_Object->GetPlayerWeaponP()) << endl;
-    cout << "(W)idthdraw" << "\t\t\t" << "Armour Type: " << Weapon->GetArmor(warrior_Object->GetPlayerArmorTypeP()) << endl;
-    cout << "(E)xit Bank" << "\t\t\t" << "Armour Value: " << warrior_Object->GetPlayerArmorValueP() << endl;
-    cout << "\t\t\t\t\t" << "Experience: " << warrior_Object->GetPlayerXptotalP() << "|" << warrior_Object->GetPlayerMaxxpP() << endl;
+    cout << "(D)eposit" << "\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
+    cout << "(W)idthdraw" << "\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
+    cout << "(E)xit Bank" << "\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
+    cout << "\t\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
 }
 
 void display::Weapon_Shop(string &systemMessage)
@@ -336,6 +340,139 @@ void display::Armor_Shop(string &systemMessage)
     cout << "(F)orce Shield" << endl;
     cout << "(E)xit the shop" << endl;
     cout << systemMessage << endl << endl;
+}
+
+bool display::init()
+{
+    // init all SDL_subsystems
+    if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
+    {
+        return false;
+    }
+
+    // set up the screen
+    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
+
+    // If there was an error in setting up the screen
+    if(screen == NULL)
+    {
+        return false;
+    }
+
+    // Initialize SDL_ttf
+    if (TTF_Init() == -1)
+    {
+        return false;
+    }
+
+    // If everthing initialized fine
+    return true;
+}
+
+bool display::load_files()
+{
+    // Load the background image
+    if (background == NULL) {
+        background = load_image("img/background.png");
+    }
+
+    // if the background didn't load
+    if (background == NULL)
+    {
+        cout << "background load failed" << endl;
+        return false;
+    }
+
+    // load the stick figure
+    // if (hud == NULL) {
+    //     hud = load_image("img/hud.png");
+    // }
+
+    // if the hud figure didn't load
+    // if (hud == NULL)
+    // {
+    //     cout << "hud load failed" << endl;
+    //     return false;
+    // }
+
+    // Load the xpRed image
+    if (xpRedBar == NULL){
+        xpRedBar = load_image("img/xpRed.png");
+    }
+
+    // if the xpRed didn't load
+    if (xpRedBar == NULL)
+    {
+        cout << "xpRedBar load failed" << endl;
+        return false;
+    }
+
+    // Load the xpBlueBar image
+    if (xpBlueBar == NULL) {
+        xpBlueBar = load_image("img/xpBlue.png");
+    }
+
+    // if the xpBlueBar didn't load
+    if (xpBlueBar == NULL)
+    {
+        cout << "xpBlueBar load failed" << endl;
+        return false;
+    }
+
+    // Open the font
+    if (font == NULL) {
+        font = TTF_OpenFont("arial.ttf", 12);
+    }
+
+    // if there was an error in loading the font
+    if (font == NULL)
+    {
+        cout << "font load failed" << endl;
+        return false;
+    }
+
+    return true;
+}
+
+void display::clean_up()
+{
+    // Free the surfaces
+    SDL_FreeSurface(background);
+    // SDL_FreeSurface(hud);
+    SDL_FreeSurface(message);
+    SDL_FreeSurface(screen);
+    SDL_FreeSurface(xpRedBar);
+    SDL_FreeSurface(xpBlueBar);
+    SDL_FreeSurface(name_tag_left);
+    SDL_FreeSurface(name_value_right);
+    SDL_FreeSurface(level_tag_left);
+    SDL_FreeSurface(level_value_right);
+    SDL_FreeSurface(hp_tag_left);
+    SDL_FreeSurface(hp_value_right);
+    SDL_FreeSurface(race_tag_left);
+    SDL_FreeSurface(race_value_right);
+    SDL_FreeSurface(str_tag_left);
+    SDL_FreeSurface(str_value_right);
+    SDL_FreeSurface(atk_tag_left);
+    SDL_FreeSurface(atk_value_right);
+    SDL_FreeSurface(def_tag_left);
+    SDL_FreeSurface(def_value_right);
+    SDL_FreeSurface(armv_tag_left);
+    SDL_FreeSurface(armv_value_right);
+    SDL_FreeSurface(gold_tag_left);
+    SDL_FreeSurface(gold_value_right);
+    SDL_FreeSurface(wep_tag_left);
+    SDL_FreeSurface(wep_value_right);
+    SDL_FreeSurface(arm_tag_left);
+    SDL_FreeSurface(arm_value_right);
+    SDL_FreeSurface(exp_tag_left);
+    SDL_FreeSurface(exp_value_right);
+
+    // Quit sdl_ttf
+    TTF_Quit();
+
+    // Quit SDL
+    SDL_Quit();
 }
 
 SDL_Surface *display::load_image(string filename)
@@ -385,160 +522,10 @@ void display::apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest
     SDL_BlitSurface(source, NULL, destination, &offset);
 }
 
-void display::showXPBar(myplayer * warrior_Object, int x, int y, SDL_Surface *red, SDL_Surface *blue, SDL_Surface *destination)
-{
-    // print the bar
-    apply_surface(x, y, red, destination);
-
-    // find the percentage
-    int currentPercentage = 0;
-    currentPercentage = (warrior_Object->GetPlayerXptotalP() * 100) / warrior_Object->GetPlayerMaxxpP();
-
-    // print the current xp percentage
-    while (currentPercentage > 1)
-    {
-        // print one line of blue for each percent
-        apply_surface(x, y, blue, destination);
-        x = x + 1;
-        currentPercentage = currentPercentage - 1;
-    }
-}
-
-bool display::init()
-{
-    // init all SDL_subsystems
-    if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
-    {
-        return false;
-    }
-
-    // set up the screen
-    screen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE);
-
-    // If there was an error in setting up the screen
-    if(screen == NULL)
-    {
-        return false;
-    }
-
-    // Initialize SDL_ttf
-    if (TTF_Init() == -1)
-    {
-        return false;
-    }
-
-    // If everthing initialized fine
-    return true;
-}
-
-bool display::load_files()
-{
-    // Load the background image
-    if (background == NULL) {
-        background = load_image("img/background.png");
-    }
-
-    // if the background didn't load
-    if (background == NULL)
-    {
-        cout << "background load failed" << endl;
-        return false;
-    }
-
-    // load the stick figure
-    if (hud == NULL) {
-        hud = load_image("img/hud.png");
-    }
-
-    // if the hud figure didn't load
-    if (hud == NULL)
-    {
-        cout << "hud load failed" << endl;
-        return false;
-    }
-
-    // Load the xpRed image
-    if (xpRedBar == NULL){
-        xpRedBar = load_image("img/xpRed.png");
-    }
-
-    // if the xpRed didn't load
-    if (xpRedBar == NULL)
-    {
-        cout << "xpRedBar load failed" << endl;
-        return false;
-    }
-
-    // Load the xpBlueBar image
-    if (xpBlueBar == NULL) {
-        xpBlueBar = load_image("img/xpBlue.png");
-    }
-
-    // if the xpBlueBar didn't load
-    if (xpBlueBar == NULL)
-    {
-        cout << "xpBlueBar load failed" << endl;
-        return false;
-    }
-
-    // Open the font
-    if (font == NULL) {
-        font = TTF_OpenFont("arial.ttf", 12);
-    }
-
-    // if there was an error in loading the font
-    if (font == NULL)
-    {
-        cout << "font load failed" << endl;
-        return false;
-    }
-
-    return true;
-}
-
-void display::clean_up()
-{
-    // Free the surfaces
-    SDL_FreeSurface(background);
-    SDL_FreeSurface(hud);
-    SDL_FreeSurface(message);
-    SDL_FreeSurface(screen);
-    SDL_FreeSurface(xpRedBar);
-    SDL_FreeSurface(xpBlueBar);
-    SDL_FreeSurface(name_tag_left);
-    SDL_FreeSurface(name_value_right);
-    SDL_FreeSurface(level_tag_left);
-    SDL_FreeSurface(level_value_right);
-    SDL_FreeSurface(hp_tag_left);
-    SDL_FreeSurface(hp_value_right);
-    SDL_FreeSurface(race_tag_left);
-    SDL_FreeSurface(race_value_right);
-    SDL_FreeSurface(str_tag_left);
-    SDL_FreeSurface(str_value_right);
-    SDL_FreeSurface(atk_tag_left);
-    SDL_FreeSurface(atk_value_right);
-    SDL_FreeSurface(def_tag_left);
-    SDL_FreeSurface(def_value_right);
-    SDL_FreeSurface(armv_tag_left);
-    SDL_FreeSurface(armv_value_right);
-    SDL_FreeSurface(gold_tag_left);
-    SDL_FreeSurface(gold_value_right);
-    SDL_FreeSurface(wep_tag_left);
-    SDL_FreeSurface(wep_value_right);
-    SDL_FreeSurface(arm_tag_left);
-    SDL_FreeSurface(arm_value_right);
-    SDL_FreeSurface(exp_tag_left);
-    SDL_FreeSurface(exp_value_right);
-
-    // Quit sdl_ttf
-    TTF_Quit();
-
-    // Quit SDL
-    SDL_Quit();
-}
-
 void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
 {
+    TTF_SetFontStyle(font, TTF_STYLE_BOLD);
+
     //The color of the font
     SDL_Color textColor = { 255, 255, 255 };
 
@@ -575,4 +562,39 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
     // apply the surface to the screen
     apply_surface(X, Y, source, destination);
 
+}
+
+void display::showXPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *red, SDL_Surface *blue, SDL_Surface *destination)
+{
+    // print the bar
+    // apply_surface(x, y, red, destination);
+
+    // find the percentage
+    int currentPercentage = 0;
+    currentPercentage = (myPlayer_Object->GetPlayerXptotalP() * 100) / myPlayer_Object->GetPlayerMaxxpP();
+
+    // print the current xp percentage
+    while (currentPercentage > 1)
+    {
+        // print one line of blue for each percent
+        apply_surface(x, y, blue, destination);
+        x = x + 1;
+        currentPercentage = currentPercentage - 1;
+    }
+}
+
+void display::showHPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *red, SDL_Surface *blue, SDL_Surface *destination)
+{
+    // find the percentage
+    int currentPercentage = 0;
+    currentPercentage = (myPlayer_Object->GetPlayerLvlP() * 10);
+
+    // print the current hp percentage
+    while (currentPercentage > 1)
+    {
+        // print one line of blue for each percent
+        apply_surface(x, y, blue, destination);
+        x = x + 1;
+        currentPercentage = currentPercentage - 1;
+    }
 }

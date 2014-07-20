@@ -155,21 +155,21 @@ int fighttable::incommingDmg(int DmgPotential, int DmgMitigation)
     }
 }
 
-int fighttable::getCreatureHp(myplayer *warrior_Object, mycreature *creature_Object)
+int fighttable::getCreatureHp(myplayer *myPlayer_Object, mycreature *creature_Object)
 {
     // temp fix for this playerHp problem.
     // playerHp will always be chaning so to base the npcHp off of the playerHp would be odd
     // going to set npcHp to a % or something of the players level.
     // this can be changed latter
-    int playerLvl = warrior_Object->GetPlayerLvlP();
+    int playerLvl = myPlayer_Object->GetPlayerLvlP();
     int creatureHp = (playerLvl * 100);
     return creatureHp;
 }
-int fighttable::getCreatureDef(myplayer *warrior_Object, mycreature *creature_Object)
+int fighttable::getCreatureDef(myplayer *myPlayer_Object, mycreature *creature_Object)
 {
     // solving issue with temp solution till i get something better.
     // baseing stats off of level
-    int playerLvl = warrior_Object->GetPlayerLvlP();
+    int playerLvl = myPlayer_Object->GetPlayerLvlP();
     int creatureDef = (playerLvl * 10);
 
     return creatureDef;
@@ -184,9 +184,9 @@ string fighttable::getCreatureWeapon(mycreature *creature_Object)
     // need an xml list of creature weapons to work with
 
 }
-int fighttable::getCreatureAttack(myplayer *warrior_Object, mycreature *creature_Object)
+int fighttable::getCreatureAttack(myplayer *myPlayer_Object, mycreature *creature_Object)
 {
-    int playerLvl = warrior_Object->GetPlayerLvlP();
+    int playerLvl = myPlayer_Object->GetPlayerLvlP();
     int creatureAttack = (playerLvl * 10);
 
     return creatureAttack;
