@@ -34,7 +34,7 @@ public:
     void apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination);
     void superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColor);
     void superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColor);
-    void showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo);
+    void showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo);
     void showXPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *blue, SDL_Surface *destination);
     void showHPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *blue, SDL_Surface *destination);
     // sdl test //

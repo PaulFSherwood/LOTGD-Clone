@@ -78,7 +78,7 @@ void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
     superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen, yellow);
     // Print Hitpoints
     superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen, white);
-    showHpText(myPlayer_Object->GetPlayerHpCurrent(), myPlayer_Object->GetPlayerHpCap(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen, yellow, white);
+    showHpText(myPlayer_Object->GetPlayerHpCurrent(), myPlayer_Object->GetPlayerHpCap(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), screen, yellow, white);
     // Show HP Bar
     showHPBar(myPlayer_Object, uiDataValues->Gethp_bar_right_x(), uiDataValues->Gethp_bar_right_y(), xpBlueBar, screen);
     // Turns
@@ -452,8 +452,12 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
     apply_surface(X, Y, source, destination);
 
 }
-void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo)
+void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo)
 {
+    SDL_Surface* sourceOne = NULL;
+    SDL_Surface* sourceText = NULL;
+    SDL_Surface* sourceTwo = NULL;
+
     // convert in to char* for use in surface
     std::stringstream strOne;
     strOne << numberOne;
@@ -461,16 +465,20 @@ void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface
     std::stringstream strTwo;
     strTwo << numberTwo;
 
-    std::string sourceText = numberOne + "/" + numberTwo;
+    // std::string sourceText = numberOne + "/" + numberTwo;
 
-    source = TTF_RenderText_Solid(font, sourceText, textColorOne);
+    sourceOne = TTF_RenderText_Solid(font, strOne.str().c_str(), textColorOne);
+    sourceText = TTF_RenderText_Solid(font, "/", textColorTwo);
+    sourceTwo = TTF_RenderText_Solid(font, strTwo.str().c_str(), textColorTwo);
 
-    if (source == NULL)
+    if (sourceOne == NULL)
     {
         cout << "source int: " << sourceText << "failed to load" << endl;
     }
     // apply the surface to the screen
-    apply_surface(X, Y, source, destination);
+    apply_surface(X, Y, sourceOne, destination);
+    apply_surface((X + sourceOne->w + 2), Y, sourceText, destination);
+    apply_surface((X + sourceOne->w + sourceText->w + 2), Y, sourceTwo, destination);
 
 }
 
