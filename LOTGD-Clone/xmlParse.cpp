@@ -114,7 +114,7 @@ void xmlParse::readXML_Class_Object(myplayer * myPlayer_Object)
 
                 }else if (xml.name() == "HpCap"){
                     QString hpCap = xml.readElementText();
-                    myPlayer_Object->SetPlayerHpCurrent(hpCap.toInt());
+                    myPlayer_Object->SetPlayerHpCap(hpCap.toInt());
 
                 }else if (xml.name() == "HpCurrent"){
                     QString hpCurrent = xml.readElementText();
