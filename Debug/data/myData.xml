@@ -4,7 +4,7 @@
     <MyData>
         <Name>Billy</Name>
         <HpCap>0</HpCap>
-        <HpCurrent>1800</HpCurrent>
+        <HpCurrent>1500</HpCurrent>
         <Lvl>10</Lvl>
         <xpCurrent>57930</xpCurrent>
         <xpRequired>102400</xpRequired>

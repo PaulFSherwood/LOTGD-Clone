@@ -452,6 +452,7 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
     apply_surface(X, Y, source, destination);
 
 }
+
 void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo)
 {
     SDL_Surface* sourceOne = NULL;
@@ -478,7 +479,7 @@ void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface
     // apply the surface to the screen
     apply_surface(X, Y, sourceOne, destination);
     apply_surface((X + sourceOne->w + 2), Y, sourceText, destination);
-    apply_surface((X + sourceOne->w + sourceText->w + 2), Y, sourceTwo, destination);
+    apply_surface((X + sourceOne->w*2 + sourceText->w + 2), Y, sourceTwo, destination);
 
 }
 
