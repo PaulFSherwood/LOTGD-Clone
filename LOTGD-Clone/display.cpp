@@ -72,7 +72,7 @@ void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
     superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
     // Print HP
     superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    superApplySurface(myPlayer_Object->GetPlayerHpCurrent(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
     // Show HP Bar
     showHPBar(myPlayer_Object, uiDataValues->Gethp_bar_right_x(), uiDataValues->Gethp_bar_right_y(), xpBlueBar, screen);
     // Turns
@@ -99,9 +99,6 @@ void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
     // Print Weapon
     superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
     superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
-    // Print Armor Type
-    superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
 
 }
 
@@ -124,10 +121,8 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
     // apply_surface(0, 0, hud, screen);
     // set the caption
     SDL_WM_SetCaption("In Town", NULL);
-
     // Vital Info Bar
     vitalInfo(myPlayer_Object, uiDataValues);
-
     // Update the screen
     if (SDL_Flip(screen) == -1)
     {
@@ -177,9 +172,8 @@ void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Obj
     cout << "Orger Info" << "\t\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
     if (creature_Object->GetCreatureHpC() >= -1) { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl; }
     else { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl; }
-    cout << "Str: " << creature_Object->GetCreatureStrC() << "\t\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
     cout << "Lvl: " << creature_Object->GetCreatureLvlC() << "\t\t\t\t" << "Turns: " << endl;
-    cout << "Atk:" << creature_Object->GetCreatureAtkC() << "\t\t\t\t" << "Strength: " << myPlayer_Object->GetPlayerStrP() << endl;
+    cout << "Atk:" << creature_Object->GetCreatureAtkC() << "\t\t\t\t" << "Strength: " << endl;
     cout << "Def:" << creature_Object->GetCreatureDefC() << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
     cout << "Armor Value:" << creature_Object->GetCreatureArmorValueC() << "\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
     cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
@@ -188,9 +182,7 @@ void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Obj
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
     cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
-    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
-    cout << "\t\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
-    cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
+    cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXpRequired() << "|" << myPlayer_Object->GetPlayerXpCurrent() << endl;
 }
 void display::old_Bank(myplayer * myPlayer_Object)
 {
@@ -203,9 +195,8 @@ void display::old_Bank(myplayer * myPlayer_Object)
     cout << "##GrrBank##" << "\t\t\t" << "##Vital Info##" << endl;
     cout << "You can deposit your money" << "\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
     cout << "here for save keeping." << "\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl;
-    cout << "\t\t\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
+    cout << "\t\t\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpCurrent() << endl;
     cout << "Account Balance: " << myPlayer_Object->GetPlayerSavingsP() << "\t\t" << "Turns: " << endl;
-    cout << "\t\t\t\t" << "Strength: " << myPlayer_Object->GetPlayerStrP() << endl;
     cout << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
     cout << "\t\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
     cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
@@ -214,9 +205,7 @@ void display::old_Bank(myplayer * myPlayer_Object)
     cout << "\t\t\t\t" << "Gem: " << endl;
     cout << "\t\t\t\t" << "##Equipment##" << endl;
     cout << "(D)eposit" << "\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
-    cout << "(W)idthdraw" << "\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
-    cout << "(E)xit Bank" << "\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
-    cout << "\t\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
+    cout << "\t\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXpRequired() << "|" << myPlayer_Object->GetPlayerXpCurrent() << endl;
 }
 
 void display::Weapon_Shop(string &systemMessage)
@@ -468,7 +457,7 @@ void display::showXPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *b
 {
     // find the percentage
     int currentPercentage = 0;
-    currentPercentage = (myPlayer_Object->GetPlayerXptotalP() * 100) / myPlayer_Object->GetPlayerMaxxpP();
+    currentPercentage = (myPlayer_Object->GetPlayerXpRequired() * 100) / myPlayer_Object->GetPlayerXpCurrent();
 
     // print the current xp percentage
     while (currentPercentage > 1)

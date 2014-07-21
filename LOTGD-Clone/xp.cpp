@@ -36,25 +36,40 @@ int  xp::getxprecieved()
     return xprecieved;
 }
 
-int xp::getmaxxp(int WlvlP)
+int xp::getmaxxp(int playerLevel)
 {
-    int xpmax = 0;
-    xpmax = ((100)*(pow(2, WlvlP)));
-
+    if (playerLevel == 1){
+        xpmax = playerLevel * 100;
+    } else if (playerLevel == 2){
+        xpmax = playerLevel * 200;
+    } else if (playerLevel == 3 || playerLevel == 4){
+        xpmax = playerLevel * 167;
+    } else {
+        xpmax = playerLevel * 200;
+    }
     return xpmax;
 }
 
 void xp::canlvl(myplayer * myPlayer)
 {
     // check current xp and see if you can level
-    if (myPlayer->GetPlayerXptotalP() >= myPlayer->GetPlayerMaxxpP()){
+    if (myPlayer->GetPlayerXpRequired() >= myPlayer->GetPlayerXpCurrent() && myPlayer->GetPlayerLvlP() != 15){
+        // Increase your level
         int WlvlP = myPlayer->GetPlayerLvlP();
         WlvlP += 1;
         myPlayer->SetPlayerLvlP(WlvlP);
-        double tempHP = 0;
-        tempHP = ((myPlayer->GetPlayerHpP() * .1) + 10) + myPlayer->GetPlayerHpP();
-        myPlayer->SetPlayerHpP(tempHP);
-        myPlayer->SetPlayerStrP(myPlayer->GetPlayerStrP() + 5);
+
+        // Increase the xp required
+        myPlayer->SetPlayerXpRequired(getmaxxp(myPlayer->GetPlayerLvlP()));
+
+        // Increase players Hitpoints
+        myPlayer->SetPlayerHpCurrent(myPlayer->GetPlayerLvlP() * 10);
+
+        // Increase players Attack
+        myPlayer->SetPlayerAtkP(myPlayer->GetPlayerLvlP() + myPlayer->GetPlayerWeaponP());
+
+        // Increase players Defence
+        myPlayer->SetPlayerDefP(myPlayer->GetPlayerLvlP() + myPlayer->GetPlayerArmor());
     }
     else {
         //return 0;

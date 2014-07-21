@@ -15,14 +15,14 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
     // Initilize pointer class calls
     display *getDisplay = new display();
 
-    xp *getNewXP = new xp(myPlayer->GetPlayerXptotalP(), myPlayer->GetPlayerLvlP(), myCreature->GetCreatureLvlC());
+    xp *getNewXP = new xp(myPlayer->GetPlayerXpRequired(), myPlayer->GetPlayerLvlP(), myCreature->GetCreatureLvlC());
 
     // setting up player and npc stats for the fight
-    int DmgPotential_Player = myPlayer->GetPlayerStrP() + myPlayer->GetPlayerAtkP();
-    int DmgPotential_npc = myCreature->GetCreatureStrC() + myCreature->GetCreatureAtkC();
+    int DmgPotential_Player = myPlayer->GetPlayerAtkP();
+    int DmgPotential_npc = myCreature->GetCreatureAtkC();
 
-    int DmgMitigation_Player = myPlayer->GetPlayerDefP() + myPlayer->GetPlayerArmorValueP();
-    int DmgMitigation_npc = myCreature->GetCreatureDefC() + myCreature->GetCreatureArmorValueC();
+    int DmgMitigation_Player = myPlayer->GetPlayerDefP();
+    int DmgMitigation_npc = myCreature->GetCreatureDefC();
     /*
     cout << "DmgPotential_Player: " << DmgPotential_Player << endl;
     cout << "DmgPotential_npc: " << DmgPotential_npc << endl;
@@ -80,15 +80,15 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
         // cout << "Player: " << WhpP << "\t" << "Ogre: " << OhpP << endl;
         getDisplay->fightDisplay(myPlayer, myCreature);
 
-        while ((myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpP() >= 1)) {
+        while ((myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpCurrent() >= 1)) {
             cout << "how many times do you want to try to hit" << endl;
             int hit;
             cin >> hit;
             // while you can still hit and everyone has enough hp
-            while ((hit >= 1) && (myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpP() >= 1)){
+            while ((hit >= 1) && (myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpCurrent() >= 1)){
                 // alter health of both parties
                 /*find how much dmg will be taken and subtract from original then set hp*/
-                myPlayer->SetPlayerHpP(myPlayer->GetPlayerHpP() - incommingDmg(DmgPotential_npc, DmgMitigation_Player));
+                myPlayer->SetPlayerHpCurrent(myPlayer->GetPlayerHpCurrent() - incommingDmg(DmgPotential_npc, DmgMitigation_Player));
                 /*find how much dmg will be taken and subtract from original then set hp*/
                 myCreature->SetCreatureHpC(myCreature->GetCreatureHpC() -
                                    incommingDmg(DmgPotential_Player, DmgMitigation_npc));
@@ -102,12 +102,12 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
             {
                 // pass info to do xp calculation
                 int tempXP = getNewXP->getxprecieved();
-                myPlayer->SetPlayerXptotalP(myPlayer->GetPlayerXptotalP() + tempXP);
+                myPlayer->SetPlayerXpCurrent((myPlayer->GetPlayerXpRequired() + tempXP));
                 printf("%d XP recieved ", tempXP);
 
                 // check to see if you can level
                 getNewXP->canlvl(myPlayer);
-                myPlayer->SetPlayerMaxxpP(getNewXP->getmaxxp(myPlayer->GetPlayerLvlP()));
+                myPlayer->SetPlayerXpCurrent(getNewXP->getmaxxp(myPlayer->GetPlayerLvlP()));
 
                 // Give some gold based on lvl difference
                 // some wierd reason i cant do this in one shot
@@ -121,18 +121,17 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
                 break;
             }
             // if the warrior dies make it hurt
-            if ((myPlayer->GetPlayerHpP()) <= 0)
+            if ((myPlayer->GetPlayerHpCurrent()) <= 0)
             {
                 myPlayer->SetPlayerGoldP(0);
                 // set xp to zero
-                if (myPlayer->GetPlayerXptotalP() > myPlayer->GetPlayerMaxxpP())
+                if (myPlayer->GetPlayerXpRequired() > myPlayer->GetPlayerXpCurrent())
                 {
-                    myPlayer->SetPlayerXptotalP(myPlayer->GetPlayerXptotalP() - myPlayer->GetPlayerMaxxpP());
+                    myPlayer->SetPlayerXpRequired(myPlayer->GetPlayerXpRequired() - myPlayer->GetPlayerXpCurrent());
                 } else {
-                    myPlayer->SetPlayerXptotalP(0);
+                    myPlayer->SetPlayerXpCurrent(0);
                     myPlayer->SetPlayerLvlP(0);
                     myPlayer->SetPlayerWeaponP(0);
-                    myPlayer->SetPlayerArmorTypeP(0);
                 }
             }
         }
@@ -155,21 +154,21 @@ int fighttable::incommingDmg(int DmgPotential, int DmgMitigation)
     }
 }
 
-int fighttable::getCreatureHp(myplayer *myPlayer_Object, mycreature *creature_Object)
+int fighttable::getCreatureHp(myplayer *warrior_Object, mycreature *creature_Object)
 {
     // temp fix for this playerHp problem.
     // playerHp will always be chaning so to base the npcHp off of the playerHp would be odd
     // going to set npcHp to a % or something of the players level.
     // this can be changed latter
-    int playerLvl = myPlayer_Object->GetPlayerLvlP();
+    int playerLvl = warrior_Object->GetPlayerLvlP();
     int creatureHp = (playerLvl * 100);
     return creatureHp;
 }
-int fighttable::getCreatureDef(myplayer *myPlayer_Object, mycreature *creature_Object)
+int fighttable::getCreatureDef(myplayer *warrior_Object, mycreature *creature_Object)
 {
     // solving issue with temp solution till i get something better.
     // baseing stats off of level
-    int playerLvl = myPlayer_Object->GetPlayerLvlP();
+    int playerLvl = warrior_Object->GetPlayerLvlP();
     int creatureDef = (playerLvl * 10);
 
     return creatureDef;
@@ -184,9 +183,9 @@ string fighttable::getCreatureWeapon(mycreature *creature_Object)
     // need an xml list of creature weapons to work with
 
 }
-int fighttable::getCreatureAttack(myplayer *myPlayer_Object, mycreature *creature_Object)
+int fighttable::getCreatureAttack(myplayer *warrior_Object, mycreature *creature_Object)
 {
-    int playerLvl = myPlayer_Object->GetPlayerLvlP();
+    int playerLvl = warrior_Object->GetPlayerLvlP();
     int creatureAttack = (playerLvl * 10);
 
     return creatureAttack;

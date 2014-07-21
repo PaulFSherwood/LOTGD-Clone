@@ -9,31 +9,33 @@ class myplayer
 public:
     myplayer();
 
-    void SetPlayerHpP(int hp);
-    void SetPlayerStrP(int str);
+    void SetPlayerHpCap(int hpCap);
+    void SetPlayerHpCurrent(int hpCurrent);
     void SetPlayerLvlP(int lvl);
-    void SetPlayerXptotalP(int xptotal);
-    void SetPlayerMaxxpP(int maxxp);
+
+    void SetPlayerXpCurrent(int xptotal);
+    void SetPlayerXpRequired(int maxxp);
     void SetPlayerGoldP(int gold);
     void SetPlayerSavingsP(int savings);
     void SetPlayerWeaponP(int wep);
-    void SetPlayerArmorTypeP(int armor);
-    void SetPlayerArmorValueP(int armor);
+    void SetPlayerArmorp(int armor);
+
     void SetPlayerAtkP(int atk);
     void SetPlayerDefP(int def);
     void SetPlayerRaceP(string race);
     void SetPlayerNameP(string name);
-
-    int GetPlayerHpP();
-    int GetPlayerStrP();
+    //////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
+    int GetPlayerHpCap();
+    int GetPlayerHpCurrent();
     int GetPlayerLvlP();
-    int GetPlayerXptotalP();
-    int GetPlayerMaxxpP();
+
+    int GetPlayerXpCurrent();
+    int GetPlayerXpRequired();
     int GetPlayerGoldP();
     int GetPlayerSavingsP();
     int GetPlayerWeaponP();
-    int GetPlayerArmorTypeP();
-    int GetPlayerArmorValueP();
+    int GetPlayerArmor();
     int GetPlayerAtkP();
     int GetPlayerDefP();
     string GetPlayerRaceP();
@@ -42,20 +44,24 @@ public:
     void PrintStats();
 
 private:
-    int WHpP;
-    int WStrP;
-    int WLvlP;
-    int WXptotalP;
-    int WMaxxpP;
-    int WGoldP;
-    int WSavingsP;
-    int WWeaponP;
-    int WArmorTypeP;
-    int WArmorValueP;
-    int WAtkP;
-    int WDefP;
-    string WRaceP;
-    string WNameP;
+    int PlayerHpCap;
+    int PlayerHpCurrent;
+    int PlayerLvl;
+
+    int PlayerXpCurrent;
+    int PlayerXpRequired;
+
+    int PlayerGold;
+    int PlayerSavings;
+
+    int PlayerWeapon;
+    int PlayerArmor;
+
+    int PlayerAtk;
+    int PlayerDef;
+
+    string PlayerRace;
+    string PlayerName;
 };
 
 #endif // WARRIOR_H

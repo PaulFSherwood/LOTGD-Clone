@@ -57,15 +57,11 @@ int main()
     // set game state to running
     bool running = true;
 
-    // set a constant to reset HP
-    const int ConstWHpP = myPlayer->GetPlayerHpP();// warrior.WHpP;
-
     // Show main display
     getDisplay->mainDisplay(myPlayer, uiDataValues);
 
     while (running)
     {
-
         while( SDL_PollEvent( &event ) )
         {
             /* look for key events */
@@ -111,10 +107,11 @@ int main()
                 {
                 if (myPlayer->GetPlayerLvlP() == 1){
                         // reset health to original
-                        myPlayer->SetPlayerHpP(ConstWHpP);
+                        myPlayer->SetPlayerHpCap(myPlayer->GetPlayerHpCurrent());
                     }else{
                         // reset health based on level
-                        myPlayer->SetPlayerHpP(ConstWHpP + (myPlayer->GetPlayerLvlP() * 100));
+                    // this really should be 10%...30%...90%...bla bla bla
+                        myPlayer->SetPlayerHpCap(myPlayer->GetPlayerHpCurrent());
                     }
                     // need to update this for the gui
                     cout << "With a wave of the wand your are not so much deader" << endl;

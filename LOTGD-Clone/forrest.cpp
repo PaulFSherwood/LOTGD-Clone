@@ -50,7 +50,7 @@ void forrest::ForestLvl1(myplayer * myPlayer, mycreature * randomOgre, uiGroup *
             case SDLK_x://'X': // add xp
                 int tempxptotal;
                 tempxptotal += 100 * myPlayer->GetPlayerLvlP();
-                myPlayer->SetPlayerXptotalP(tempxptotal);
+                myPlayer->SetPlayerXpCurrent(tempxptotal);
                 break;
 
             default:

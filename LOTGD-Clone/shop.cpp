@@ -204,8 +204,6 @@ void shop::ArmorPriceCheck(myplayer * myPlayer, int ItemPrice)
             {
                 tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
                 myPlayer->SetPlayerGoldP(tempWGoldP);
-                myPlayer->SetPlayerArmorTypeP(1);
-                myPlayer->SetPlayerArmorValueP(100);
                 myPlayer->SetPlayerDefP(100);
                 systemMessage = "You are now the proud owner of a Paper Bag";
 
@@ -221,8 +219,6 @@ void shop::ArmorPriceCheck(myplayer * myPlayer, int ItemPrice)
             {
                 tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
                 myPlayer->SetPlayerGoldP(tempWGoldP);
-                myPlayer->SetPlayerArmorTypeP(2);
-                myPlayer->SetPlayerArmorValueP(200);
                 myPlayer->SetPlayerDefP(200);
                 systemMessage = "You are now the proud owner of a Worn Jacket";
 
@@ -238,8 +234,6 @@ void shop::ArmorPriceCheck(myplayer * myPlayer, int ItemPrice)
             {
                 tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
                 myPlayer->SetPlayerGoldP(tempWGoldP);
-                myPlayer->SetPlayerArmorTypeP(3);
-                myPlayer->SetPlayerArmorValueP(300);
                 myPlayer->SetPlayerDefP(500);
                 systemMessage = "You are now the proud owner of a Chain Mail";
 
@@ -255,8 +249,6 @@ void shop::ArmorPriceCheck(myplayer * myPlayer, int ItemPrice)
             {
                 tempWGoldP = myPlayer->GetPlayerGoldP() - ItemPrice;
                 myPlayer->SetPlayerGoldP(tempWGoldP);
-                myPlayer->SetPlayerArmorTypeP(4);
-                myPlayer->SetPlayerArmorValueP(400);
                 myPlayer->SetPlayerDefP(1000);
                 systemMessage = "You are now the proud owner of a Force Shield";
 
