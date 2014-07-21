@@ -61,32 +61,53 @@ SDL_Surface *exp_value_right = NULL;
 TTF_Font *font = NULL;
 
 // display functions
+void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
+{
+
+    // Vital Info Bar
+    // Print name
+    superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
+    // Print Level
+    superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
+    // Print HP
+    superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    // Show HP Bar
+    showHPBar(myPlayer_Object, uiDataValues->Gethp_bar_right_x(), uiDataValues->Gethp_bar_right_y(), xpRedBar, xpBlueBar, screen);
+    // Turns
+
+    // Print ATK
+    superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
+    // Print DEF
+    superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
+    // Spirits
+
+    // Print Race
+    superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
+    //-----------------------------------------------------//
+    // Print Gold
+    superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
+    // Print Experience
+    superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
+    showXPBar(myPlayer_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
+    //-----------------------------------------------------//
+    // Print Weapon
+    superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
+    // Print Armor Type
+    superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
+    superApplySurface(myPlayer_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
+
+}
+
 void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
-    // #ifdef WIN32
-    //     system("cls");
-    // #endif
-    // #ifdef linux
-    //     printf("\033[2J\033[1;1H");
-    // #endif
-    cout << "##Village Gate##" << "\t\t" << "##Vital Info##" << endl;
-    cout << "(F)orest" << "\t\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
-    cout << "(Q)uit to the fields" << "\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl;
-    cout << "(W)arrior training" << "\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
-    cout << "##Market Street##" << "\t\t" << "Turns: " << endl;
-    cout << "(M)ightE's Weaponry" << "\t\t" << "Strenght: " << myPlayer_Object->GetPlayerStrP() << endl;
-    cout << "Pegasus (A)rmor" << "\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
-    cout << "Ye Old (B)ank" << "\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
-    cout << "(H)eal your self\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
-    cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
-    cout << "\t\t\t\t" << "Gem: " << endl;
-    cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
-    cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
-    cout << "\t\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
-    cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
-
     // Initialize
     if (init() == false)
     {
@@ -105,51 +126,8 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
     // set the caption
     SDL_WM_SetCaption("In Town", NULL);
 
-    // Left
-    // Print name
-    superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
-    // Print Level
-    superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
-    // Print HP
-    superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
-    // Show HP Bar
-    showHPBar(myPlayer_Object, uiDataValues->Gethp_bar_right_x(), uiDataValues->Gethp_bar_right_y(), xpRedBar, xpBlueBar, screen);
-    // Print Race
-    superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
-
-    // Middle
-    // Print STR
-    superApplySurface(uiDataValues->Getstr_tag_left_text(), uiDataValues->Getstr_tag_left_x(), uiDataValues->Getstr_tag_left_y(), str_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
-    // Print ATK
-    superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
-    // Print DEF
-    superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
-    // Print Armor Value
-    superApplySurface(uiDataValues->Getarmv_tag_left_text(), uiDataValues->Getarmv_tag_left_x(), uiDataValues->Getarmv_tag_left_y(), armv_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
-
-    // Right
-    // Print Gold
-    superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
-    // Print Weapon
-    superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
-    // Print Armor Type
-    superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
-    // Print Experience
-    superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
-    // superApplySurface(myPlayer_Object->GetPlayerXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
-
-    showXPBar(myPlayer_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
+    // Vital Info Bar
+    vitalInfo(myPlayer_Object, uiDataValues);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)
@@ -160,30 +138,6 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 
 void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
-    // #ifdef WIN32
-    //     system("cls");
-    // #endif
-    // #ifdef linux
-    //     printf("\033[2J\033[1;1H");
-    // #endif
-    // cout << "##Forest##" << "\t\t\t" << "##Vital Info##" << endl;
-    // cout << "(C)hange Orges level" << "\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
-    // cout << "(L)ook for a fight" << "\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl;
-    // cout << "(R)eturn to village" << "\t\t" << "Hitpoints: " << myPlayer_Object->GetPlayerHpP() << endl;
-    // cout << "\t\t\t\t" << "Turns: " << endl;
-    // cout << "\t\t\t\t" << "Strength: " << myPlayer_Object->GetPlayerStrP() << endl;
-    // cout << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
-    // cout << "\t\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
-    // cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
-    // cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    // cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
-    // cout << "\t\t\t\t" << "Gem: " << endl;
-    // cout << "\t\t\t\t" << "##Equipment##" << endl;
-    // cout << "\t\t\t\t" << "Weapon: " << Weapon->GetPlayereapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
-    // cout << "\t\t\t\t" << "Armour Type: " << Weapon->GetArmor(myPlayer_Object->GetPlayerArmorTypeP()) << endl;
-    // cout << "\t\t\t\t" << "Armour Value: " << myPlayer_Object->GetPlayerArmorValueP() << endl;
-    // cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXptotalP() << "|" << myPlayer_Object->GetPlayerMaxxpP() << endl;
-
     // Initialize
     if (init() == false)
     {
@@ -202,49 +156,8 @@ void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
     // set the caption
     SDL_WM_SetCaption("Forrest", NULL);
 
-    // Left
-    // Print name
-    superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
-    // Print Level
-    superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
-    // Print HP
-    superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerHpP(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
-    // Show HP Bar
-    showHPBar(myPlayer_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpRedBar, xpBlueBar, screen);
-    // Print Race
-    superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
-
-    // Middle
-    // Print STR
-    superApplySurface(uiDataValues->Getstr_tag_left_text(), uiDataValues->Getstr_tag_left_x(), uiDataValues->Getstr_tag_left_y(), str_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerStrP(), uiDataValues->Getstr_value_right_x(), uiDataValues->Getstr_value_right_y(), str_value_right, screen);
-    // Print ATK
-    superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
-    // Print DEF
-    superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
-    // Print Armor Value
-    superApplySurface(uiDataValues->Getarmv_tag_left_text(), uiDataValues->Getarmv_tag_left_x(), uiDataValues->Getarmv_tag_left_y(), armv_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerArmorValueP(), uiDataValues->Getarmv_value_right_x(), uiDataValues->Getarmv_value_right_y(), armv_value_right, screen);
-
-    // Right
-    // Print Gold
-    superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
-    // Print Weapon
-    superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
-    // Print Armor Type
-    superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerArmorTypeP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen);
-    // Print Experience
-    superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerXptotalP(), uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), exp_value_right, screen);
+    // Vital Info Bar
+    vitalInfo(myPlayer_Object, uiDataValues);
 
     // Update the screen
     if (SDL_Flip(screen) == -1)

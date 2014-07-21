@@ -17,6 +17,7 @@ class display
 public:
     display();
 
+    void vitalInfo(myplayer * myPlayer_Object, uiGroup * uiDataValues);
     void mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues);
     void forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues);
     void fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object);
