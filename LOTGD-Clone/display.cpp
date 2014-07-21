@@ -25,6 +25,12 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int SCREEN_BPP = 32;
 
+// Available Colors
+SDL_Color yellow = { 214, 238, 0, 255 };
+SDL_Color red = { 238, 0, 0 };
+SDL_Color purple = { 230, 6, 157 };
+SDL_Color white = { 255, 255, 255, 255 };
+
 // the surfaces
 SDL_Surface *background = NULL;
 // SDL_Surface *hud = NULL;
@@ -65,40 +71,40 @@ void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
 {
     // Vital Info Bar
     // Print name
-    superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen);
+    superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerNameP(), uiDataValues->Getname_value_right_x(), uiDataValues->Getname_value_right_y(), name_value_right, screen, yellow);
     // Print Level
-    superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen);
-    // Print HP
-    superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerHpCurrent(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen);
+    superApplySurface(uiDataValues->Getlevel_tag_left_text(), uiDataValues->Getlevel_tag_left_x(), uiDataValues->Getlevel_tag_left_y(), level_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerLvlP(), uiDataValues->Getlevel_value_right_x(), uiDataValues->Getlevel_value_right_y(), level_value_right, screen, yellow);
+    // Print Hitpoints
+    superApplySurface(uiDataValues->Gethp_tag_left_text(), uiDataValues->Gethp_tag_left_x(), uiDataValues->Gethp_tag_left_y(), hp_tag_left, screen, white);
+    showHpText(myPlayer_Object->GetPlayerHpCurrent(), myPlayer_Object->GetPlayerHpCap(), uiDataValues->Gethp_value_right_x(), uiDataValues->Gethp_value_right_y(), hp_value_right, screen, yellow, white);
     // Show HP Bar
     showHPBar(myPlayer_Object, uiDataValues->Gethp_bar_right_x(), uiDataValues->Gethp_bar_right_y(), xpBlueBar, screen);
     // Turns
 
     // Print ATK
-    superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen);
+    superApplySurface(uiDataValues->Getatk_tag_left_text(), uiDataValues->Getatk_tag_left_x(), uiDataValues->Getatk_tag_left_y(), atk_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerAtkP(), uiDataValues->Getatk_value_right_x(), uiDataValues->Getatk_value_right_y(), atk_value_right, screen, yellow);
     // Print DEF
-    superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen);
+    superApplySurface(uiDataValues->Getdef_tag_left_text(), uiDataValues->Getdef_tag_left_x(), uiDataValues->Getdef_tag_left_y(), def_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerDefP(), uiDataValues->Getdef_value_right_x(), uiDataValues->Getdef_value_right_y(), def_value_right, screen, yellow);
     // Spirits
 
     // Print Race
-    superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen);
+    superApplySurface(uiDataValues->Getrace_tag_left_text(), uiDataValues->Getrace_tag_left_x(), uiDataValues->Getrace_tag_left_y(), race_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerRaceP(), uiDataValues->Getrace_value_right_x(), uiDataValues->Getrace_value_right_y(), race_value_right, screen, yellow);
     //-----------------------------------------------------//
     // Print Gold
-    superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen);
+    superApplySurface(uiDataValues->Getgold_tag_left_text(), uiDataValues->Getgold_tag_left_x(), uiDataValues->Getgold_tag_left_y(), gold_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerGoldP(), uiDataValues->Getgold_value_right_x(), uiDataValues->Getgold_value_right_y(), gold_value_right, screen, yellow);
     // Print Experience
-    superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen);
+    superApplySurface(uiDataValues->Getexp_tag_left_text(), uiDataValues->Getexp_tag_left_x(), uiDataValues->Getexp_tag_left_y(), exp_tag_left, screen, white);
     showXPBar(myPlayer_Object, uiDataValues->Getexp_value_right_x(), uiDataValues->Getexp_value_right_y(), xpBlueBar, screen);
     //-----------------------------------------------------//
     // Print Weapon
-    superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen);
-    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen);
+    superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen, yellow);
 
 }
 
@@ -411,12 +417,9 @@ void display::apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest
     SDL_BlitSurface(source, NULL, destination, &offset);
 }
 
-void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
+void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColor)
 {
     TTF_SetFontStyle(font, TTF_STYLE_BOLD);
-
-    //The color of the font
-    SDL_Color textColor = { 255, 255, 255, 255 };
 
     // convert int to char* for use in surface
     std::stringstream strm;
@@ -433,11 +436,8 @@ void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, 
 
 }
 
-void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination)
+void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColor)
 {
-    //The color of the font
-    SDL_Color textColor = { 255, 255, 255, 255 };
-
     // convert int to char* for use in surface
     std::stringstream strm;
     strm << number;
@@ -447,6 +447,27 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
     if (source == NULL)
     {
         cout << "source int: " << number << " not loaded" << endl;
+    }
+    // apply the surface to the screen
+    apply_surface(X, Y, source, destination);
+
+}
+void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo)
+{
+    // convert in to char* for use in surface
+    std::stringstream strOne;
+    strOne << numberOne;
+    //
+    std::stringstream strTwo;
+    strTwo << numberTwo;
+
+    std::string sourceText = numberOne + "/" + numberTwo;
+
+    source = TTF_RenderText_Solid(font, sourceText, textColorOne);
+
+    if (source == NULL)
+    {
+        cout << "source int: " << sourceText << "failed to load" << endl;
     }
     // apply the surface to the screen
     apply_surface(X, Y, source, destination);

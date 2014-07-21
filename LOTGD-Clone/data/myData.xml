@@ -3,25 +3,20 @@
 <xbel version="1.0">
     <MyData>
         <Name>Billy</Name>
-        <HpCap>2000</HpCap>
+        <HpCap>0</HpCap>
         <HpCurrent>1800</HpCurrent>
         <Lvl>10</Lvl>
-
         <xpCurrent>57930</xpCurrent>
         <xpRequired>102400</xpRequired>
-
         <Gold>5310</Gold>
         <Savings>9200</Savings>
-        <Weapon>3</Weapon>
-        <Armor>3</Armor>
-
+        <Weapon>0</Weapon>
+        <Armor>0</Armor>
         <Attack>50</Attack>
         <Defense>500</Defense>
         <Race>Human</Race>
-
         <OHp>400</OHp>
         <OLvl>10</OLvl>
-
         <OAtk>110</OAtk>
         <ODef>10</ODef>
         <Oname>Orge_01</Oname>
