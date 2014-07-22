@@ -10,8 +10,11 @@ using namespace std;
 
 fighttable::fighttable(){}
 
-void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
+void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature, myTextData * TextData_Object)
 {
+    // Show Fight Display
+
+
     // Initilize pointer class calls
     display *getDisplay = new display();
 
@@ -65,7 +68,7 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
 
 
     // Show info
-    getDisplay->fightDisplay(myPlayer, myCreature);
+    getDisplay->fightDisplay(myPlayer, myCreature, TextData_Object);
     cout << "get ready to rumble...or not\n";
     cout << "(R)un, (F)ight\n";
 
@@ -78,7 +81,7 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
     case 'F':
         cout << "let the fight begin" << endl;
         // cout << "Player: " << WhpP << "\t" << "Ogre: " << OhpP << endl;
-        getDisplay->fightDisplay(myPlayer, myCreature);
+        getDisplay->fightDisplay(myPlayer, myCreature, TextData_Object);
 
         while ((myCreature->GetCreatureHpC() >= 1) && (myPlayer->GetPlayerHpCurrent() >= 1)) {
             cout << "how many times do you want to try to hit" << endl;
@@ -93,7 +96,7 @@ void fighttable::Fight_Table(myplayer * myPlayer, mycreature * myCreature)
                 myCreature->SetCreatureHpC(myCreature->GetCreatureHpC() -
                                    incommingDmg(DmgPotential_Player, DmgMitigation_npc));
                 // update screen
-                getDisplay->fightDisplay(myPlayer, myCreature);
+                getDisplay->fightDisplay(myPlayer, myCreature, TextData_Object);
 
                 // decrement the hit counter
                 hit = hit - 1;

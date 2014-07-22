@@ -12,7 +12,7 @@ class forrest
 public:
     forrest();
 
-    void ForestLvl1(myplayer * myPlayer, mycreature * myCreature, uiGroup * uiDataValues);
+    void ForestLvl1(myplayer * myPlayer, mycreature * myCreature, uiGroup * uiDataValues, myTextData * TextData_Object);
 };
 
 #endif // FORREST_H

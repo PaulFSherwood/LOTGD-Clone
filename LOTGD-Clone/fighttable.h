@@ -5,13 +5,18 @@
 #include <cmath>
 #include "creature.h"
 #include "player.h"
+#include "textData.h"
+// sdl test //
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+#include "SDL/SDL_ttf.h"
 using namespace std;
 
 class fighttable
 {
 public:
     fighttable();
-    void Fight_Table(myplayer * myPlayer, mycreature * myCreature);
+    void Fight_Table(myplayer * myPlayer, mycreature * myCreature, myTextData * TextData_Object);
 
     int getCreatureHp(myplayer * myPlayer_Object, mycreature * creature_Object);
     int getCreatureDef(myplayer * myPlayer_Object, mycreature * creature_Object);

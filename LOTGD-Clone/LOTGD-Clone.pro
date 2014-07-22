@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     xp.cpp \
     xmlParse.cpp \
     creature.cpp \
-    player.cpp
+    player.cpp \
+    textData.cpp
 
 HEADERS += \
     uiGroup.h \
@@ -30,7 +31,8 @@ HEADERS += \
     xp.h \
     xmlParse.h \
     creature.h \
-    player.h
+    player.h \
+    textData.h
 
 OTHER_FILES += \
     arial.ttf \

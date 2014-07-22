@@ -56,7 +56,8 @@ SOURCES       = ../LOTGD-Clone/main.cpp \
 		../LOTGD-Clone/xp.cpp \
 		../LOTGD-Clone/xmlParse.cpp \
 		../LOTGD-Clone/creature.cpp \
-		../LOTGD-Clone/player.cpp 
+		../LOTGD-Clone/player.cpp \
+		../LOTGD-Clone/textData.cpp 
 OBJECTS       = main.o \
 		uiGroup.o \
 		training.o \
@@ -68,7 +69,8 @@ OBJECTS       = main.o \
 		xp.o \
 		xmlParse.o \
 		creature.o \
-		player.o
+		player.o \
+		textData.o
 DIST          = /home/grrwood/Qt/5.3/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/grrwood/Qt/5.3/gcc_64/mkspecs/common/shell-unix.conf \
 		/home/grrwood/Qt/5.3/gcc_64/mkspecs/common/unix.conf \
@@ -186,7 +188,8 @@ DIST          = /home/grrwood/Qt/5.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../LOTGD-Clone/xp.cpp \
 		../LOTGD-Clone/xmlParse.cpp \
 		../LOTGD-Clone/creature.cpp \
-		../LOTGD-Clone/player.cpp
+		../LOTGD-Clone/player.cpp \
+		../LOTGD-Clone/textData.cpp
 QMAKE_TARGET  = LOTGD-Clone
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = LOTGD-Clone
@@ -447,7 +450,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/LOTGD-Clone1.0.0 || mkdir -p .tmp/LOTGD-Clone1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/uiGroup.h ../LOTGD-Clone/training.h ../LOTGD-Clone/shop.h ../LOTGD-Clone/includes.h ../LOTGD-Clone/forrest.h ../LOTGD-Clone/fighttable.h ../LOTGD-Clone/display.h ../LOTGD-Clone/bank.h ../LOTGD-Clone/xp.h ../LOTGD-Clone/xmlParse.h ../LOTGD-Clone/creature.h ../LOTGD-Clone/player.h .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/main.cpp ../LOTGD-Clone/uiGroup.cpp ../LOTGD-Clone/training.cpp ../LOTGD-Clone/shop.cpp ../LOTGD-Clone/forrest.cpp ../LOTGD-Clone/fighttable.cpp ../LOTGD-Clone/display.cpp ../LOTGD-Clone/bank.cpp ../LOTGD-Clone/xp.cpp ../LOTGD-Clone/xmlParse.cpp ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/player.cpp .tmp/LOTGD-Clone1.0.0/ && (cd `dirname .tmp/LOTGD-Clone1.0.0` && $(TAR) LOTGD-Clone1.0.0.tar LOTGD-Clone1.0.0 && $(COMPRESS) LOTGD-Clone1.0.0.tar) && $(MOVE) `dirname .tmp/LOTGD-Clone1.0.0`/LOTGD-Clone1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/LOTGD-Clone1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/uiGroup.h ../LOTGD-Clone/training.h ../LOTGD-Clone/shop.h ../LOTGD-Clone/includes.h ../LOTGD-Clone/forrest.h ../LOTGD-Clone/fighttable.h ../LOTGD-Clone/display.h ../LOTGD-Clone/bank.h ../LOTGD-Clone/xp.h ../LOTGD-Clone/xmlParse.h ../LOTGD-Clone/creature.h ../LOTGD-Clone/player.h ../LOTGD-Clone/textData.h .tmp/LOTGD-Clone1.0.0/ && $(COPY_FILE) --parents ../LOTGD-Clone/main.cpp ../LOTGD-Clone/uiGroup.cpp ../LOTGD-Clone/training.cpp ../LOTGD-Clone/shop.cpp ../LOTGD-Clone/forrest.cpp ../LOTGD-Clone/fighttable.cpp ../LOTGD-Clone/display.cpp ../LOTGD-Clone/bank.cpp ../LOTGD-Clone/xp.cpp ../LOTGD-Clone/xmlParse.cpp ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/player.cpp ../LOTGD-Clone/textData.cpp .tmp/LOTGD-Clone1.0.0/ && (cd `dirname .tmp/LOTGD-Clone1.0.0` && $(TAR) LOTGD-Clone1.0.0.tar LOTGD-Clone1.0.0 && $(COMPRESS) LOTGD-Clone1.0.0.tar) && $(MOVE) `dirname .tmp/LOTGD-Clone1.0.0`/LOTGD-Clone1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/LOTGD-Clone1.0.0
 
 
 clean:compiler_clean 
@@ -1530,6 +1533,9 @@ creature.o: ../LOTGD-Clone/creature.cpp ../LOTGD-Clone/creature.h \
 
 player.o: ../LOTGD-Clone/player.cpp ../LOTGD-Clone/player.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../LOTGD-Clone/player.cpp
+
+textData.o: ../LOTGD-Clone/textData.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o textData.o ../LOTGD-Clone/textData.cpp
 
 ####### Install
 

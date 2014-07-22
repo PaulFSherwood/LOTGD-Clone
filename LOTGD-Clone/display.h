@@ -5,6 +5,7 @@
 #include "creature.h"
 #include "uiGroup.h"
 #include "player.h"
+#include "textData.h"
 // sdl test //
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
@@ -20,7 +21,8 @@ public:
     void vitalInfo(myplayer * myPlayer_Object, uiGroup * uiDataValues);
     void mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues);
     void forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues);
-    void fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object);
+    void fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object, myTextData * TextData_Object);
+    // void fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object);
     void old_Bank(myplayer * myPlayer_Object);
 
     void Weapon_Shop(string &systemMessage);

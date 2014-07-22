@@ -3,13 +3,14 @@
 #include "forrest.h"
 #include "display.h"
 #include "creature.h"
-#include "fighttable.h"
 #include "player.h"
+#include "textData.h"
+#include "fighttable.h"
 using namespace std;
 
 forrest::forrest(){}
 
-void forrest::ForestLvl1(myplayer * myPlayer, mycreature * randomOgre, uiGroup * uiDataValues)
+void forrest::ForestLvl1(myplayer * myPlayer, mycreature * myCreature, uiGroup * uiDataValues, myTextData * TextData_Object)
 
 {
     // Initilize pointer class calls
@@ -30,7 +31,7 @@ void forrest::ForestLvl1(myplayer * myPlayer, mycreature * randomOgre, uiGroup *
             switch( event.key.keysym.sym )
             {
             case SDLK_l://'L':	// Look for a fight
-                getFighttable->Fight_Table(myPlayer, randomOgre);
+                getFighttable->Fight_Table(myPlayer, myCreature, TextData_Object);
                 cin.ignore().get();
                 break;
             case SDLK_r://'R':	// Return to world menu
@@ -43,9 +44,9 @@ void forrest::ForestLvl1(myplayer * myPlayer, mycreature * randomOgre, uiGroup *
                 int templvl;
                 cin >> templvl;
                 // set cpu level
-                randomOgre->SetCreatureLvlC(templvl);
+                myCreature->SetCreatureLvlC(templvl);
                 // set cpu strength
-                randomOgre->SetCreatureStrC((randomOgre->GetCreatureLvlC() * 5) + 100);
+                myCreature->SetCreatureStrC((myCreature->GetCreatureLvlC() * 5) + 100);
                 break;
             case SDLK_x://'X': // add xp
                 int tempxptotal;

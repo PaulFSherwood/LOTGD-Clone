@@ -20,6 +20,7 @@
 #include "forrest.h"
 #include "creature.h"
 #include "player.h"
+#include "textData.h"
 #include "shop.h"
 #include "training.h"
 #include "uiGroup.h"
@@ -36,6 +37,7 @@ int main()
     bank *getBank = new bank();
     training *getTraining = new training();
     xmlParse *importData = new xmlParse();
+    myTextData * TextData_Object = new myTextData();
 
     // all npc/orge blag should be myCreature
     myplayer *myPlayer = new myplayer();
@@ -54,6 +56,10 @@ int main()
     importData->readXML_Class_Object(myCreature);
     importData->readXML_ui_Class_Object(uiDataValues);
 
+    // Set TextData for Center Display
+    TextData_Object->SetCenterTextX(188);
+    TextData_Object->SetCenterTextY(22);
+
     // set game state to running
     bool running = true;
 
@@ -69,7 +75,7 @@ int main()
             {
                 case SDLK_f://'F':   // Enter Forest
                 {
-                    newForest->ForestLvl1(myPlayer, myCreature, uiDataValues);
+                    newForest->ForestLvl1(myPlayer, myCreature, uiDataValues, TextData_Object);
                     break;
                 }
                 case SDLK_q://'Q':	// Quit to the fields

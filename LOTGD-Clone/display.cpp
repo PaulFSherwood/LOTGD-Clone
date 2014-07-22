@@ -7,6 +7,7 @@
 #include "display.h"
 #include "creature.h"
 #include "player.h"
+#include "textData.h"
 #include "shop.h"
 #include "uiGroup.h"
 #include "SDL/SDL.h"
@@ -33,6 +34,7 @@ SDL_Color white = { 255, 255, 255, 255 };
 
 // the surfaces
 SDL_Surface *background = NULL;
+SDL_Surface *left_menu = NULL;
 // SDL_Surface *hud = NULL;
 SDL_Surface *screen = NULL;
 SDL_Surface *message = NULL;
@@ -107,7 +109,6 @@ void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
     superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen, yellow);
 
 }
-
 void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
     // Initialize
@@ -135,7 +136,21 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
         //return 1;
     }
 }
+//void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object, myTextData textInfo)
+void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object, myTextData * TextData_Object)
+{
+    // Set up the Menu_Display
+    apply_surface(0, 0, left_menu, screen);
 
+    // Need the text overlay for the left_menu dont have it right now.
+
+    // set up and show center display
+
+
+
+    // set start text to the next line
+    TextData_Object->SetCenterTextY(TextData_Object->GetCenterTextY() + 12);
+}
 void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
     // Initialize
@@ -165,31 +180,6 @@ void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
         //return 1;
     }
 }
-
-void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object)
-{
-    #ifdef WIN32
-        system("cls");
-    #endif
-    #ifdef linux
-        printf("\033[2J\033[1;1H");
-    #endif
-    cout << "##Fighting##" << "\t\t\t" << "##Vital Info##" << endl;
-    cout << "Orger Info" << "\t\t\t" << "Name: " << myPlayer_Object->GetPlayerNameP() << endl;
-    if (creature_Object->GetCreatureHpC() >= -1) { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl; }
-    else { cout << "Hp: " << creature_Object->GetCreatureHpC() << "\t\t\t\t" << "Level: " << myPlayer_Object->GetPlayerLvlP() << endl; }
-    cout << "Lvl: " << creature_Object->GetCreatureLvlC() << "\t\t\t\t" << "Turns: " << endl;
-    cout << "Atk:" << creature_Object->GetCreatureAtkC() << "\t\t\t\t" << "Strength: " << endl;
-    cout << "Def:" << creature_Object->GetCreatureDefC() << "\t\t\t\t" << "Attack: " << myPlayer_Object->GetPlayerAtkP() << endl;
-    cout << "Armor Value:" << creature_Object->GetCreatureArmorValueC() << "\t\t\t" << "Defense: " << myPlayer_Object->GetPlayerDefP() << endl;
-    cout << "\t\t\t\t" << "Race: " << myPlayer_Object->GetPlayerRaceP() << endl;
-    cout << "\t\t\t\t" << "##Personnel Info##" << endl;
-    cout << "\t\t\t\t" << "Gold: " << myPlayer_Object->GetPlayerGoldP() << endl;
-    cout << "\t\t\t\t" << "Gem: " << endl;
-    cout << "\t\t\t\t" << "##Equipment##" << endl;
-    cout << "\t\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
-    cout << "\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXpRequired() << "|" << myPlayer_Object->GetPlayerXpCurrent() << endl;
-}
 void display::old_Bank(myplayer * myPlayer_Object)
 {
     #ifdef WIN32
@@ -213,7 +203,6 @@ void display::old_Bank(myplayer * myPlayer_Object)
     cout << "(D)eposit" << "\t\t\t" << "Weapon: " << Weapon->GetWeapon(myPlayer_Object->GetPlayerWeaponP()) << endl;
     cout << "\t\t\t\t\t" << "Experience: " << myPlayer_Object->GetPlayerXpRequired() << "|" << myPlayer_Object->GetPlayerXpCurrent() << endl;
 }
-
 void display::Weapon_Shop(string &systemMessage)
 {
     #ifdef WIN32
@@ -248,7 +237,6 @@ void display::Armor_Shop(string &systemMessage)
     cout << "(E)xit the shop" << endl;
     cout << systemMessage << endl << endl;
 }
-
 bool display::init()
 {
     // init all SDL_subsystems
@@ -275,7 +263,6 @@ bool display::init()
     // If everthing initialized fine
     return true;
 }
-
 bool display::load_files()
 {
     // Load the background image
@@ -289,7 +276,17 @@ bool display::load_files()
         cout << "background load failed" << endl;
         return false;
     }
+    // Load the left_menu image
+    if (left_menu == NULL) {
+        left_menu = load_image("img/Left_Menu.png");
+    }
 
+    // if the background didn't load
+    if (left_menu == NULL)
+    {
+        cout << "background load failed" << endl;
+        return false;
+    }
     // Load the xpRed image
     if (xpRedBar == NULL){
         xpRedBar = load_image("img/xpRed.png");
@@ -328,11 +325,11 @@ bool display::load_files()
 
     return true;
 }
-
 void display::clean_up()
 {
     // Free the surfaces
     SDL_FreeSurface(background);
+    SDL_FreeSurface(left_menu);
     // SDL_FreeSurface(hud);
     SDL_FreeSurface(screen);
     SDL_FreeSurface(message);
@@ -369,7 +366,6 @@ void display::clean_up()
     // Quit SDL
     SDL_Quit();
 }
-
 SDL_Surface *display::load_image(string filename)
 {
     // the image that's loaded
@@ -403,7 +399,6 @@ SDL_Surface *display::load_image(string filename)
     // return the optimized image
     return optimizedImage;
 }
-
 void display::apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *destination)
 {
     // temp rectangle to hold the offsets
@@ -416,7 +411,6 @@ void display::apply_surface(int x, int y, SDL_Surface *source, SDL_Surface *dest
     // blit the surface
     SDL_BlitSurface(source, NULL, destination, &offset);
 }
-
 void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColor)
 {
     TTF_SetFontStyle(font, TTF_STYLE_BOLD);
@@ -435,7 +429,6 @@ void display::superApplySurface(string text, int X, int Y, SDL_Surface* source, 
     apply_surface(X, Y, source, destination);
 
 }
-
 void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, SDL_Surface* destination, SDL_Color textColor)
 {
     // convert int to char* for use in surface
@@ -452,7 +445,6 @@ void display::superApplySurface(int number, int X, int Y, SDL_Surface* source, S
     apply_surface(X, Y, source, destination);
 
 }
-
 void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface* destination, SDL_Color textColorOne, SDL_Color textColorTwo)
 {
     SDL_Surface* sourceOne = NULL;
@@ -482,7 +474,6 @@ void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface
     apply_surface((X + sourceOne->w*2 + sourceText->w + 2), Y, sourceTwo, destination);
 
 }
-
 void display::showXPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *blue, SDL_Surface *destination)
 {
     // find the percentage
@@ -498,7 +489,6 @@ void display::showXPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *b
         currentPercentage = currentPercentage - 1;
     }
 }
-
 void display::showHPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *blue, SDL_Surface *destination)
 {
     // find the percentage
