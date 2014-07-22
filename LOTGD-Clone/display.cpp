@@ -27,8 +27,8 @@ const int SCREEN_BPP = 32;
 
 // Available Colors
 SDL_Color yellow = { 214, 238, 0, 255 };
-SDL_Color red = { 238, 0, 0 };
-SDL_Color purple = { 230, 6, 157 };
+SDL_Color red = { 238, 0, 0, 255 };
+SDL_Color purple = { 230, 6, 157, 255 };
 SDL_Color white = { 255, 255, 255, 255 };
 
 // the surfaces
@@ -334,8 +334,8 @@ void display::clean_up()
     // Free the surfaces
     SDL_FreeSurface(background);
     // SDL_FreeSurface(hud);
-    SDL_FreeSurface(message);
     SDL_FreeSurface(screen);
+    SDL_FreeSurface(message);
     SDL_FreeSurface(xpRedBar);
     SDL_FreeSurface(xpBlueBar);
     SDL_FreeSurface(name_tag_left);

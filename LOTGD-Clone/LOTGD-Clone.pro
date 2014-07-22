@@ -39,5 +39,6 @@ OTHER_FILES += \
     img/xpRed.png \
     img/xpBlue.png \
     img/background.png \
-    data/fightData.xml
+    data/fightData.xml \
+    img/Left_Menu.png
 
