@@ -18,7 +18,7 @@ public:
     void SetPlayerGoldP(int gold);
     void SetPlayerSavingsP(int savings);
     void SetPlayerWeaponP(int wep);
-    void SetPlayerArmorp(int armor);
+    void SetPlayerArmorP(int armor);
 
     void SetPlayerAtkP(int atk);
     void SetPlayerDefP(int def);
@@ -35,7 +35,7 @@ public:
     int GetPlayerGoldP();
     int GetPlayerSavingsP();
     int GetPlayerWeaponP();
-    int GetPlayerArmor();
+    int GetPlayerArmorP();
     int GetPlayerAtkP();
     int GetPlayerDefP();
     string GetPlayerRaceP();

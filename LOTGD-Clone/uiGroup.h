@@ -60,13 +60,6 @@ public:
     void Setdef_value_right_y(int ui_def_value_right_y);
     void Setdef_value_right_text(string ui_def_value_right_text);
 
-    void Setarmv_tag_left_x(int ui_armv_tag_left_x);
-    void Setarmv_tag_left_y(int ui_armv_tag_left_y);
-    void Setarmv_tag_left_text(string ui_armv_tag_left_text);
-    void Setarmv_value_right_x(int ui_armv_value_right_x);
-    void Setarmv_value_right_y(int ui_armv_value_right_y);
-    void Setarmv_value_right_text(string ui_armv_value_right_text);
-
     void Setgold_tag_left_x(int ui_gold_tag_left_x);
     void Setgold_tag_left_y(int ui_gold_tag_left_y);
     void Setgold_tag_left_text(string ui_gold_tag_left_text);
@@ -145,13 +138,6 @@ public:
     int    Getdef_value_right_x();
     int    Getdef_value_right_y();
     string Getdef_value_right_text();
-
-    int    Getarmv_tag_left_x();
-    int    Getarmv_tag_left_y();
-    string Getarmv_tag_left_text();
-    int    Getarmv_value_right_x();
-    int    Getarmv_value_right_y();
-    string Getarmv_value_right_text();
 
     int    Getgold_tag_left_x();
     int    Getgold_tag_left_y();
@@ -233,13 +219,6 @@ private:
     int def_value_right_x;
     int def_value_right_y;
     string def_value_right_text;
-
-    int armv_tag_left_x;
-    int armv_tag_left_y;
-    string armv_tag_left_text;
-    int armv_value_right_x;
-    int armv_value_right_y;
-    string armv_value_right_text;
 
     int gold_tag_left_x;
     int gold_tag_left_y;

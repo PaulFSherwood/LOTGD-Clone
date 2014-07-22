@@ -14,7 +14,7 @@ void myplayer::SetPlayerXpRequired(int xpRequired) { PlayerXpRequired = xpRequir
 void myplayer::SetPlayerGoldP(int gold) { PlayerGold = gold; }
 void myplayer::SetPlayerSavingsP(int savings) { PlayerSavings = savings; }
 void myplayer::SetPlayerWeaponP(int weapon) { PlayerWeapon = weapon; }
-void myplayer::SetPlayerArmorp(int armor) { PlayerArmor = armor; }
+void myplayer::SetPlayerArmorP(int armor) { PlayerArmor = armor; }
 
 void myplayer::SetPlayerAtkP(int atk) { PlayerAtk = atk; }
 void myplayer::SetPlayerDefP(int def) { PlayerDef = def; }
@@ -32,7 +32,7 @@ int myplayer::GetPlayerXpRequired() { return PlayerXpRequired; }
 int myplayer::GetPlayerGoldP() { return PlayerGold; }
 int myplayer::GetPlayerSavingsP() { return PlayerSavings; }
 int myplayer::GetPlayerWeaponP() { return PlayerWeapon; }
-int myplayer::GetPlayerArmor() { return PlayerArmor; }
+int myplayer::GetPlayerArmorP() { return PlayerArmor; }
 
 int myplayer::GetPlayerAtkP() { return PlayerAtk; }
 int myplayer::GetPlayerDefP() { return PlayerDef; }

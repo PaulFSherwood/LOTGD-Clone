@@ -54,8 +54,6 @@ SDL_Surface *atk_tag_left = NULL;
 SDL_Surface *atk_value_right = NULL;
 SDL_Surface *def_tag_left = NULL;
 SDL_Surface *def_value_right = NULL;
-SDL_Surface *armv_tag_left = NULL;
-SDL_Surface *armv_value_right = NULL;
 SDL_Surface *gold_tag_left = NULL;
 SDL_Surface *gold_value_right = NULL;
 SDL_Surface *wep_tag_left = NULL;
@@ -71,6 +69,7 @@ TTF_Font *font = NULL;
 // display functions
 void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
 {
+    shop *checkStuff = new shop();
     // Vital Info Bar
     // Print name
     superApplySurface(uiDataValues->Getname_tag_left_text(), uiDataValues->Getname_tag_left_x(), uiDataValues->Getname_tag_left_y(), name_tag_left, screen, white);
@@ -107,6 +106,11 @@ void display::vitalInfo(myplayer *myPlayer_Object, uiGroup *uiDataValues)
     // Print Weapon
     superApplySurface(uiDataValues->Getwep_tag_left_text(), uiDataValues->Getwep_tag_left_x(), uiDataValues->Getwep_tag_left_y(), wep_tag_left, screen, white);
     superApplySurface(myPlayer_Object->GetPlayerWeaponP(), uiDataValues->Getwep_value_right_x(), uiDataValues->Getwep_value_right_y(), wep_value_right, screen, yellow);
+    superApplySurface(checkStuff->GetWeapon(myPlayer_Object->GetPlayerWeaponP()), (uiDataValues->Getwep_value_right_x() + 10), uiDataValues->Getwep_value_right_y(), wep_value_right, screen, yellow);
+    // Print Armor
+    superApplySurface(uiDataValues->Getarm_tag_left_text(), uiDataValues->Getarm_tag_left_x(), uiDataValues->Getarm_tag_left_y(), arm_tag_left, screen, white);
+    superApplySurface(myPlayer_Object->GetPlayerArmorP(), uiDataValues->Getarm_value_right_x(), uiDataValues->Getarm_value_right_y(), arm_value_right, screen, yellow);
+    superApplySurface(checkStuff->GetArmor(myPlayer_Object->GetPlayerArmorP()), (uiDataValues->Getarm_value_right_x() + 10), uiDataValues->Getarm_value_right_y(), arm_value_right, screen, yellow);
 
 }
 void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
@@ -140,7 +144,10 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object, myTextData * TextData_Object)
 {
     // Set up the Menu_Display
-    apply_surface(0, 0, left_menu, screen);
+    if (left_menu == NULL){
+        cout << "left menu is null" << endl;
+    }
+    apply_surface(0, 0, left_menu, background);
 
     // Need the text overlay for the left_menu dont have it right now.
 
@@ -150,6 +157,12 @@ void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Obj
 
     // set start text to the next line
     TextData_Object->SetCenterTextY(TextData_Object->GetCenterTextY() + 12);
+
+    // Update the screen
+    if (SDL_Flip(background) == -1)
+    {
+        //return 1;
+    }
 }
 void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 {
@@ -349,8 +362,6 @@ void display::clean_up()
     SDL_FreeSurface(atk_value_right);
     SDL_FreeSurface(def_tag_left);
     SDL_FreeSurface(def_value_right);
-    SDL_FreeSurface(armv_tag_left);
-    SDL_FreeSurface(armv_value_right);
     SDL_FreeSurface(gold_tag_left);
     SDL_FreeSurface(gold_value_right);
     SDL_FreeSurface(wep_tag_left);
@@ -471,15 +482,14 @@ void display::showHpText(int numberOne, int numberTwo, int X, int Y, SDL_Surface
     // apply the surface to the screen
     apply_surface(X, Y, sourceOne, destination);
     apply_surface((X + sourceOne->w + 2), Y, sourceText, destination);
-    apply_surface((X + sourceOne->w*2 + sourceText->w + 2), Y, sourceTwo, destination);
+    apply_surface((X + sourceOne->w + sourceText->w + 2), Y, sourceTwo, destination);
 
 }
 void display::showXPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *blue, SDL_Surface *destination)
 {
     // find the percentage
     int currentPercentage = 0;
-    currentPercentage = (myPlayer_Object->GetPlayerXpRequired() * 100) / myPlayer_Object->GetPlayerXpCurrent();
-
+    currentPercentage = (myPlayer_Object->GetPlayerXpCurrent() * 69) / myPlayer_Object->GetPlayerXpRequired();
     // print the current xp percentage
     while (currentPercentage > 1)
     {
@@ -493,7 +503,7 @@ void display::showHPBar(myplayer * myPlayer_Object, int x, int y, SDL_Surface *b
 {
     // find the percentage
     int currentPercentage = 0;
-    currentPercentage = (myPlayer_Object->GetPlayerLvlP() * 10);
+    currentPercentage = (myPlayer_Object->GetPlayerHpCurrent() * 69) / myPlayer_Object->GetPlayerHpCap();
 
     // print the current hp percentage
     while (currentPercentage > 1)

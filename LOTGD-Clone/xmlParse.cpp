@@ -19,7 +19,7 @@ void xmlParse::writeXML_Class_Object(myplayer * myPlayer_Object, mycreature * cr
     QString Gold = QString::number(myPlayer_Object->GetPlayerGoldP());
     QString Savings = QString::number(myPlayer_Object->GetPlayerSavingsP());
     QString Weapon = QString::number(myPlayer_Object->GetPlayerWeaponP());
-    QString Armor = QString::number(myPlayer_Object->GetPlayerArmor());
+    QString Armor = QString::number(myPlayer_Object->GetPlayerArmorP());
 
     QString Attack = QString::number(myPlayer_Object->GetPlayerAtkP());
     QString Defense = QString::number(myPlayer_Object->GetPlayerDefP());
@@ -148,7 +148,7 @@ void xmlParse::readXML_Class_Object(myplayer * myPlayer_Object)
 
                 }else if (xml.name() == "Armor"){
                     QString Armor = xml.readElementText();
-                    myPlayer_Object->SetPlayerWeaponP(Armor.toInt());
+                    myPlayer_Object->SetPlayerArmorP(Armor.toInt());
 
 
                 }else if (xml.name() == "Attack"){
@@ -426,30 +426,6 @@ void xmlParse::readXML_ui_Class_Object(uiGroup * uiObject)
                 }else if (xml.name() == "def_value_right_text"){
                     QString def_value_right_text = xml.readElementText();
                     uiObject->Setdef_value_right_text(def_value_right_text.toStdString());
-                    ///////////////////////////////////////////////////////////////
-                }else if (xml.name() == "armv_tag_left_x"){
-                    QString armv_tag_left_x = xml.readElementText();
-                    uiObject->Setarmv_tag_left_x(armv_tag_left_x.toInt());
-
-                }else if (xml.name() == "armv_tag_left_y"){
-                    QString armv_tag_left_y = xml.readElementText();
-                    uiObject->Setarmv_tag_left_y(armv_tag_left_y.toInt());
-
-                }else if (xml.name() == "armv_tag_left_text"){
-                    QString armv_tag_left_text = xml.readElementText();
-                    uiObject->Setarmv_tag_left_text(armv_tag_left_text.toStdString());
-                    ///////////////////////////////////////////////////////////////
-                }else if (xml.name() == "armv_value_right_x"){
-                    QString armv_value_right_x = xml.readElementText();
-                    uiObject->Setarmv_value_right_x(armv_value_right_x.toInt());
-
-                }else if (xml.name() == "armv_value_right_y"){
-                    QString armv_value_right_y = xml.readElementText();
-                    uiObject->Setarmv_value_right_y(armv_value_right_y.toInt());
-
-                }else if (xml.name() == "armv_value_right_text"){
-                    QString armv_value_right_text = xml.readElementText();
-                    uiObject->Setarmv_value_right_text(armv_value_right_text.toStdString());
                     ///////////////////////////////////////////////////////////////
                 }else if (xml.name() == "gold_tag_left_x"){
                     QString gold_tag_left_x = xml.readElementText();

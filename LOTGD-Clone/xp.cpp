@@ -69,7 +69,7 @@ void xp::canlvl(myplayer * myPlayer)
         myPlayer->SetPlayerAtkP(myPlayer->GetPlayerLvlP() + myPlayer->GetPlayerWeaponP());
 
         // Increase players Defence
-        myPlayer->SetPlayerDefP(myPlayer->GetPlayerLvlP() + myPlayer->GetPlayerArmor());
+        myPlayer->SetPlayerDefP(myPlayer->GetPlayerLvlP() + myPlayer->GetPlayerArmorP());
     }
     else {
         //return 0;

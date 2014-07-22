@@ -48,12 +48,7 @@ void uiGroup::Setdef_tag_left_text(string ui_def_tag_left_text) { def_tag_left_t
 void uiGroup::Setdef_value_right_x(int ui_def_value_right_x) { def_value_right_x = ui_def_value_right_x; }
 void uiGroup::Setdef_value_right_y(int ui_def_value_right_y) { def_value_right_y = ui_def_value_right_y; }
 void uiGroup::Setdef_value_right_text(string ui_def_value_right_text) { def_value_right_text = ui_def_value_right_text; }
-void uiGroup::Setarmv_tag_left_x(int ui_armv_tag_left_x) { armv_tag_left_x = ui_armv_tag_left_x; }
-void uiGroup::Setarmv_tag_left_y(int ui_armv_tag_left_y) { armv_tag_left_y = ui_armv_tag_left_y; }
-void uiGroup::Setarmv_tag_left_text(string ui_armv_tag_left_text) { armv_tag_left_text = ui_armv_tag_left_text; }
-void uiGroup::Setarmv_value_right_x(int ui_armv_value_right_x) { armv_value_right_x = ui_armv_value_right_x; }
-void uiGroup::Setarmv_value_right_y(int ui_armv_value_right_y) { armv_value_right_y = ui_armv_value_right_y; }
-void uiGroup::Setarmv_value_right_text(string ui_armv_value_right_text) { armv_value_right_text = ui_armv_value_right_text; }
+
 void uiGroup::Setgold_tag_left_x(int ui_gold_tag_left_x) { gold_tag_left_x = ui_gold_tag_left_x; }
 void uiGroup::Setgold_tag_left_y(int ui_gold_tag_left_y) { gold_tag_left_y = ui_gold_tag_left_y; }
 void uiGroup::Setgold_tag_left_text(string ui_gold_tag_left_text) { gold_tag_left_text = ui_gold_tag_left_text; }
@@ -124,12 +119,6 @@ string uiGroup::Getdef_tag_left_text() { return def_tag_left_text; }
 int    uiGroup::Getdef_value_right_x() { return def_value_right_x; }
 int    uiGroup::Getdef_value_right_y() { return def_value_right_y; }
 string uiGroup::Getdef_value_right_text() { return def_value_right_text; }
-int    uiGroup::Getarmv_tag_left_x() { return armv_tag_left_x; }
-int    uiGroup::Getarmv_tag_left_y() { return armv_tag_left_y; }
-string uiGroup::Getarmv_tag_left_text() { return armv_tag_left_text; }
-int    uiGroup::Getarmv_value_right_x() { return armv_value_right_x; }
-int    uiGroup::Getarmv_value_right_y() { return armv_value_right_y; }
-string uiGroup::Getarmv_value_right_text() { return armv_value_right_text; }
 int    uiGroup::Getgold_tag_left_x() { return gold_tag_left_x; }
 int    uiGroup::Getgold_tag_left_y() { return gold_tag_left_y; }
 string uiGroup::Getgold_tag_left_text() { return gold_tag_left_text; }
