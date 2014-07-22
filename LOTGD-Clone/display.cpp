@@ -143,10 +143,23 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 //void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object, myTextData textInfo)
 void display::fightDisplay(myplayer * myPlayer_Object, mycreature * creature_Object, myTextData * TextData_Object)
 {
+    // Initialize
+    if (init() == false)
+    {
+        //return 1;
+    }
+    // Load the files
+    if (load_files() == false)
+    {
+        cout << "load failed" << endl;
+        //return 1;
+    }
     // Set up the Menu_Display
     if (left_menu == NULL){
         cout << "left menu is null" << endl;
     }
+    // refresh surfaces "Should this be here"
+    apply_surface(0, 0, background, screen);
     apply_surface(0, 0, left_menu, background);
 
     // Need the text overlay for the left_menu dont have it right now.
@@ -180,6 +193,7 @@ void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
 
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
+    apply_surface(0, 0, left_menu, background);
     // apply_surface(0, 0, hud, screen);
     // set the caption
     SDL_WM_SetCaption("Forrest", NULL);
