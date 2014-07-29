@@ -198,6 +198,13 @@ void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
     // set the caption
     SDL_WM_SetCaption("Forrest", NULL);
 
+    // Forrest Menu
+    superApplySurface("Forrest", 20, 5, left_menu, screen, white);
+    superApplySurface("(L)ook for a fight", 5, 25, left_menu, screen, yellow);
+    superApplySurface("(R)eturn to the world", 5, 45, left_menu, screen, yellow);
+    superApplySurface("(C)hange npc level", 5, 65, left_menu, screen, yellow);
+    superApplySurface("(X)p add", 5, 85, left_menu, screen, yellow);
+
     // Vital Info Bar
     vitalInfo(myPlayer_Object, uiDataValues);
 
