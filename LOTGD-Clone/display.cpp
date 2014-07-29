@@ -310,6 +310,7 @@ bool display::load_files()
         cout << "background load failed" << endl;
         return false;
     }
+
     // Load the left_menu image
     if (left_menu == NULL) {
         left_menu = load_image("img/Left_Menu.png");
@@ -321,6 +322,7 @@ bool display::load_files()
         cout << "background load failed" << endl;
         return false;
     }
+
     // Load the xpRed image
     if (xpRedBar == NULL){
         xpRedBar = load_image("img/xpRed.png");
