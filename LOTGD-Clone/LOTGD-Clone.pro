@@ -3,7 +3,8 @@ CONFIG += console
 CONFIG += qt
 QT     += xml
 
-LIBS += -L/usr/local/lib -lSDL -lSDLmain -lSDL_image -lSDL_ttf
+LIBS += -LC:\SDL-1.2.15\lib -lSDL -lSDLmain -lSDL_image -lSDL_ttf
+INCLUDEPATH += "C:\\SDL-1.2.15\\include"
 
 SOURCES += main.cpp \
     uiGroup.cpp \

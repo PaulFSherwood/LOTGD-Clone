@@ -179,12 +179,12 @@ int fighttable::getCreatureDef(myplayer *warrior_Object, mycreature *creature_Ob
 string fighttable::getCreatureName(mycreature *creature_Object)
 {
     // need a xml list of creature names to work with
-
+    return "creature_Object";
 }
 string fighttable::getCreatureWeapon(mycreature *creature_Object)
 {
     // need an xml list of creature weapons to work with
-
+    return "creature_Object";
 }
 int fighttable::getCreatureAttack(myplayer *warrior_Object, mycreature *creature_Object)
 {

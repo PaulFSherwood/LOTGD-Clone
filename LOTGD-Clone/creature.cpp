@@ -17,7 +17,7 @@ void mycreature::SetCreatureArmorValueC(int armorvalue) { CreatureArmorValueC = 
 void mycreature::SetCreatureNameC(string name) { CreatureNameC = name; }
 
 void mycreature::SetFightVectorCounter(int data) { FightDataVectorCounter = data; }
-string mycreature::SetFightVectorData(string data, int index) { CreatureVectorData[index] = data; }
+string mycreature::SetFightVectorData(string data, int index) {  return CreatureVectorData[index] = data; }
 
 int mycreature::GetCreatureHpC() { return CreatureHpC; }
 int mycreature::GetCreatureStrC() { return CreatureStrC; }

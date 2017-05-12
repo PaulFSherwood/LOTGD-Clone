@@ -127,6 +127,7 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
         //return 1;
     }
 
+
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     // apply_surface(0, 0, hud, screen);
@@ -427,7 +428,7 @@ SDL_Surface *display::load_image(string filename)
             Uint32 colorkey = SDL_MapRGB(optimizedImage->format, 0 , 0xFF, 0xFF);
 
             // set all the pixels to color r 0, g 0xFF, g 0xFF to be transparent
-            SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, colorkey);
+            SDL_SetColorKey(optimizedImage, SDL_TRUE, colorkey);
         }
     }
     // return the optimized image
