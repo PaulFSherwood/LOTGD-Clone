@@ -7,9 +7,9 @@
 #include "player.h"
 #include "textData.h"
 // sdl test //
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "SDL/SDL_ttf.h"
+#include "SDL.h"
+#include "SDL_test_images.h"
+#include "SDL_ttf.h"
 // sdl test //
 using namespace std;
 

@@ -10,9 +10,9 @@
 #include "textData.h"
 #include "shop.h"
 #include "uiGroup.h"
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "SDL/SDL_ttf.h"
+#include "SDL.h"
+#include "SDL_image.h"
+#include "SDL_ttf.h"
 using namespace std;
 
 display::display(){}
@@ -127,12 +127,11 @@ void display::mainDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
         //return 1;
     }
 
-
     // apply the surfaces to the screen
     apply_surface(0, 0, background, screen);
     // apply_surface(0, 0, hud, screen);
     // set the caption
-    SDL_WM_SetCaption("In Town", NULL);
+    SDL_WM_SetCaption("In Town", NULL);  // change title is depresiated in sdl2
     // Vital Info Bar
     vitalInfo(myPlayer_Object, uiDataValues);
     // Update the screen
@@ -197,7 +196,7 @@ void display::forrestDisplay(myplayer * myPlayer_Object, uiGroup * uiDataValues)
     apply_surface(0, 0, left_menu, background);
     // apply_surface(0, 0, hud, screen);
     // set the caption
-    SDL_WM_SetCaption("Forrest", NULL);
+    SDL_WM_SetCaption("Forrest", NULL);  // change title is depresiated in sdl2
 
     // Forrest Menu
     superApplySurface("Forrest", 20, 5, left_menu, screen, white);
@@ -428,7 +427,7 @@ SDL_Surface *display::load_image(string filename)
             Uint32 colorkey = SDL_MapRGB(optimizedImage->format, 0 , 0xFF, 0xFF);
 
             // set all the pixels to color r 0, g 0xFF, g 0xFF to be transparent
-            SDL_SetColorKey(optimizedImage, SDL_TRUE, colorkey);
+            SDL_SetColorKey(optimizedImage, SDL_SRCCOLORKEY, colorkey);
         }
     }
     // return the optimized image
