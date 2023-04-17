@@ -7,6 +7,7 @@ LIBS += -LC:\SDL-1.2.15\lib -lSDL -lSDLmain -lSDL_image -lSDL_ttf
 INCLUDEPATH += "C:\\SDL-1.2.15\\include"
 
 SOURCES += main.cpp \
+    keyeventfilter.cpp \
     uiGroup.cpp \
     training.cpp \
     shop.cpp \
@@ -21,6 +22,7 @@ SOURCES += main.cpp \
     textData.cpp
 
 HEADERS += \
+    keyeventfilter.h \
     uiGroup.h \
     training.h \
     shop.h \

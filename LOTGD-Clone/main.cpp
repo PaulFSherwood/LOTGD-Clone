@@ -11,11 +11,12 @@
 //			   :
 // Copyright   : no copyright
 // Description : Trying to clone Legend of the Green dragon in C++, Ansi-style
+// PFS:4/16/2023: Refactoring, removing SDL where possible to return to a console program
 //============================================================================
 
-#include <stdio.h>
+// main.cpp
+#include <iostream>
 #include "bank.h"
-#include "display.h"
 #include "fighttable.h"
 #include "forrest.h"
 #include "creature.h"
@@ -26,12 +27,21 @@
 #include "uiGroup.h"
 #include "xmlParse.h"
 #include "xp.h"
+
+#include <QCoreApplication>
+#include "keyeventfilter.h"
+
 using namespace std;
 
 int main()
 {
-    // Initilize pointer class calls
-    display *getDisplay = new display();
+    QCoreApplication a(argc, argv);
+
+    KeyEventFilter keyEventFilter;
+    a.installEventFilter(&keyEventFilter);
+
+
+    // Initialize pointer class calls
     forrest *newForest = new forrest();
     shop *getShop = new shop();
     bank *getBank = new bank();
@@ -45,13 +55,7 @@ int main()
 
     uiGroup *uiDataValues = new uiGroup();
 
-    // The event structure
-    SDL_Event event;
-
-    // Import player and orge settings from a xml file
-    // importData->readXML(warrior, orge);
-
-    // pull all info from the xml file and put it into the class objects
+    // Import player and orge settings from an xml file
     importData->readXML_Class_Object(myPlayer);
     importData->readXML_Class_Object(myCreature);
     importData->readXML_ui_Class_Object(uiDataValues);
@@ -63,79 +67,78 @@ int main()
     // set game state to running
     bool running = true;
 
-    // Show main display
-    getDisplay->mainDisplay(myPlayer, uiDataValues);
-
     while (running)
     {
-        while( SDL_PollEvent( &event ) )
+        char choice;
+        cout << "Choose an option:\n"
+             << "f: Enter Forest\n"
+             << "q: Quit to the fields\n"
+             << "w: Warrior Training\n"
+             << "m: MightE's Weaponry\n"
+             << "a: Pegasus Armor\n"
+             << "b: ye old bank\n"
+             << "h: easy heal bot\n";
+        cin >> choice;
+        cin.ignore(); // ignore any extra input
+
+        switch (choice)
         {
-            /* look for key events */
-            switch( event.key.keysym.sym )
+            case 'f': // Enter Forest
             {
-                case SDLK_f://'F':   // Enter Forest
+                newForest->ForestLvl1(myPlayer, myCreature, uiDataValues, TextData_Object);
+                break;
+            }
+            case 'q': // Quit to the fields
+            {
+                importData->writeXML_Class_Object(myPlayer, myCreature);
+                running = false;
+                break;
+            }
+            case 'w': // Warrior Training
+            {
+                getTraining->Warrior_Training(myPlayer);
+                break;
+            }
+            case 'm': // MightE's Weaponry
+            {
+                getShop->Weapon_Shop(myPlayer);
+                break;
+            }
+            case 'a': // Pegasus Armor
+            {
+                getShop->Armor_Shop(myPlayer);
+                break;
+            }
+            case 'b': // ye old bank
+            {
+                getBank->old_Bank(myPlayer);
+                break;
+            }
+            case 'h': // easy heal bot
+            {
+                if (myPlayer->GetPlayerLvlP() == 1)
                 {
-                    newForest->ForestLvl1(myPlayer, myCreature, uiDataValues, TextData_Object);
-                    break;
+                    myPlayer->SetPlayerHpCap(myPlayer->GetPlayerHpCurrent());
                 }
-                case SDLK_q://'Q':	// Quit to the fields
+                else
                 {
-                    importData->writeXML_Class_Object(myPlayer, myCreature);
-
-                    running = false;
-                    break;
+                    myPlayer->SetPlayerHpCap(myPlayer->GetPlayerHpCurrent());
                 }
-                case SDLK_w://'W':	// Warrior Training
-                {
-                    // this should be used to level your character after you ahve enoguh exp.
-                    getTraining->Warrior_Training(myPlayer);
-                    break;
-                }
-                case SDLK_m://'M':	// MightE's Weaponry
-                {
-                    // this should be used to multiply your dmg
-                    getShop->Weapon_Shop(myPlayer);
-
-                    break;
-                }
-                case SDLK_a://'A':	// Pegasus Armor
-                {
-                    // this should be used to alter reduction in dmg
-                    getShop->Armor_Shop(myPlayer);
-                    break;
-                }
-                case SDLK_b://'B':	// ye old bank
-                {
-                    getBank->old_Bank(myPlayer);
-                    break;
-                }
-                case SDLK_h://'H':	// easy heal bot
-                {
-                if (myPlayer->GetPlayerLvlP() == 1){
-                        // reset health to original
-                        myPlayer->SetPlayerHpCap(myPlayer->GetPlayerHpCurrent());
-                    }else{
-                        // reset health based on level
-                    // this really should be 10%...30%...90%...bla bla bla
-                        myPlayer->SetPlayerHpCap(myPlayer->GetPlayerHpCurrent());
-                    }
-                    // need to update this for the gui
-                    cout << "With a wave of the wand your are not so much deader" << endl;
-                    cin.ignore().get();
-                    break;
-                }
-                default:
-                {
-                    // printf("i have detected an error and its you\n");
-                    break;
-                }
+                cout << "With a wave of the wand your are not so much deader" << endl;
+                cin.ignore().get();
+                break;
+            }
+            default:
+            {
+                break;
             }
         }
     }
-    // sdl test //
-    getDisplay->clean_up();
-    // sdl test //
-    delete getDisplay;
+
+    return a.exec();
+
+
+    // Clean up
     delete newForest;
     delete getShop;
     delete getBank;
