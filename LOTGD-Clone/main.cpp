@@ -35,6 +35,7 @@ using namespace std;
 
 int main()
 {
+    // For QT applications to start
     QCoreApplication a(argc, argv);
 
     KeyEventFilter keyEventFilter;
