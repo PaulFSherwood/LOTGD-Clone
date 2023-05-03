@@ -76,8 +76,11 @@ Thumbs.db
 
 # Build folders
 # -------
+.vscode/
 build-LOTGD-Clone-Desktop_Qt_5_12_2_MinGW_32_bit-Debug/
 build-LOTGD-Clone-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/
 build-LOTGD-Clone-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug
+build-LOTGD-Clone-Desktop_Qt_6_2_4_MinGW_64_bit-Debug/
 Debug/
 LOTGD-Clone/SDL/
+SDL/
